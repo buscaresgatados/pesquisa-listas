@@ -7,7 +7,7 @@
 </template>
 
 <style scoped>
-.search-title{
-  color: white;
-}
+  .search-title{
+    color: white;
+  }
 </style>
