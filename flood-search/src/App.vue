@@ -35,7 +35,7 @@ import Search from './components/Search.vue';
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  margin-top: 32px;
+  padding-top: 32px;
   
 }
 
