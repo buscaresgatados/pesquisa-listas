@@ -6,16 +6,15 @@ import Search from './components/Search.vue';
 
 <template>
   <div class="wrapper">
-    <div class="header">
-      <h1 class="text-3xl-bold">Lista de Abrigados</h1>
-      <p class="main-text">Pesquisa em compilado de listas de pessoas resgatadas nas enchentes do Rio Grande do Sul</p>
+    <div class="full-wrapper">
+      <div class="header">
+        <h1 class="text-3xl-bold">Lista de Abrigados</h1>
+        <p class="main-text">Pesquisa em compilado de listas de pessoas resgatadas nas enchentes do Rio Grande do Sul</p>
+      </div>  
+      <Search />
+      <LinkList />
     </div>
-
-    <Search />
-    <LinkList />
-
-
-  </div>
+    </div>
 </template>
 
 <style scoped>
