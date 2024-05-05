@@ -26,6 +26,10 @@ import Search from './components/Search.vue';
   margin-top: 0;
   margin-left:0;
 }
+.full-wrapper{
+  margin: 0 auto;
+  max-width: 650px;
+}
 .main-text{
   color: white;
 }
