@@ -1,20 +1,49 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family:"DM Sans", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  background-color: #111827;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 body{
-  color: #213547;
-  margin: 0;
+  background-color: #111827;
+  color: #EFFDF5;
+  margin:0;
+}
+
+a {
+  color: #00DC82;
+}
+
+/* Font config */
+
+.text-3xl-bold {
+font-size: 32px;
+line-height: 40px;
+font-weight: bold;
+}
+
+p {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.text-base-bold {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+.text-sm {
+  font-size: 14px;
+  line-height: 18px;
 }
 
 @media (prefers-color-scheme: light) {

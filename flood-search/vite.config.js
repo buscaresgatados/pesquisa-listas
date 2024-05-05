@@ -13,4 +13,7 @@ export default defineConfig({
       ]
     })
   ],
+  ui: {
+    icons: ['mdi', 'simple-icons']
+  }
 })

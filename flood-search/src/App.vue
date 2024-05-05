@@ -1,4 +1,5 @@
 <script setup>
+import LinkList from './components/LinkList.vue';
 import Search from './components/Search.vue';
 
 </script>
@@ -6,16 +7,19 @@ import Search from './components/Search.vue';
 <template>
   <div class="wrapper">
     <div class="header">
-      <h1 class="title">Lista de Abrigados</h1>
+      <h1 class="text-3xl-bold">Lista de Abrigados</h1>
       <p class="main-text">Pesquisa em compilado de listas de pessoas resgatadas nas enchentes do Rio Grande do Sul</p>
-      <Search />
     </div>
+
+    <Search />
+    <LinkList />
+
 
   </div>
 </template>
 
 <style scoped>
-.title {
+.text-3xl-bold {
   color: white;
   font-weight: 600;
   font-size: 30px;
@@ -27,9 +31,12 @@ import Search from './components/Search.vue';
   color: white;
 }
 .wrapper {
-  background-color: #111827;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
+  padding-top: 32px;
   
 }
+
 </style>
