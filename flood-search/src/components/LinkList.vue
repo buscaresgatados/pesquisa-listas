@@ -13,12 +13,12 @@ import { ArrowTopRightOnSquareIcon, DocumentIcon, ExclamationCircleIcon } from '
 
         <div class="link-list">
           <div class="link-list--col">
-            <a href="https://docs.google.com/spreadsheets/d/1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ/htmlview#gid=1619683963">Lista Desabrigados<ArrowTopRightOnSquareIcon class="icon-size" /></a>
-            <a href="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0">To Salvo Vale dos Sinos <ArrowTopRightOnSquareIcon class="icon-size" /> </a>
+            <a href="https://docs.google.com/spreadsheets/d/1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ/htmlview#gid=1619683963" target="_blank">Lista Desabrigados<ArrowTopRightOnSquareIcon class="icon-size" /></a>
+            <a href="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" target="_blank">To Salvo Vale dos Sinos <ArrowTopRightOnSquareIcon class="icon-size" /> </a>
           </div>
           <div class="link-list--col">
-            <a href="https://docs.google.com/spreadsheets/u/0/d/1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs/htmlview">RESGATADOS - Enchente RS<ArrowTopRightOnSquareIcon class="icon-size" /></a>
-            <a href="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/htmlview">SAO LEOPOLDO - LISTA ALOJADOS<ArrowTopRightOnSquareIcon class="icon-size" /> </a>
+            <a href="https://docs.google.com/spreadsheets/u/0/d/1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs/htmlview" target="_blank">RESGATADOS - Enchente RS<ArrowTopRightOnSquareIcon class="icon-size" /></a>
+            <a href="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/htmlview" target="_blank">SAO LEOPOLDO - LISTA ALOJADOS<ArrowTopRightOnSquareIcon class="icon-size" /> </a>
           </div>
         </div>
       </div>
