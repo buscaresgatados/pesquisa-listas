@@ -1,6 +1,6 @@
 <script setup>
 import { ArrowTopRightOnSquareIcon, DocumentIcon, ExclamationCircleIcon } from '@heroicons/vue/24/outline';
-
+import LinkComponent from './LinkComponent.vue';
 </script>
 
 <template>
@@ -11,14 +11,18 @@ import { ArrowTopRightOnSquareIcon, DocumentIcon, ExclamationCircleIcon } from '
         <div class="text-base-bold">Listas consultadas</div>
         <p>Em tempo real, atualizamos nosso banco de dados com os nomes de pessoas resgatadas nas enchentes, com base nas seguintes listas:</p>
 
-<div class="link-list">
+      <div class="link-list">
           <div class="link-list--col">
-            <a href="https://docs.google.com/spreadsheets/d/1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ/htmlview#gid=1619683963" target="_blank">Lista Desabrigados<ArrowTopRightOnSquareIcon class="icon-size" /></a>
-            <a href="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" target="_blank">To Salvo Vale dos Sinos <ArrowTopRightOnSquareIcon class="icon-size" /> </a>
+
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1-1q4c8Ns6M9noCEhQqBE6gy3FWUv-VQgeUO9c7szGIM/htmlview" name="ABRIGADOS EM CANOAS 01" tag title="NOVA"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ/htmlview#gid=1619683963" name="Lista Desabrigados" />
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" name="To Salvo Vale dos Sinos" />
+
           </div>
+
           <div class="link-list--col">
-            <a href="https://docs.google.com/spreadsheets/u/0/d/1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs/htmlview" target="_blank">RESGATADOS - Enchente RS<ArrowTopRightOnSquareIcon class="icon-size" /></a>
-            <a href="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/htmlview" target="_blank">SAO LEOPOLDO - LISTA ALOJADOS<ArrowTopRightOnSquareIcon class="icon-size" /> </a>
+            <LinkComponent url="https://docs.google.com/spreadsheets/u/0/d/1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs/htmlview" name="RESGATADOS - Enchente RS"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/htmlview" name="SAO LEOPOLDO - LISTA ALOJADOS"/>
           </div>
         </div>
       </div>
@@ -26,6 +30,18 @@ import { ArrowTopRightOnSquareIcon, DocumentIcon, ExclamationCircleIcon } from '
       <div class="section">
         <ExclamationCircleIcon class="icon-decoration" />
         <div class="text-base-bold">Alguma lista ficou de fora?</div>
+        <!-- <p> Estamos trabalhando para adicionar essas listas ao banco de dados: </p>
+
+        <div class="link-list">
+          <div class="link-list--col">
+            <a href="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" target="_blank">To Salvo Vale dos Sinos <ArrowTopRightOnSquareIcon class="icon-size" /> </a>
+          </div>
+          <div class="link-list--col">
+            <a href="https://docs.google.com/spreadsheets/u/0/d/1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs/htmlview" target="_blank">RESGATADOS - Enchente RS<ArrowTopRightOnSquareIcon class="icon-size" /></a>
+            <a href="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/htmlview" target="_blank">SAO LEOPOLDO - LISTA ALOJADOS<ArrowTopRightOnSquareIcon class="icon-size" /> </a>
+          </div>
+        </div> -->
+
         <p>Envie sua sugestão para <a href="mailto:buscaresgatados@gmail.com">buscaresgatados@gmail.com</a></p>
       </div>
   </div>
@@ -42,13 +58,6 @@ import { ArrowTopRightOnSquareIcon, DocumentIcon, ExclamationCircleIcon } from '
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 24px;
-}
-
-.link-list a {
-  width: 100%;
-  display: flex;
-  gap: 4px;
-  line-height: 32px;
 }
 
 

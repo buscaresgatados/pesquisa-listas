@@ -1,6 +1,4 @@
 <script setup>
-import FoundResults from './FoundResults.vue';
-
 defineProps({
   searchResults: Array
   })
