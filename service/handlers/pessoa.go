@@ -35,20 +35,21 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 
 	var pessoasSearch []objects.PessoaSearchResult
 	err = results.UnmarshalHits(&pessoasSearch)
+
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	var pessoas []*objects.PessoaResult
-	for _, pessoa := range pessoasSearch {
-		pessoaRepository, err := repository.FetchFromFirestore(pessoa.ObjectID)
-		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		pessoas = append(pessoas, pessoaRepository)
+
+	docIDs := make([]string, 0, len(pessoasSearch))
+	for _, result := range pessoasSearch {
+		docIDs = append(docIDs, result.ObjectID)
+	}
+	pessoas, err := repository.FetchFromFirestore(docIDs)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
 	sort.SliceStable(pessoas, func(i, j int) bool {
