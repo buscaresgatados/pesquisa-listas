@@ -24,7 +24,7 @@ var Config []SheetConfig = []SheetConfig{
 	// },
 	// {
 	// 	id:          "1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs",
-	// 	sheetRanges: []string{"PESSOAS RESGATADAS!A1:ZZ"},
+	// 	sheetRanges: []string{"ATUALIZADO 06/05!A1:ZZ"},
 	// 	name:        "RESGATADOS - Enchente RS",
 	// },
 	{

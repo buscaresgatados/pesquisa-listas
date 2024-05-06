@@ -128,8 +128,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "PESSOAS RESGATADAS!A1:ZZ":
-				fmt.Fprintln(os.Stdout, content)
+			case "ATUALIZADO 06/05!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
 					if i < 4 || len(row) < 3 {
