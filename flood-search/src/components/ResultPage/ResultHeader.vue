@@ -1,4 +1,5 @@
 <script setup>
+import { ChevronLeftIcon } from '@heroicons/vue/16/solid';
 
     defineProps({
     name: String,
@@ -7,6 +8,7 @@
 
 <template>
   <div>
+    <a href='HomePage' class="button-voltar"><ChevronLeftIcon class="icon-button"/><p>Voltar</p></a>
     <h5 class="result-header__title ">Buscando por</h5>
     <h2 class="result-header__name">{{ name }}</h2>
   </div>
@@ -14,6 +16,19 @@
 </template>
 
 <style scoped>
+
+  .button-voltar {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding-bottom: 16px;
+    color: #CBD5E1;
+  }
+
+  .button-voltar p {
+    font-weight: bold;
+
+  }
 
   .result-header__title{
     color: white;

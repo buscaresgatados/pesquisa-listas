@@ -1,6 +1,5 @@
 <script setup>
 import LinkList from '../../LinkList.vue';
-import { ChevronLeftIcon } from '@heroicons/vue/16/solid';
 
 
 
@@ -8,7 +7,6 @@ import { ChevronLeftIcon } from '@heroicons/vue/16/solid';
 
 <template>
   <div class="searched-wrapper">
-    <a href='HomePage' class="button-voltar"><ChevronLeftIcon class="icon-button"/><p>Voltar</p></a>
     <h4 class="searched-title">Não encontrou quem procurava?</h4>
     <p class="searched-text">Continuamos atualizando nosso banco de dados à medida que novos nomes são adicionados às listas consultadas. Tente novamente mais tarde.</p>
   </div>
@@ -16,19 +14,6 @@ import { ChevronLeftIcon } from '@heroicons/vue/16/solid';
 </template>
 
 <style scoped>
-
-
-.button-voltar {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-
-  .button-voltar p {
-    font-weight: bold;
-
-  }
-
 
 .searched-wrapper{
   margin-top: 40px;
