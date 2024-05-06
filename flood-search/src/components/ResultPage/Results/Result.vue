@@ -13,12 +13,13 @@ defineProps({
   
   const fetchData = async () => {
   try {
-    const response = await ResultService.search(props.name);
+    const response = await ResultService.search(this.name);
     searchResults.value = response.data;
     isValueReady.value = true;
   } catch (error) {
     console.error('Erro na busca:', error);
   }
+
   onMounted(fetchData)
 }
 
@@ -28,10 +29,9 @@ defineProps({
 <template>
   <div class="results-wrapper">
     <div class="results-wrapper-top">
-      <p class="found-results">X resultados encontrados</p>
+      <p class="found-results">{{ searchResults.length }} resultados encontrados</p>
       <p class="last-update">Atualizado por último às {xx:xx} do dia {xx de Maio}</p>
     </div>
-    <h2>{{ name }}</h2>
     <div v-if="isValueReady">
       <div v-for="result in searchResults" :key="result.listId">
         <FoundResults
