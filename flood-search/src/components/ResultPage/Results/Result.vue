@@ -1,7 +1,9 @@
 <script setup>
 import FoundResults from './FoundResults.vue';
 
-
+defineProps({
+  searchResults: Array
+  })
 </script>
 
 <template>
@@ -11,15 +13,16 @@ import FoundResults from './FoundResults.vue';
       <p class="last-update">Atualizado por último às {xx:xx} do dia {xx de Maio}</p>
     </div>
     <div>
+      <div v-for="result in searchResults" :key="result.SheetId">
       <FoundResults
-        name="Jogn Doe"
-        age="36"
-        list-name="Canoas"
-        url="google.com"
-        shelter="Colégio 01"
+        :Nome="result.Nome"
+        :Idade="result.Idade"
+        :listId="result.SheetId"
+        :Abrigo="result.Abrigo"
       />
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>

@@ -1,22 +1,12 @@
 <script setup>
-import { ref } from 'vue';
-import ResultService from '../service/ResultService';
 import router from '../routes'
+import { ref } from 'vue';
 
 const searchTerm = ref('');
-const searchResults = ref([]); 
-
 const onSearch = () => {
-  const term = searchTerm.value;
-  router.push({ name: 'results', params: { term } });
-  ResultService.search(term)
-    .then(response => {
-      searchResults.value = response.data;
-    })
-    .catch(error => {
-      console.error('Erro na busca:', error);
-    });
-  }
+  router.push({ name: 'results', params: { term: searchTerm.value } });
+}
+
 </script>
 
 <template>

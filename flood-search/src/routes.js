@@ -1,4 +1,4 @@
-import { createRouter, createMemoryHistory  } from 'vue-router';
+import { createRouter, createMemoryHistory } from 'vue-router';
 import Homepage from './components/HomePage.vue'
 import ResultPage from './components/ResultPage/ResultPage.vue';
 
@@ -12,9 +12,9 @@ const routes = [
   {
     path: '/results/:term',
     name: 'results',
-    component: ResultPage,
-    props: true,
-  },
+    component: () => ResultPage,
+    props: true
+  }
 ];
 
 const router = createRouter({
