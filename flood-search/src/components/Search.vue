@@ -1,5 +1,4 @@
 <script setup>
-import { UInput } from 'nuxt-ui-vue';
 import { ref } from 'vue';
 import ResultService from '../service/ResultService';
 import router from '../routes'
@@ -24,7 +23,7 @@ const onSearch = () => {
   <div class="search-wrap">
     <p>Nome</p>
     <div class="cta">
-      <UInput v-model="searchTerm" class="UInput" autocomplete="off" placeholder="Buscar por nome" />
+      <input class="input-style" v-model="searchTerm" autocomplete="off" placeholder="Buscar por nome" />
       <button @click="onSearch">Buscar</button>
     </div>
   </div>
