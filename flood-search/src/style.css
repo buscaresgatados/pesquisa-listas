@@ -21,6 +21,10 @@ body{
 a {
   color: #00DC82;
 }
+a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: #00DC82 !important;
+}
 
 /* Font config */
 
@@ -56,17 +60,47 @@ p {
   border-style: solid;
   display: flex;
   width: 97%;
+  color: white;
   
+}
+
+.icon-size{
+  width: 16px;
+}
+
+.icon-decoration{
+  width: 32px;
+  margin-left: -4px;
+  color: #00DC82;
 }
 
 Button  {
 height: 46px;
 padding: 0px 16px;
-background-color: #00DC82;
+background-color: #00DC82 !important;
 color:#111827;
 border: none;
 border-radius: 8px;
 }
+
+Button:hover {
+  background-color: #0DFB9A !important;
+  cursor: pointer;
+}
+
+.full-wrapper{
+  margin: 0 auto;
+  max-width: 650px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 32px; 
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
