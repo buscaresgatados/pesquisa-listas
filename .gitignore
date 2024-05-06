@@ -1,0 +1,6 @@
+.env
+serviceacc.json
+service/appServiceAcc.json
+service/sheetsServiceAcc.json
+.DS_Store
+service/deploy.sh
