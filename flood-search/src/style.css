@@ -20,10 +20,25 @@ body {
 
 a {
   color: #00DC82;
+
 }
 a:hover, a:focus, a:active {
-  text-decoration: none;
   color: #00DC82 !important;
+}
+
+
+.tag {
+  display: flex;
+  padding: 2px 8px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background: var(--Sky-700, #0369A1);
+  height: 12px;
+  font-size: 12px;
+  line-height: 12px;
+  color: white;
+  text-decoration: none !important;
 }
 
 /* Font config */
