@@ -65,16 +65,40 @@ func Scrape() {
 			content, _ := ss.Read(cfg.id, sheetRange)
 			switch sheetRange {
 			// Offsets e customizações pra cada planilha hardcoded por enquanto
-			case "Estância Velha!A1:ZZ":
+			case "Alojados!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
-					if i < 8 || len(row) == 0 {
+					if i < 9 || len(row) == 0 {
+						continue
+					}
+					fmt.Println(row)
+					fmt.Println(len(row))
+					p := objects.Pessoa{
+						Abrigo: row[2].(string),
+						Nome:   row[3].(string),
+					}
+
+					if len(row) > 4 {
+						p.Idade = row[4].(string)
+					} else {
+						p.Idade = ""
+					}
+
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "CADASTRO_EM_TEMPO_REAL!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) == 0 {
 						continue
 					}
 					p := objects.Pessoa{
 						Abrigo: row[2].(string),
-						Nome:   row[3].(string),
-						Idade:  row[4].(string),
+						Nome:   row[1].(string),
+						Idade:  "",
 					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
@@ -84,9 +108,7 @@ func Scrape() {
 				}
 			}
 
-			for _, pessoa := range serializedData {
-				repository.AddToFirestore(pessoa)
-			}
+			repository.AddToFirestore(serializedData)
 
 			fmt.Fprintf(os.Stdout, "Scraped data from sheetId %s, range %s. %d results", cfg.id, sheetRange, len(serializedData))
 		}

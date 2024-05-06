@@ -8,8 +8,6 @@ type Pessoa struct {
 	Idade  string
 }
 
-type SheetId string
-
 type PessoaResult struct {
 	*Pessoa
 	SheetId   string
@@ -18,4 +16,9 @@ type PessoaResult struct {
 
 type PessoaReturn struct {
 	results []PessoaResult
+}
+
+type PessoaSearchResult struct {
+	ObjectID string
+	Nome     string
 }
