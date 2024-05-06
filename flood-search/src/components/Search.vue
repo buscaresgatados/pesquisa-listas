@@ -3,8 +3,14 @@ import router from '../routes'
 import { ref } from 'vue';
 
 const searchTerm = ref('');
+const showError = ref(false);
 const onSearch = () => {
-  router.push({ name: 'results', params: { term: searchTerm.value } });
+  if(searchTerm.value) {
+    showError.value=false;
+    router.push({ name: 'results', params: { term: searchTerm.value } });
+  } else {
+    showError.value = true;
+  }
 }
 
 const handleKeyPress = (event) => {
@@ -21,10 +27,14 @@ const handleKeyPress = (event) => {
       <input class="input-style" v-model="searchTerm" @keyup.enter="handleKeyPress" autocomplete="off" placeholder="Buscar por nome" />
       <button @click="onSearch">Buscar</button>
     </div>
+    <span class="error-message" v-if="showError">Busca inválida</span>
   </div>
 </template>
 
 <style scoped>
+  .error-message{
+    display: block;
+}
 
   .search-wrap {
     padding: 32px 0px 48px 0px;

@@ -1,5 +1,6 @@
 <script setup>
 import { ChevronLeftIcon } from '@heroicons/vue/16/solid';
+import { RouterLink } from 'vue-router';
 
     defineProps({
     name: String,
@@ -8,7 +9,7 @@ import { ChevronLeftIcon } from '@heroicons/vue/16/solid';
 
 <template>
   <div>
-    <a href='HomePage' class="button-voltar"><ChevronLeftIcon class="icon-button"/><p>Voltar</p></a>
+    <RouterLink to="/" class="button-voltar"><ChevronLeftIcon class="icon-button"/><p>Voltar</p></RouterLink>
     <h5 class="result-header__title ">Buscando por</h5>
     <h2 class="result-header__name">{{ name }}</h2>
   </div>
