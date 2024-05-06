@@ -2,14 +2,15 @@
 import ResultHeader from './ResultHeader.vue';
 import ResultFooter from './ResultFooter/ResultFooter.vue'
 import Result from './Results/Result.vue';
+import { useRoute } from 'vue-router';
 
-defineProps({
-    search: String,
-  })
+const route = useRoute();
+const term = route.params.term;
+
 </script>
 
 <template>
-  <ResultHeader :name="search"  />
+  <ResultHeader :name="term"  />
   <Result />
   <ResultFooter />
 </template>

@@ -1,26 +1,25 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory  } from 'vue-router';
+import App from './App.vue'; // Assuming component location
+import ResultPage from './components/ResultPage/ResultPage.vue'; // Assuming component location
 
-Vue.use(VueRouter);
+const history = createWebHistory();
 
 const routes = [
   {
     path: '/',
-    component: () => import('./components/HomePage.vue')
+    component: App,
   },
   {
     path: '/results/:term',
     name: 'results',
-    component: () => import('./components/ResultPage/ResultPage.vue'),
-    props: true
-  }
+    component: ResultPage,
+    props: true,
+  },
 ];
 
-const router = new VueRouter({
-  routes
+const router = createRouter({
+  history,
+  routes,
 });
 
-new Vue({
-  router,
-  el: '#app'
-});
+export default router;
