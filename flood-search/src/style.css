@@ -21,6 +21,10 @@ body{
 a {
   color: #00DC82;
 }
+a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: #00DC82 !important;
+}
 
 /* Font config */
 
@@ -62,7 +66,7 @@ p {
 Button  {
 height: 46px;
 padding: 0px 16px;
-background-color: #00DC82;
+background-color: #00DC82 !important;
 color:#111827;
 border: none;
 border-radius: 8px;

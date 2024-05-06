@@ -1,4 +1,5 @@
 <script setup>
+import ResultPage from './components/ResultPage/ResultPage.vue'
 import LinkList from './components/LinkList.vue';
 import Search from './components/Search.vue';
 
@@ -14,6 +15,7 @@ import Search from './components/Search.vue';
       </div>  
       <Search />
       <LinkList />
+      <!-- <ResultPage search="John Doe"/> -->
     </div>
     </div>
 </template>
