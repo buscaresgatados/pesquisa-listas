@@ -32,7 +32,7 @@ const onSearch = () => {
 <style scoped>
 
   .search-wrap {
-    padding: 48px 0px;
+    padding: 32px 0px 48px 0px;
   }
 
   p {
