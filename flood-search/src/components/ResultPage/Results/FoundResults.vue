@@ -1,23 +1,22 @@
 <script setup>
 import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
     defineProps({
-    name: String,
-    age: Number,
-    shelter: String,
-    url: String,
-    listName: String,
+    Nome: String,
+    Idade: Number,
+    Abrigo: String,
+    SheetId: String,
   })
 </script>
-
+<!-- TO-DO Adicionar função de dar fetch na lista -->
 <template>
   <div class="found-results-wrapper">
     <div >
       <h3 class="found-results">
-        {{ name }}
+        {{ Nome }}
       </h3>
       <div class="inner-result-container">
-        <p>{{ age }} anos, em {{ shelter }}</p>
-        <a class="link" :href="url"> {{ listName }} <ArrowTopRightOnSquareIcon class="icon-size" /></a>
+        <p>{{ Idade }} anos, em {{ Abrigo }}</p>
+        <a class="link" href="google.com"> CANOAS <ArrowTopRightOnSquareIcon class="icon-size" /></a>
       </div>
     </div>
   </div>
