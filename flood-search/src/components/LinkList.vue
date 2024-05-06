@@ -11,7 +11,7 @@ import { ArrowTopRightOnSquareIcon, DocumentIcon, ExclamationCircleIcon } from '
         <div class="text-base-bold">Listas consultadas</div>
         <p>Em tempo real, atualizamos nosso banco de dados com os nomes de pessoas resgatadas nas enchentes, com base nas seguintes listas:</p>
 
-        <div class="link-list">
+<div class="link-list">
           <div class="link-list--col">
             <a href="https://docs.google.com/spreadsheets/d/1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ/htmlview#gid=1619683963" target="_blank">Lista Desabrigados<ArrowTopRightOnSquareIcon class="icon-size" /></a>
             <a href="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" target="_blank">To Salvo Vale dos Sinos <ArrowTopRightOnSquareIcon class="icon-size" /> </a>
@@ -26,7 +26,7 @@ import { ArrowTopRightOnSquareIcon, DocumentIcon, ExclamationCircleIcon } from '
       <div class="section">
         <ExclamationCircleIcon class="icon-decoration" />
         <div class="text-base-bold">Alguma lista ficou de fora?</div>
-        <p>Envie sua sugestão para <a href="mailto:buscadeabrigados@gmail.com">buscadeabrigados@gmail.com</a></p>
+        <p>Envie sua sugestão para <a href="mailto:buscaresgatados@gmail.com">buscaresgatados@gmail.com</a></p>
       </div>
   </div>
 </template>
