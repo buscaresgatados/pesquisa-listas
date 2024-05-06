@@ -35,11 +35,12 @@ defineProps({
   .found-results {
     font-size: 16px;
     font-weight: 400;
-    color: #CBD5E1;
+    color: #white;
   }
   .last-update{
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 400;
-    color: #CBD5E1;
+    color: #white;
+    max-width: 160px
   }
 </style>

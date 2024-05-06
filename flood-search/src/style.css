@@ -12,7 +12,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body{
+body {
   background-color: #111827;
   color: #EFFDF5;
   margin:0;
@@ -74,6 +74,14 @@ p {
   color: #00DC82;
 }
 
+
+.icon-button{
+  width: 20px;
+  margin-left: -8px;;
+  padding: 4px;
+  color: #00DC82;
+}
+
 Button  {
 height: 46px;
 padding: 0px 16px;
@@ -96,11 +104,19 @@ Button:hover {
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   padding-top: 32px; 
 }
 
+@media (max-width: 480px) 
+  {
+    .wrapper {
+      width: auto;
+      margin: 0px 20px;
+    }
+
+  }
 
 @media (prefers-color-scheme: light) {
   :root {

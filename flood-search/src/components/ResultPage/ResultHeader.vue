@@ -1,4 +1,5 @@
 <script setup>
+
     defineProps({
     name: String,
   })
@@ -13,6 +14,7 @@
 </template>
 
 <style scoped>
+
   .result-header__title{
     color: white;
     font-size: 16px;

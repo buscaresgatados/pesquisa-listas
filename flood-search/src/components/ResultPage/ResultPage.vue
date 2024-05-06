@@ -25,7 +25,7 @@ onMounted(search);
 <template>
 
 <div class="wrapper">
-    <div class="full-wrapper">
+    <div class="full-wrapper"> 
         <ResultHeader :name="term"  />
         <Result :searchResults="searchResults"/>
         <ResultFooter />
