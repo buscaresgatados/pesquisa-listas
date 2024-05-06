@@ -2,6 +2,7 @@
 import LinkList from './components/LinkList.vue';
 import Search from './components/Search.vue';
 
+
 </script>
 
 <template>
@@ -9,7 +10,7 @@ import Search from './components/Search.vue';
     <div class="full-wrapper">
       <div class="header">
         <h1 class="text-3xl-bold">Lista de Abrigados</h1>
-        <p class="main-text">Pesquisa em compilado de listas de pessoas resgatadas nas enchentes do Rio Grande do Sul</p>
+        <p>Pesquisa em compilado de listas de pessoas resgatadas nas enchentes do Rio Grande do Sul</p>
       </div>  
       <Search />
       <LinkList />
@@ -22,7 +23,7 @@ import Search from './components/Search.vue';
   color: white;
   font-weight: 600;
   font-size: 30px;
-  line-height: 36px;
+  line-height: 3px;
   margin-top: 0;
   margin-left:0;
 }
@@ -30,9 +31,7 @@ import Search from './components/Search.vue';
   margin: 0 auto;
   max-width: 650px;
 }
-.main-text{
-  color: white;
-}
+
 .wrapper {
   display: flex;
   flex-direction: column;

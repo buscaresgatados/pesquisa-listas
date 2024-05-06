@@ -46,6 +46,28 @@ p {
   line-height: 18px;
 }
 
+/* Input Custom */
+
+.UInput {
+  padding: 12px 8px;
+  background-color: #111827 ;
+  border-radius: 8px;
+  border-color: #00DC82;
+  border-style: solid;
+  display: flex;
+  width: 97%;
+  
+}
+
+Button  {
+height: 46px;
+padding: 0px 16px;
+background-color: #00DC82;
+color:#111827;
+border: none;
+border-radius: 8px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

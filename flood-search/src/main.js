@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import './style.css'
 import nuxtLabsTheme from 'nuxt-ui-vue/dist/theme/nuxtlabsTheme'
 
-import { createUI } from 'nuxt-ui-vue'
+import { UButton, UInput, createUI } from 'nuxt-ui-vue'
+
 
 import App from './App.vue'
 

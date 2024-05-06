@@ -1,13 +1,27 @@
 <script setup>
+  import { UInput } from 'nuxt-ui-vue';
 </script>
 
 <template>
-  <h3 class="search-title">Nome completo</h3>
-  <UInput color="primary" variant="outline" placeholder="Search..." />
+  <p>Nome completo</p>
+  <div class="cta">
+    <UInput class="UInput" autocomplete="off" placeholder="Buscar por nome" />
+    <button>Buscar</button>
+  </div>
 </template>
 
 <style scoped>
-  .search-title{
-    color: white;
+  p {
+    margin-bottom: 2px;
+  }
+
+  .cta {
+    display: flex;
+    gap: 16px;
+    width: 100R%;
+  }
+
+  .relative {
+    width: 100%;
   }
 </style>

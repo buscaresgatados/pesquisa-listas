@@ -4,16 +4,18 @@ import { UIcon } from 'nuxt-ui-vue';
 </script>
 
 <template>
-  <div class="text-base-bold">Listas consultadas</div>
-  <p>Em tempo real, atualizamos nosso banco de dados com os nomes de pessoas resgatadas nas enchentes, com base nas seguintes listas:</p>
+  <div class="wrapper-list">
+    <div class="text-base-bold">Listas consultadas</div>
+    <p>Em tempo real, atualizamos nosso banco de dados com os nomes de pessoas resgatadas nas enchentes, com base nas seguintes listas:</p>
 
-  <div class="link-list">
-  <a href="">Abrigados em Canoas 01 <UIcon name="i-heroicons-arrow-top-right-on-square-solid"/> </a>
-  <a href="">Abrigados em Canoas 01</a>
+    <div class="link-list">
+    <a href="">Abrigados em Canoas 01 <UIcon name="i-heroicons-arrow-top-right-on-square-solid"/> </a>
+    <a href="">Abrigados em Canoas 01</a>
+    </div>
+
+    <div class="text-base-bold">Alguma lista ficou de fora?</div>
+    <p>Envie sua sugestão para <a href="mailto:buscadeabrigados@gmail.com">buscadeabrigados@gmail.com</a></p>
   </div>
-
-  <div class="text-base-bold">Alguma lista ficou de fora?</div>
-  <p>Envie sua sugestão para <a href="mailto:buscadeabrigados@gmail.com">buscadeabrigados@gmail.com</a></p>
 </template>
 
 <style scoped>
@@ -37,6 +39,10 @@ h3 {
 
 p {
   color: #E5E5E5
+}
+
+.wrapper-list {
+  padding-top: 40px;
 }
 
 </style>
