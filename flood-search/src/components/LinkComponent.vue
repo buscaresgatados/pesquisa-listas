@@ -12,7 +12,7 @@ import TagComponent from './microcomponents/TagComponent.vue'
 <template>
   <div class="link-component">
     <a :href="url" target="_blank">{{  name  }}<ArrowTopRightOnSquareIcon class="icon-size" /></a>
-    <TagComponent v-if="tag" title="title" />
+    <TagComponent v-if="tag" :title="title" />
   </div>
 
 </template>
