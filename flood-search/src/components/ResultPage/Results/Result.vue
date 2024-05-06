@@ -1,5 +1,26 @@
 <script setup>
 import FoundResults from './FoundResults.vue';
+import ResultService from '../../../service/ResultService';
+import { onMounted, ref } from 'vue';
+
+defineProps({
+    name: String,
+    required: true,
+  })
+  
+  const searchResults = ref([]);
+  const isValueReady = ref(false); 
+  
+  const fetchData = async () => {
+  try {
+    const response = await ResultService.search(props.name);
+    searchResults.value = response.data;
+    isValueReady.value = true;
+  } catch (error) {
+    console.error('Erro na busca:', error);
+  }
+  onMounted(fetchData)
+}
 
 
 </script>
@@ -10,14 +31,16 @@ import FoundResults from './FoundResults.vue';
       <p class="found-results">X resultados encontrados</p>
       <p class="last-update">Atualizado por último às {xx:xx} do dia {xx de Maio}</p>
     </div>
-    <div>
-      <FoundResults
-        name="Jogn Doe"
-        age="36"
-        list-name="Canoas"
-        url="google.com"
-        shelter="Colégio 01"
-      />
+    <h2>{{ name }}</h2>
+    <div v-if="isValueReady">
+      <div v-for="result in searchResults" :key="result.listId">
+        <FoundResults
+          :Nome="result.Nome"
+          :Idade="result.Idade"
+          :listId="result.listId"
+          :Abrigo="result.Abrigo"
+        />
+      </div>
     </div>
   </div>
 </template>

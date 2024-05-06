@@ -4,7 +4,6 @@ import { ref } from 'vue';
 import router from '../routes'
 
 const searchTerm = ref('');
-const isResultsAvailable = ref(false);
 
 const onSearch = () => {
   const term = searchTerm.value;

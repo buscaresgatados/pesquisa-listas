@@ -10,8 +10,8 @@ const term = route.params.term;
 </script>
 
 <template>
-  <ResultHeader :name="term"  />
-  <Result />
+  <ResultHeader :name="term" />
+  <Result :name="term" />
   <ResultFooter />
 </template>
 
