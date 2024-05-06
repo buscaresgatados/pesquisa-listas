@@ -1,11 +1,10 @@
 <script setup>
 import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
     defineProps({
-    name: String,
-    age: Number,
-    shelter: String,
-    url: String,
-    listName: String,
+    Nome: String,
+    Idade: Number,
+    Abrigo: String,
+    listId: String,
   })
 </script>
 
@@ -13,11 +12,12 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
   <div class="found-results-wrapper">
     <div >
       <h3 class="found-results">
-        {{ name }}
+        {{ Nome }}
       </h3>
       <div class="inner-result-container">
-        <p>{{ age }} anos, em {{ shelter }}</p>
-        <a class="link" :href="url"> <div class="list-name">{{ listName }}</div> <ArrowTopRightOnSquareIcon class="icon-size" /></a>
+        <p v-if="Idade">{{ Idade }} anos</p>
+        <p>Abrigo: {{Abrigo}}</p>
+        <a class="link" :href="`https://docs.google.com/spreadsheets/u/0/d/${listId}`"> <div class="list-name">Planilha fonte</div> <ArrowTopRightOnSquareIcon class="icon-size" /></a>
       </div>
     </div>
   </div>
