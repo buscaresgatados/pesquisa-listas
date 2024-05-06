@@ -7,13 +7,18 @@ const onSearch = () => {
   router.push({ name: 'results', params: { term: searchTerm.value } });
 }
 
+const handleKeyPress = (event) => {
+  if (event.key === 'Enter') {
+    onSearch();
+  }
+}
 </script>
 
 <template>
   <div class="search-wrap">
     <p>Nome</p>
     <div class="cta">
-      <input class="input-style" v-model="searchTerm" autocomplete="off" placeholder="Buscar por nome" />
+      <input class="input-style" v-model="searchTerm" @keyup.enter="handleKeyPress" autocomplete="off" placeholder="Buscar por nome" />
       <button @click="onSearch">Buscar</button>
     </div>
   </div>

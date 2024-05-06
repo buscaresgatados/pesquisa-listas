@@ -9,7 +9,7 @@ defineProps({
 <template>
   <div class="results-wrapper">
     <div class="results-wrapper-top">
-      <p class="found-results">X resultados encontrados</p>
+      <p class="found-results">{{ searchResults.length }} resultados encontrados</p>
       <p class="last-update">Atualizado por último às {xx:xx} do dia {xx de Maio}</p>
     </div>
     <div>
@@ -35,12 +35,12 @@ defineProps({
   .found-results {
     font-size: 16px;
     font-weight: 400;
-    color: #white;
+    color: white;
   }
   .last-update{
     font-size: 13px;
     font-weight: 400;
-    color: #white;
+    color: white;
     max-width: 160px
   }
 </style>
