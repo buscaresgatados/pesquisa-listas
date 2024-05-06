@@ -17,23 +17,33 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
       </h3>
       <div class="inner-result-container">
         <p>{{ age }} anos, em {{ shelter }}</p>
-        <a class="link" :href="url"> {{ listName }} <ArrowTopRightOnSquareIcon class="icon-size" /></a>
+        <a class="link" :href="url"> <div class="list-name">{{ listName }}</div> <ArrowTopRightOnSquareIcon class="icon-size" /></a>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-  .icon-size{
-    width: 16px;
-  }
-  .link{
-    text-transform: uppercase;
+
+  .list-name{
+    font-size: 14px;
     text-decoration: none;
-    border-bottom: 1px solid #00DC82 !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 120px;
+    border-bottom: 1px solid #00DC82 !important;    
   }
+
+  .link {
+    text-decoration: none;
+    text-transform: uppercase;
+    display:flex;
+    gap: 4px;
+  }
+
   .found-results-wrapper{
-    padding: 8px;
+    padding: 16px;
     border-bottom: 0.1px solid rgba(255, 255, 255,0.3);
   }
   .inner-result-container{

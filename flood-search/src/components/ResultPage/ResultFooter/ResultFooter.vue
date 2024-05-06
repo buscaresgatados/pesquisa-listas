@@ -29,5 +29,6 @@ import LinkList from '../../LinkList.vue';
     font-size: 16px !important;
     font-weight: 400 !important;
     line-height: 24px;
+    padding-bottom: 24px;
   }
 </style>

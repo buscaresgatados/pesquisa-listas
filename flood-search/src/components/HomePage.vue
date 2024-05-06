@@ -20,26 +20,6 @@ import Search from './Search.vue';
 </template>
 
 <style scoped>
-.text-3xl-bold {
-  color: white;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 3px;
-  margin-top: 0;
-  margin-left:0;
-}
-.full-wrapper{
-  margin: 0 auto;
-  max-width: 650px;
-}
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  padding-top: 32px;
-  
-}
 
 </style>

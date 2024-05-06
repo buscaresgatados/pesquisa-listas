@@ -17,7 +17,7 @@
     color: white;
     font-size: 16px;
     line-height: 24px;
-    font-weight: 200;
+    font-weight: 400;
     margin:0;
   }
   .result-header__name{

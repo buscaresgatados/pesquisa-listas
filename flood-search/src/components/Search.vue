@@ -21,16 +21,25 @@ const onSearch = () => {
 </script>
 
 <template>
-  <p>Nome completo</p>
-  <div class="cta">
-    <UInput v-model="searchTerm" class="UInput" autocomplete="off" placeholder="Buscar por nome" />
-    <button @click="onSearch">Buscar</button>
+  <div class="search-wrap">
+    <p>Nome</p>
+    <div class="cta">
+      <UInput v-model="searchTerm" class="UInput" autocomplete="off" placeholder="Buscar por nome" />
+      <button @click="onSearch">Buscar</button>
+    </div>
   </div>
 </template>
 
 <style scoped>
+
+  .search-wrap {
+    padding: 48px 0px;
+  }
+
   p {
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+
   }
 
   .cta {

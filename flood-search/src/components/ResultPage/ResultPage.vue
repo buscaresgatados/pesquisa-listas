@@ -10,9 +10,15 @@ const term = route.params.term;
 </script>
 
 <template>
-  <ResultHeader :name="term"  />
-  <Result />
-  <ResultFooter />
+
+<div class="wrapper">
+    <div class="full-wrapper">
+        <ResultHeader :name="term"  />
+        <Result />
+        <ResultFooter />
+    </div>
+  </div>
+  
 </template>
 
 <style scoped>
