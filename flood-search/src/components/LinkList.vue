@@ -1,7 +1,5 @@
 <script setup>
 import { ArrowTopRightOnSquareIcon, DocumentIcon, ExclamationCircleIcon } from '@heroicons/vue/24/outline';
-import LinkComponent from './microcomponents/LinkComponent.vue';
-
 </script>
 
 <template>
@@ -14,8 +12,7 @@ import LinkComponent from './microcomponents/LinkComponent.vue';
 
       <div class="link-list">
           <div class="link-list--col">
-            <LinkComponent url="cu.cu" listname="popo" tag="true" title="blaba" />
-      
+            <a href="https://docs.google.com/spreadsheets/d/1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ/htmlview#gid=1619683963" target="_blank">Lista Desabrigados<ArrowTopRightOnSquareIcon class="icon-size" /></a>
             <a href="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" target="_blank">To Salvo Vale dos Sinos <ArrowTopRightOnSquareIcon class="icon-size" /> </a>
           </div>
           <div class="link-list--col">

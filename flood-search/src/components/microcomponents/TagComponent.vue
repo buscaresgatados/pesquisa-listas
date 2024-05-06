@@ -1,5 +1,7 @@
 <script setup>
-  defineProps(['title'])
+  defineProps({
+    title: String
+    })
 </script>
 
 <template>
@@ -7,7 +9,5 @@
 </template>
 
 <style scoped>
-
-
 
 </style>
