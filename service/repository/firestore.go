@@ -6,6 +6,7 @@ import (
 	"os"
 	"refugio/objects"
 	"refugio/utils"
+	"strings"
 	"time"
 
 	"cloud.google.com/go/firestore"
@@ -29,7 +30,9 @@ func AddToFirestore(pessoas []*objects.PessoaResult) error {
 
 	collection := client.Collection(os.Getenv("FIRESTORE_COLLECTION"))
 	for _, pessoa := range pessoas {
-
+		if pessoa.Nome == "" || pessoa.Abrigo == "" || len(strings.Split(pessoa.Nome, " ")) == 1 {
+			continue
+		}
 		doc := collection.Doc(uuid.NewString())
 		bulkWriter.Create(doc, pessoa)
 	}
