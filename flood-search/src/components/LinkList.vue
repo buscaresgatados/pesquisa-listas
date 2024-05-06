@@ -26,7 +26,7 @@ import { ArrowTopRightOnSquareIcon, DocumentIcon, ExclamationCircleIcon } from '
       <div class="section">
         <ExclamationCircleIcon class="icon-decoration" />
         <div class="text-base-bold">Alguma lista ficou de fora?</div>
-        <p>Envie sua sugestão para <a href="mailto:buscadeabrigados@gmail.com">buscadeabrigados@gmail.com</a></p>
+        <p>Envie sua sugestão para <a href="mailto:buscaresgatados@gmail.com">buscaresgatados@gmail.com</a></p>
       </div>
   </div>
 </template>
