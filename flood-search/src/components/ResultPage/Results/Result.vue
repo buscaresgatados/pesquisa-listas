@@ -10,7 +10,8 @@ defineProps({
   <div class="results-wrapper">
     <div class="results-wrapper-top">
       <p class="found-results">{{ searchResults.length }} resultados encontrados</p>
-      <p class="last-update">Atualizado por último às {xx:xx} do dia {xx de Maio}</p>
+      <!-- We'll add it once we have the endpoint -->
+      <!-- <p class="last-update">Atualizado às {xx:xx} do dia {xx de Maio}</p> -->
     </div>
     <div>
       <div v-for="result in searchResults" :key="result.SheetId">
