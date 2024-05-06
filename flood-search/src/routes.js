@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/results/:term',
     name: 'results',
-    component: () => ResultPage,
+    component: ResultPage,
     props: true
   }
 ];
