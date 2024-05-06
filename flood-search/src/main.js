@@ -13,7 +13,7 @@ const UI = createUI({
   registerComponents: false,
 })
 
-app.use(router);
 app.use(UI, nuxtLabsTheme)
 
+app.use(router)
 app.mount('#app')

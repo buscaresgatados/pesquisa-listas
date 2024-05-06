@@ -1,13 +1,13 @@
-import { createRouter, createWebHistory  } from 'vue-router';
-import App from './App.vue'; // Assuming component location
-import ResultPage from './components/ResultPage/ResultPage.vue'; // Assuming component location
+import { createRouter, createMemoryHistory  } from 'vue-router';
+import Homepage from './components/HomePage.vue'
+import ResultPage from './components/ResultPage/ResultPage.vue';
 
-const history = createWebHistory();
+const history = createMemoryHistory();
 
 const routes = [
   {
     path: '/',
-    component: App,
+    component: Homepage,
   },
   {
     path: '/results/:term',

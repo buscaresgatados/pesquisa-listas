@@ -1,18 +1,18 @@
 <script setup>
 import { UInput } from 'nuxt-ui-vue';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 import ResultService from '../service/ResultService';
+import router from '../routes'
 
 const searchTerm = ref('');
 const searchResults = ref([]); 
 
 const onSearch = () => {
   const term = searchTerm.value;
+  router.push({ name: 'results', params: { term } });
   ResultService.search(term)
     .then(response => {
       searchResults.value = response.data;
-      this.$router.push({ name: 'results', params: { term } });
     })
     .catch(error => {
       console.error('Erro na busca:', error);
