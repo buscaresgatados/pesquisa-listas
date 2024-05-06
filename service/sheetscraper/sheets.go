@@ -56,23 +56,23 @@ func (ss *SheetsSource) LogStatus(sheetID string, status string) error {
 	return nil
 }
 
-func Scrape() {
+func Scrape(isDryRun bool) {
 	ss := SheetsSource{}
 	var serializedData []*objects.PessoaResult
 
 	for _, cfg := range Config {
 		for _, sheetRange := range cfg.sheetRanges {
 			content, _ := ss.Read(cfg.id, sheetRange)
+			fmt.Fprintf(os.Stdout, "Scraping data from sheetId %s, range %s", cfg.id, sheetRange)
 			switch sheetRange {
 			// Offsets e customizações pra cada planilha hardcoded por enquanto
 			case "Alojados!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
-					if i < 9 || len(row) == 0 {
+					if i < 10 || len(row) == 0 {
 						continue
 					}
-					fmt.Println(row)
-					fmt.Println(len(row))
+
 					p := objects.Pessoa{
 						Abrigo: row[2].(string),
 						Nome:   row[3].(string),
@@ -83,7 +83,7 @@ func Scrape() {
 					} else {
 						p.Idade = ""
 					}
-
+					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   cfg.id,
@@ -92,7 +92,7 @@ func Scrape() {
 				}
 			case "CADASTRO_EM_TEMPO_REAL!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					if i < 1 || len(row) == 0 {
+					if i < 1 || len(row) < 3 {
 						continue
 					}
 					p := objects.Pessoa{
@@ -100,6 +100,45 @@ func Scrape() {
 						Nome:   row[1].(string),
 						Idade:  "",
 					}
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "ALOJADOS x ABRIGOS!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 13 || len(row) < 4 {
+						continue
+					}
+
+					p := objects.Pessoa{
+						Abrigo: row[2].(string),
+						Nome:   row[3].(string),
+						Idade:  "",
+					}
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "PESSOAS RESGATADAS":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 4 || len(row) < 3 {
+						continue
+					}
+
+					p := objects.Pessoa{
+						Abrigo: row[2].(string),
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   cfg.id,
@@ -107,10 +146,11 @@ func Scrape() {
 					})
 				}
 			}
+			if !isDryRun {
+				repository.AddToFirestore(serializedData)
+			}
 
-			repository.AddToFirestore(serializedData)
-
-			fmt.Fprintf(os.Stdout, "Scraped data from sheetId %s, range %s. %d results", cfg.id, sheetRange, len(serializedData))
+			fmt.Fprintf(os.Stdout, "Scraped data from sheetId %s, range %s. %d results. Dry run? %v", cfg.id, sheetRange, len(serializedData), isDryRun)
 		}
 	}
 }

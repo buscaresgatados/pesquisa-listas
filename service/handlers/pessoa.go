@@ -7,6 +7,7 @@ import (
 	"os"
 	"refugio/objects"
 	"refugio/repository"
+	"sort"
 
 	"github.com/algolia/algoliasearch-client-go/v3/algolia/search"
 )
@@ -50,7 +51,22 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 		pessoas = append(pessoas, pessoaRepository)
 	}
 
-	jsonBytes, err := json.Marshal(pessoas)
+	sort.SliceStable(pessoas, func(i, j int) bool {
+		return pessoas[i].Timestamp.After(pessoas[j].Timestamp)
+	})
+
+	// Deduplicate by Pessoa.Nome + Pessoa.SheetId
+	unique := make([]*objects.PessoaResult, 0)
+	seen := make(map[string]bool)
+
+	for _, person := range pessoas {
+		if _, ok := seen[person.Nome+person.SheetId]; !ok {
+			seen[person.Nome+person.SheetId] = true
+			unique = append(unique, person)
+		}
+	}
+
+	jsonBytes, err := json.Marshal(unique)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

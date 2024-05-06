@@ -4,3 +4,4 @@ service/appServiceAcc.json
 service/sheetsServiceAcc.json
 .DS_Store
 service/deploy.sh
+service/app

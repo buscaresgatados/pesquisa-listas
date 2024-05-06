@@ -17,4 +17,14 @@ var Config []SheetConfig = []SheetConfig{
 		sheetRanges: []string{"CADASTRO_EM_TEMPO_REAL!A1:ZZ"},
 		name:        "LISTA DESABRIGADOS",
 	},
+	{
+		id:          "1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c",
+		sheetRanges: []string{"ALOJADOS x ABRIGOS!A1:ZZ"},
+		name:        "SAO LEOPOLDO - LISTA ALOJADOS",
+	},
+	{
+		id:          "1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs",
+		sheetRanges: []string{"PESSOAS RESGATADAS"},
+		name:        "RESGATADOS - Enchente RS",
+	},
 }

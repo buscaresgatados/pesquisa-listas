@@ -13,6 +13,8 @@ import (
 	"google.golang.org/api/option"
 )
 
+var err error
+
 func AddToFirestore(pessoas []*objects.PessoaResult) error {
 	ctx := context.Background()
 	serviceAccJSON := utils.GetServiceAccountJSON(os.Getenv("APP_SERVICE_ACCOUNT_JSON"))
@@ -29,9 +31,6 @@ func AddToFirestore(pessoas []*objects.PessoaResult) error {
 	for _, pessoa := range pessoas {
 
 		doc := collection.Doc(uuid.NewString())
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error adding to collection: %v", err)
-		}
 		bulkWriter.Create(doc, pessoa)
 	}
 
@@ -41,7 +40,13 @@ func AddToFirestore(pessoas []*objects.PessoaResult) error {
 
 func FetchFromFirestore(docID string) (*objects.PessoaResult, error) {
 	ctx := context.Background()
-	client, err := firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"))
+	var client *firestore.Client
+	if os.Getenv("ENVIRONMENT") == "local" {
+		serviceAccJSON := utils.GetServiceAccountJSON(os.Getenv("APP_SERVICE_ACCOUNT_JSON"))
+		client, err = firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"), option.WithCredentialsJSON(serviceAccJSON))
+	} else {
+		client, err = firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"))
+	}
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
