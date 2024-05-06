@@ -29,7 +29,7 @@ for (const colorName in tailwindColors) {
 }
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}', 'node_modules/nuxt-ui-vue/dist/theme/*.{js,jsx,ts,tsx,vue}'],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: 'class',
   safelist: colorSafeList,
   theme: {
