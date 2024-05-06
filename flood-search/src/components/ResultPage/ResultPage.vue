@@ -12,7 +12,7 @@ const term = route.params.term;
 <template>
 
 <div class="wrapper">
-    <div class="full-wrapper">
+    <div class="full-wrapper"> 
         <ResultHeader :name="term"  />
         <Result />
         <ResultFooter />
