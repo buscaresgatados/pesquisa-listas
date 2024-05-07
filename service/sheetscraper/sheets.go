@@ -66,9 +66,10 @@ func Scrape(isDryRun bool) {
 		for _, sheetRange := range cfg.sheetRanges {
 			content, _ := ss.Read(cfg.id, sheetRange)
 			fmt.Fprintf(os.Stdout, "Scraping data from sheetId %s, range %s", cfg.id, sheetRange)
-			switch sheetRange {
+			sheetNameAndRange := cfg.id + sheetRange
+			switch sheetNameAndRange {
 			// Offsets e customizações pra cada planilha hardcoded por enquanto
-			case "Alojados!A1:ZZ":
+			case cfg.id + "Alojados!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
 					if i < 10 || len(row) == 0 {
@@ -92,7 +93,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "CADASTRO_EM_TEMPO_REAL!A1:ZZ":
+			case cfg.id + "CADASTRO_EM_TEMPO_REAL!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 3 {
 						continue
@@ -109,7 +110,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "ALOJADOS x ABRIGOS!A1:ZZ":
+			case cfg.id + "ALOJADOS x ABRIGOS!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
 					if i < 13 || len(row) < 4 {
@@ -128,7 +129,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "ATUALIZADO 06/05!A1:ZZ":
+			case cfg.id + "ATUALIZADO 06/05!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
 					if i < 4 || len(row) < 3 {
@@ -147,7 +148,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "ESCOLA ANDRÉ PUENTE!A1:ZZ":
+			case cfg.id + "ESCOLA ANDRÉ PUENTE!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 2 || len(row) < 2 {
 						continue
@@ -164,7 +165,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "EMEF WALTER PERACCHI DE BARCELLOS!A1:ZZ":
+			case cfg.id + "EMEF WALTER PERACCHI DE BARCELLOS!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 2 || len(row) < 3 {
 						continue
@@ -181,7 +182,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "CACHOEIRINHA!A1:ZZ":
+			case cfg.id + "CACHOEIRINHA!A1:ZZ":
 				for _, row := range content.([][]interface{}) {
 					p := objects.Pessoa{
 						Abrigo: row[1].(string),
@@ -195,7 +196,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "COLÉGIO MARIA AUXILIADORA!A1:ZZ":
+			case cfg.id + "COLÉGIO MARIA AUXILIADORA!A1:ZZ":
 				for _, row := range content.([][]interface{}) {
 					p := objects.Pessoa{
 						Abrigo: "Colégio Maria Auxiliadora",
@@ -209,7 +210,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "ULBRA - Prédio 14!A1:ZZ":
+			case cfg.id + "ULBRA - Prédio 14!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 2 {
 						continue
@@ -232,7 +233,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "COLÉGIO MIGUEL LAMPERT!A1:ZZ":
+			case cfg.id + "COLÉGIO MIGUEL LAMPERT!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 2 {
 						continue
@@ -250,7 +251,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "AMORJI!A1:ZZ":
+			case cfg.id + "AMORJI!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 2 {
 						continue
@@ -268,7 +269,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "ESCOLA RONDONIA!A1:ZZ":
+			case cfg.id + "ESCOLA RONDONIA!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 2 {
 						continue
@@ -288,7 +289,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "Escola Jacob Longoni!A1:ZZ":
+			case cfg.id + "Escola Jacob Longoni!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 2 {
 						continue
@@ -306,7 +307,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "COLÉGIO ESPÍRITO SANTO!A1:ZZ":
+			case cfg.id + "COLÉGIO ESPÍRITO SANTO!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -331,7 +332,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "CLUBE DOS EMPREGADOS DA PETROBRÁS!A1:ZZ":
+			case cfg.id + "CLUBE DOS EMPREGADOS DA PETROBRÁS!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -353,7 +354,7 @@ func Scrape(isDryRun bool) {
 						})
 					}
 				}
-			case "Colegio Guajuviras!A1:ZZ":
+			case cfg.id + "Colegio Guajuviras!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 2 || len(row) < 2 {
 						continue
@@ -376,7 +377,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "CEL São José!A1:ZZ":
+			case cfg.id + "CEL São José!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 2 {
 						continue
@@ -394,7 +395,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "CR BRASIL!A1:ZZ":
+			case cfg.id + "CR BRASIL!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 3 {
 						continue
@@ -412,7 +413,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "CSSGAPA!A1:ZZ":
+			case cfg.id + "CSSGAPA!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -430,7 +431,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "CTG Brazão do Rio Grande!A1:ZZ":
+			case cfg.id + "CTG Brazão do Rio Grande!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -448,7 +449,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "CTG Seiva Nativa!A1:ZZ":
+			case cfg.id + "CTG Seiva Nativa!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -466,7 +467,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "EMEF ILDO!A1:ZZ":
+			case cfg.id + "EMEF ILDO!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 2 {
 						continue
@@ -484,7 +485,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "Escola Irmao pedro!A1:ZZ":
+			case cfg.id + "Escola Irmao pedro!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 2 {
 						continue
@@ -502,7 +503,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "FENIX!A1:ZZ":
+			case cfg.id + "FENIX!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -520,7 +521,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "PARÓQUIA SANTA LUZIA!A1:ZZ":
+			case cfg.id + "PARÓQUIA SANTA LUZIA!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -542,7 +543,7 @@ func Scrape(isDryRun bool) {
 						})
 					}
 				}
-			case "IFRS- Canoas!A1:ZZ":
+			case cfg.id + "IFRS- Canoas!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -571,7 +572,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "Igreja Redenção Nazario!A1:ZZ":
+			case cfg.id + "Igreja Redenção Nazario!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -589,7 +590,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "MODULAR!A1:ZZ":
+			case cfg.id + "MODULAR!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -610,7 +611,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "Paroquia NSRosário!A1:ZZ":
+			case cfg.id + "Paroquia NSRosário!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -628,7 +629,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "pediatria HU!A1:ZZ":
+			case cfg.id + "pediatria HU!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 2 || len(row) < 1 {
 						continue
@@ -649,7 +650,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "Rua Itu, 672!A1:ZZ":
+			case cfg.id + "Rua Itu, 672!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -667,7 +668,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "ULBRA!A1:ZZ":
+			case cfg.id + "ULBRA!A1:ZZ":
 				seen := make(map[string]bool)
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 3 {
@@ -698,7 +699,7 @@ func Scrape(isDryRun bool) {
 						fmt.Fprintln(os.Stdout, p)
 					}
 				}
-			case "Unilasalle!A1:ZZ":
+			case cfg.id + "Unilasalle!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 2 {
 						continue
@@ -716,7 +717,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "SESI!A1:ZZ":
+			case "1-1q4c8Ns6M9noCEhQqBE6gy3FWUv-VQgeUO9c7szGIM" + "SESI!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -738,7 +739,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "PARÓQUIA SAO LUIS!A1:ZZ":
+			case cfg.id + "PARÓQUIA SAO LUIS!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -756,7 +757,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "Página1!A1:ZZ":
+			case cfg.id + "Página1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 2 || len(row) < 1 {
 						continue
@@ -790,12 +791,52 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
+			case cfg.id + "CIEP!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 3 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "CIEP",
+						Nome:   row[2].(string),
+					}
+
+					if len(row) > 3 {
+						p.Idade = row[3].(string)
+					} else {
+						p.Idade = ""
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1RGRoIzSFQaaJF1xZsJhQsMJxXnXWzfZfas29T_PefmY" + "SESI!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 3 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "CIEP",
+						Nome:   row[2].(string),
+					}
+
+					if len(row) > 3 {
+						p.Idade = row[3].(string)
+					} else {
+						p.Idade = ""
+					}
+				}
 			}
 			if !isDryRun {
 				repository.AddToFirestore(serializedData)
 			}
 
 			fmt.Fprintf(os.Stdout, "Scraped data from sheetId %s, range %s. %d results. Dry run? %v", cfg.id, sheetRange, len(serializedData), isDryRun)
+			serializedData = serializedData[:0]
 		}
 	}
 }

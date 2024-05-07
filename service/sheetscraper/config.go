@@ -73,4 +73,22 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"ENCONTRADOS!A1:ZZ"},
 	// 	name: "ULBRA - CANOAS PRÉDIO 11",
 	// },
+	{
+		id: "1RGRoIzSFQaaJF1xZsJhQsMJxXnXWzfZfas29T_PefmY",
+		sheetRanges: []string{
+			"CIEP!A1:ZZ",
+			"LIBERATO!A1:ZZ",
+			"SINODAL!A1:ZZ",
+			"PARQUE DO TRABALHADOR!A1:ZZ",
+			"FENAC!A1:ZZ",
+			"SESI!A1:ZZ",
+			"FENAC II!A1:ZZ",
+			"GINÁSIO DA BRIGADA!A1:ZZ",
+			"IGREJA NOSSA SENHORA DAS GRAÇAS DA RONDÔNIA!A1:ZZ",
+			"COMUNIDADE SÃO FRANCISCO!A1:ZZ",
+			"COMUNIDADE SANTO ANTONIO!A1:ZZ",
+			"PIO XII!A1:ZZ",
+		},
+		name: "ACOLHIDOS NOS ALOJAMENTOS DA PMNH",
+	},
 }
