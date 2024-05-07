@@ -95,4 +95,14 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"NOME/ABRIGO!A1:ZZ"},
 	// 	name:        "LISTA RESGATADOS ELDORADO - 04/05",
 	// },
+	// {id: "1-xhmS1VQ95LFI05XG8o9JO3mPk8KxQtrxAZe4GNYO3I",
+	// 	sheetRanges: []string{
+	// 		"05/05 PONTAL!A1:ZZ",
+	// 		"06/05 PONTAL!A1:ZZ",
+	// 		"05/05 GASÔMETRO (NÃO MEXER!)!A1:ZZ",
+	// 		"06/05 GASÔMETRO (NÃO MEXER!)!A1:ZZ",
+	// 		"04/05 GASÔMETRO (NÃO MEXER!)!A1:ZZ",
+	// 	},
+	// 	name: "RESGATADOS PONTAL",
+	// },
 }

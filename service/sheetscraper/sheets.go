@@ -1045,7 +1045,43 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
+			case cfg.id + "05/05 PONTAL!A1:ZZ", cfg.id + "06/05 PONTAL!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
 
+					if i < 1 || len(row) < 2 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Pontal do Estaleiro",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "05/05 GASÔMETRO (NÃO MEXER!)!A1:ZZ", cfg.id + "06/05 GASÔMETRO (NÃO MEXER!)!A1:ZZ", cfg.id + "04/05 GASÔMETRO (NÃO MEXER!)!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) < 2 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Gasômetro",
+						Nome:   row[1].(string),
+						Idade:  "",
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
 			}
 			if !isDryRun {
 				repository.AddToFirestore(serializedData)
