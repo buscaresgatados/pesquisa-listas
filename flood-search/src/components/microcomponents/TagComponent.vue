@@ -9,5 +9,7 @@
 </template>
 
 <style scoped>
-
+  .tag {
+    text-transform: uppercase;
+  }
 </style>
