@@ -13,7 +13,7 @@ import LinkComponent from './LinkComponent.vue';
 
       <div class="link-list">
           <div class="link-list--col">
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1Pd8NVuEtnR7-IlLF7cJ3XY7yVSoJMgY47-eepe2BBXo/edit#gid=156688726" name="RESGATADOS (Cruzeiro do Sul)"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1Pd8NVuEtnR7-IlLF7cJ3XY7yVSoJMgY47-eepe2BBXo/edit#gid=156688726" name="RESGATADOS (Cruzeiro do Sul)" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY/edit#gid=0" name="SESC PROTÁSIO"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1hKJVs-RLiSUpx-1Rd9wS1k8RLqxkPWK4hNob-t8v2Ko/edit#gid=0" name="LISTA RESGATADOS ELDORADO"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s/htmlview" name="ULBRA - CANOAS PRÉDIO 11"/>
@@ -32,7 +32,6 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/u/0/d/1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs/htmlview" name="RESGATADOS - Enchente RS"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" name="To Salvo Vale dos Sinos" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1IjefUU8g5OaHxMfcvqc0ewyQDn5ZVLBE/edit#gid=747398008" name="ABRIGADOS EM GUAÍBA"/>
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1IVtSmKRFynQH9I9Cox93YxZe0uwKfjx_CYFzKE96its/edit#gid=2046654110" name="ABRIGO COELHÃO" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/16X-68-x7My4u0WEfscL7t4YYw_Ebeco6gaLhE80Q8Wc/edit#gid=0" name="Viaduto da Dom Pedro" tag title="NOVA"/>
           </div>
         </div>
@@ -47,11 +46,19 @@ import LinkComponent from './LinkComponent.vue';
             <div class="link-list--col">
               <LinkComponent url="https://docs.google.com/spreadsheets/d/1xaEPlk8JonATIOAvQEc0Dev-QVAzx2AwUzLHBhbA3rI/edit#gid=0" name="Eldorado - Guaiba" tag title="EM PROGRESSO"/>
               <LinkComponent url="https://docs.google.com/spreadsheets/d/1Pd8NVuEtnR7-IlLF7cJ3XY7yVSoJMgY47-eepe2BBXo/edit#gid=156688726" name="RESGATADOS DO VALE DO TAQUARI"/>
+              <LinkComponent url="https://scontent-lga3-1.xx.fbcdn.net/v/t39.30808-6/441486183_10162044871662164_5017697852208722557_n.jpg?stp=dst-jpg_s1080x2048&_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=HY24PqDWaEUQ7kNvgHsDL_L&_nc_ht=scontent-lga3-1.xx&oh=00_AfD4Y8yp8THhtRdTz1H4C2fdWKTRhNQ2d2VwUUyyqE2p9w&oe=663FFEAE" name="PAROQUIA NOSSA SENHORA AP..."/>
+              <LinkComponent url="https://docs.google.com/spreadsheets/d/1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s/htmlview" name="ULBRA Canoas - Prédio 11"/>
+              <LinkComponent url="https://docs.google.com/spreadsheets/d/1fH7OA5bnY5OLfY7Xis6bVQq12VIhS_VIyYYekPBr5NA/edit#gid=1916176314" name="Abrigados Cerro Grande do Sul"/>
 
             </div>
 
             <div class="link-list--col">
               <LinkComponent url="https://docs.google.com/spreadsheets/d/1wvtgK7ZO9KuJsFDI9syyPWmEyqYoKw2PKssmgfo_jCU/edit#gid=446068527" name="LOCALIZAÇÃO DESABRIGADOS CANOAS"/>
+              <LinkComponent url="https://twitter.com/ora_eu/status/1787849794213278103" name="RESGATES GRAVATAÍ"/>
+              <LinkComponent url="https://drive.google.com/file/d/13C-Y42jniQ4qdTg6Vsb4GPpjBnU2PvUf/view" name="Abrigo Liberato"/>
+              <LinkComponent url="https://docs.google.com/spreadsheets/d/16rN5pniNiIsbJAv25A0AfW5SdccJjPVDov7EDqwDOQM/edit#gid=0" name="Resgates - Julio de Castilhos"/>
+              <LinkComponent url="https://drive.google.com/file/d/1QYnARgeJxEqv_tWVzw524s1xOxk803iH/view" name="Alojados Sentinela do Sul"/>              
+
             </div>
           </div>
 
