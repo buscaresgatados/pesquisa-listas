@@ -1141,6 +1141,30 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
+			case cfg.id + "Resgatados!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) < 5 {
+						continue
+					}
+					var abrigo string
+					abrigo = row[4].(string)
+					if abrigo == "" {
+						abrigo = "Cruzeiro do Sul"
+					}
+
+					p := objects.Pessoa{
+						Abrigo: abrigo,
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
 			}
 			if !isDryRun {
 				repository.AddToFirestore(serializedData)
