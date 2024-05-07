@@ -125,9 +125,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"Resgatados!A1:ZZ"},
 	// 	name:        "RESGATADOS - Cruzeiro do Sul",
 	// },
-	{
-		id:          "1AaQLs2Dqc6lrYstyF8UGLrihCzRRLsy8rlIRixJQ7VU",
-		sheetRanges: []string{"Página1!A1:ZZ"},
-		name:        "Abrigados - Linha Herval",
-	},
+	// {
+	// 	id:          "1AaQLs2Dqc6lrYstyF8UGLrihCzRRLsy8rlIRixJQ7VU",
+	// 	sheetRanges: []string{"Página1!A1:ZZ"},
+	// 	name:        "Abrigados - Linha Herval",
+	// },
 }
