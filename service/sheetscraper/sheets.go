@@ -1217,12 +1217,22 @@ func Scrape(isDryRun bool) {
 					})
 				}
 			}
-			if !isDryRun {
-				repository.AddToFirestore(serializedData)
+			var cleanedData []*objects.PessoaResult
+			for _, pessoa := range serializedData {
+				if pessoa.Nome == "" || pessoa.Abrigo == "" || len(strings.Split(pessoa.Nome, " ")) == 1 {
+					continue
+				}
+				cleanedData = append(cleanedData, pessoa)
 			}
 
-			fmt.Fprintf(os.Stdout, "Scraped data from sheetId %s, range %s. %d results. Dry run? %v", cfg.id, sheetRange, len(serializedData), isDryRun)
+			if !isDryRun {
+				repository.AddToFirestore(cleanedData)
+			}
+
+			fmt.Fprintf(os.Stdout, "Scraped data from sheetId %s, range %s. %d results. %d results after cleanup. Dry run? %v", cfg.id, sheetRange, len(serializedData), len(cleanedData), isDryRun)
+			// Clearing arrays for next iteration, I don't think this is strictly needed but just in case.
 			serializedData = serializedData[:0]
+			cleanedData = cleanedData[:0]
 			fmt.Fprintln(os.Stdout, "")
 		}
 	}
