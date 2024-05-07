@@ -171,4 +171,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	},
 	// 	name: "PESSOAS ALOJADAS EM SENTINELA DO SUL",
 	// },
+	// {
+	// 	id: "1LdM2ZvYBNdtKekLgHPRs6lg9VGpD-7wBSZsE5c5Mptk",
+	// 	sheetRanges: []string{"Página1!A1:ZZ"},
+	// 	name: "Abrigados Estrela",
+	// },
 }
