@@ -756,6 +756,23 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
+			case "Página1!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 2 || len(row) < 1 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: row[1].(string),
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
 			}
 			if !isDryRun {
 				repository.AddToFirestore(serializedData)
