@@ -186,4 +186,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"Abrigados!A1:ZZ"},
 	// 	name: "Resgates - Abrigo Julio de Castílhos",
 	// },
+	// {
+	// 	id: "1gfQ28EPN99LQaZqZzMeB-pdxgK9SST1OYy-jTOl7rdk",
+	// 	sheetRanges: []string{"Página1!A1:ZZ"},
+	// 	name: "PAROQUIA NOSSA SENHORA APARECIDA",
+	// },
 }
