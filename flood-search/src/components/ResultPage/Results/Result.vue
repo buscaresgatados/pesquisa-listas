@@ -1,7 +1,16 @@
 <script setup>
+import { ref, computed } from 'vue';
+
+
 defineProps({
   searchResults: Array
   })
+
+  const logResults = computed(() => {
+  searchResults.value.forEach(result => {
+    console.log(result);
+  });
+});
 </script>
 
 <template>
@@ -18,6 +27,7 @@ defineProps({
         :Idade="result.Idade"
         :listId="result.SheetId"
         :Abrigo="result.Abrigo"
+        :Url="result.URL"
       />
     </div>
   </div>
