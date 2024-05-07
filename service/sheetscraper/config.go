@@ -191,4 +191,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"Página1!A1:ZZ"},
 	// 	name: "PAROQUIA NOSSA SENHORA APARECIDA",
 	// },
+	// {
+	// 	id: "1KgPjNIDQOmDA59A8u4HIOzsL41ZGQH97n-2jl99tfuU",
+	// 	sheetRanges: []string{"Sheet1!A1:ZZ"},
+	// 	name: "Lista Abrigo Liberato",
+	// },
 }
