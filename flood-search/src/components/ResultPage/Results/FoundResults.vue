@@ -15,7 +15,7 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
         {{ Nome }}
       </h3>
       <div class="inner-result-container">
-        <p v-if="Idade">{{ Idade }} anos</p>
+        <p v-if="Idade">Idade: {{ Idade }}</p>
         <p>Abrigo: {{Abrigo}}</p>
         <a class="link" target="_blank" :href="`https://docs.google.com/spreadsheets/u/0/d/${listId}`" > <div class="list-name">Planilha fonte</div> <ArrowTopRightOnSquareIcon class="icon-size" /></a>
       </div>
