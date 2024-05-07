@@ -42,13 +42,11 @@ import LinkComponent from './LinkComponent.vue';
           <div class="link-list">
             <div class="link-list--col">
               <LinkComponent url="https://www.instagram.com/stories/highlights/18055125328538288/" name="Abrigados Estrela – RS" tag title="EM PROGRESSO"/>
-              <LinkComponent url="https://docs.google.com/spreadsheets/d/1-xhmS1VQ95LFI05XG8o9JO3mPk8KxQtrxAZe4GNYO3I/htmlview?fbclid=PAZXh0bgNhZW0CMTEAAaa8hrVtObdF2fVAKqXLDmpSNIxwrdxrYeR67gCKkLLjjmmYX_uyO3mwB5Q_aem_AYGIoQtWukDR9BFdDp29TRY_mG75KmR5EbnNgeh08Il9XLI1z2UPRwhYD94Gttg1zSkakpKoGViZoK5vtA7pT8Iz" name="Resgatados Pontal" tag title="EM PROGRESSO"/>
               <LinkComponent url="https://docs.google.com/spreadsheets/d/1IjefUU8g5OaHxMfcvqc0ewyQDn5ZVLBE/edit#gid=747398008" name="ABRIGADOS EM GUAÍBA"/>
 
             </div>
 
             <div class="link-list--col">
-              <LinkComponent url="https://docs.google.com/spreadsheets/d/1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY/edit#gid=0" name="DESABRIGADOS SESC PROTÁSIO"/>
               <LinkComponent url="https://docs.google.com/spreadsheets/d/1pwL_AAO-7H7-cXujB_aFhkMLHbiH7xqH/edit#gid=874938892" name="ABRIGADOS LAR MÃE ESTHER"/>
             </div>
           </div>
