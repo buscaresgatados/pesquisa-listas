@@ -105,9 +105,14 @@ var Config []SheetConfig = []SheetConfig{
 	// 	},
 	// 	name: "RESGATADOS PONTAL",
 	// },
-	{
-		id:          "1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY",
-		sheetRanges: []string{"Página1!A1:ZZ"},
-		name:        "Lista desabrigados Sesc Protásio",
-	},
+	// {
+	// 	id:          "1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY",
+	// 	sheetRanges: []string{"Página1!A1:ZZ"},
+	// 	name:        "Lista desabrigados Sesc Protásio",
+	// },
+	// {
+	// 	id:          "1bNw-t0RUE-AP-2quCU80w5meGYVtD7WjjuESb7tXxTo",
+	// 	sheetRanges: []string{"Abrigados Lajeado!A1:ZZ"},
+	// 	name:        "Abrigados Lajeado",
+	// },
 }
