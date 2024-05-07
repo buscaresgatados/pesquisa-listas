@@ -27,9 +27,10 @@ func AddToFirestore(pessoas []*objects.PessoaResult) error {
 	bulkWriter := client.BulkWriter(ctx)
 
 	collection := client.Collection(os.Getenv("FIRESTORE_COLLECTION"))
+	fmt.Fprintf(os.Stdout, "Adding %d documents to Firestore collection %v\n", len(pessoas), collection.Path)
 	for _, pessoa := range pessoas {
 		doc := collection.Doc(pessoa.Nome + pessoa.Abrigo)
-		bulkWriter.Set(doc, pessoa)
+		bulkWriter.Set(doc, &pessoa)
 	}
 
 	bulkWriter.End()
