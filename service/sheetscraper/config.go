@@ -155,4 +155,9 @@ var Config []SheetConfig = []SheetConfig{
 		sheetRanges: []string{"Respostas ao formulário 1!A1:ZZ"},
 		name: "Lista Abrigados em Cerro Grande do Sul",
 	},
+	{
+		id: "1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s",
+		sheetRanges: []string{"ENCONTRADOS!A1:ZZ"},
+		name: "ULBRA - CANOAS PRÉDIO 11",
+	},
 }

@@ -1311,6 +1311,38 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
+			case "1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s" + "ENCONTRADOS!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) < 4 {
+						continue
+					}
+					var p objects.Pessoa
+					var abrigo string
+					var nome string
+
+					nome = row[0].(string)
+					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					if err != nil {
+						log.Fatal(err)
+					}
+					nome = reg.ReplaceAllString(nome, "")
+
+					abrigo = fmt.Sprintf("Ulbra Canoas - Prédio %s - Sala %s", row[3].(string), row[4].(string))
+
+					p = objects.Pessoa{
+						Abrigo: abrigo,
+						Nome:   nome,
+						Idade:  "",
+					}
+
+
+					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
 			case cfg.id + "Sheet1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
