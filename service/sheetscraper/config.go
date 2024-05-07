@@ -150,14 +150,25 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"Form Responses 1!A1:ZZ"},
 	// 	name: "localizacao desabrigados canoas (Responses)-elaborada por voluntarios da prefeitura de Canoas",
 	// },
-	{
-		id: "1fH7OA5bnY5OLfY7Xis6bVQq12VIhS_VIyYYekPBr5NA",
-		sheetRanges: []string{"Respostas ao formulário 1!A1:ZZ"},
-		name: "Lista Abrigados em Cerro Grande do Sul",
-	},
-	{
-		id: "1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s",
-		sheetRanges: []string{"ENCONTRADOS!A1:ZZ"},
-		name: "ULBRA - CANOAS PRÉDIO 11",
-	},
+	// {
+	// 	id: "1fH7OA5bnY5OLfY7Xis6bVQq12VIhS_VIyYYekPBr5NA",
+	// 	sheetRanges: []string{"Respostas ao formulário 1!A1:ZZ"},
+	// 	name: "Lista Abrigados em Cerro Grande do Sul",
+	// },
+	// {
+	// 	id: "1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s",
+	// 	sheetRanges: []string{"ENCONTRADOS!A1:ZZ"},
+	// 	name: "ULBRA - CANOAS PRÉDIO 11",
+	// },
+	// {
+	// 	id: "1eC6z6RPNNarLMSqVqU-FQOHopCKWCN4CFDn34uTYGcA",
+	// 	sheetRanges: []string{
+	// 		"Página 1!A1:ZZ", 
+	// 		"Página2!A1:ZZ", 
+	// 		"Página 3!A1:ZZ", 
+	// 		"Página 4!A1:ZZ", 
+	// 		"Página 5!A1:ZZ",
+	// 	},
+	// 	name: "PESSOAS ALOJADAS EM SENTINELA DO SUL",
+	// },
 }
