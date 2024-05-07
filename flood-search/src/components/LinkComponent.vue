@@ -28,6 +28,7 @@ import TagComponent from './microcomponents/TagComponent.vue'
   a {
     display:flex;
     gap: 4px;
+    color: #E5E5E5;
   }
 
 </style>
