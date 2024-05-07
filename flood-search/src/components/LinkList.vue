@@ -14,6 +14,7 @@ import LinkComponent from './LinkComponent.vue';
       <div class="link-list">
           <div class="link-list--col">
 
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1hKJVs-RLiSUpx-1Rd9wS1k8RLqxkPWK4hNob-t8v2Ko/edit#gid=0" name="LISTA RESGATADOS ELDORADO" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s/htmlview" name="ULBRA - CANOAS PRÉDIO 11" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1-1q4c8Ns6M9noCEhQqBE6gy3FWUv-VQgeUO9c7szGIM/htmlview" name="ABRIGADOS EM CANOAS 01" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/edit#gid=0" name="SAO LEOPOLDO - LISTA ALOJ..." tag title="NOVA"/>
@@ -22,6 +23,7 @@ import LinkComponent from './LinkComponent.vue';
           </div>
 
           <div class="link-list--col">
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1-xhmS1VQ95LFI05XG8o9JO3mPk8KxQtrxAZe4GNYO3I/htmlview?fbclid=PAZXh0bgNhZW0CMTEAAaa8hrVtObdF2fVAKqXLDmpSNIxwrdxrYeR67gCKkLLjjmmYX_uyO3mwB5Q_aem_AYGIoQtWukDR9BFdDp29TRY_mG75KmR5EbnNgeh08Il9XLI1z2UPRwhYD94Gttg1zSkakpKoGViZoK5vtA7pT8Iz" name="Resgatados Pontal" tag title="NOVA" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1RGRoIzSFQaaJF1xZsJhQsMJxXnXWzfZfas29T_PefmY/edit#gid=904509716" name="ALOJAMENTOS DA PMNH" tag title="NOVA" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1Gf78W5yY0Yiljg-E0rYqbRjxYmBPcG2BtfpGwFk-K5M/edit#gid=0" name="LISTA GERAL EM ATUALIZ..." tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/u/0/d/1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs/htmlview" name="RESGATADOS - Enchente RS"/>
