@@ -56,6 +56,9 @@ import LinkComponent from './LinkComponent.vue';
 
         <p>Envie sua sugestão para <a href="mailto:buscaresgatados@gmail.com">buscaresgatados@gmail.com</a></p>
       </div>
+
+
+      <Footer></Footer>
   </div>
 </template>
 
