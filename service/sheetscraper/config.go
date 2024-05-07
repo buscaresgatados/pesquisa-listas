@@ -150,4 +150,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"Form Responses 1!A1:ZZ"},
 	// 	name: "localizacao desabrigados canoas (Responses)-elaborada por voluntarios da prefeitura de Canoas",
 	// },
+	{
+		id: "1fH7OA5bnY5OLfY7Xis6bVQq12VIhS_VIyYYekPBr5NA",
+		sheetRanges: []string{"Respostas ao formulário 1!A1:ZZ"},
+		name: "Lista Abrigados em Cerro Grande do Sul",
+	},
 }
