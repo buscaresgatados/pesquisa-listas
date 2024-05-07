@@ -196,4 +196,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"Sheet1!A1:ZZ"},
 	// 	name: "Lista Abrigo Liberato",
 	// },
+	// 	{
+	// 	id: "1VE_WnX5MuVF_4Mtos7a-S7eYPrudeygv-OWddwuCkYc",
+	// 	sheetRanges: []string{"Giovana!A1:ZZ"},
+	// 	name: "DIGITALIZAÇÃO DE REGISTRO DE RESGATES - RS",
+	// },
 }

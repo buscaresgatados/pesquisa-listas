@@ -22,6 +22,7 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ/htmlview#gid=1619683963" name="Lista Desabrigados" />
             <LinkComponent url="https://www.instagram.com/stories/highlights/18055125328538288/" name="Abrigados Estrela" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1pwL_AAO-7H7-cXujB_aFhkMLHbiH7xqH/edit#gid=874938892" name="ABRIGADOS LAR MÃE ESTHER"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1VE_WnX5MuVF_4Mtos7a-S7eYPrudeygv-OWddwuCkYc/edit#gid=0" name="DIGITALIZAÇÃO DE REGISTRO DE RESGATES - RS" tag title="NOVA"/>
           </div>
 
           <div class="link-list--col">
