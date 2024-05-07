@@ -181,4 +181,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"Gravataí!A1:ZZ"},
 	// 	name: "GRAVATAÍ PESSOAS RESGATADAS",
 	// },
+	// {
+	// 	id: "16rN5pniNiIsbJAv25A0AfW5SdccJjPVDov7EDqwDOQM",
+	// 	sheetRanges: []string{"Abrigados!A1:ZZ"},
+	// 	name: "Resgates - Abrigo Julio de Castílhos",
+	// },
 }
