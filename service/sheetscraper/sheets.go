@@ -796,9 +796,13 @@ func Scrape(isDryRun bool) {
 					if i < 4 || len(row) < 3 {
 						continue
 					}
+					nome := row[2].(string)
+					if strings.Contains(nome, "MENOR DE 1") {
+						break
+					}
 					p := objects.Pessoa{
 						Abrigo: "CIEP",
-						Nome:   row[2].(string),
+						Nome:   nome,
 					}
 
 					if len(row) > 3 {
@@ -819,8 +823,60 @@ func Scrape(isDryRun bool) {
 					if i < 4 || len(row) < 3 {
 						continue
 					}
+					nome := row[2].(string)
+
+					if strings.Contains(nome, "MENOR DE 1") {
+						break
+					}
+
 					p := objects.Pessoa{
-						Abrigo: "CIEP",
+						Abrigo: "SESI",
+						Nome:   nome,
+					}
+
+					if len(row) > 3 {
+						p.Idade = row[3].(string)
+					} else {
+						p.Idade = ""
+					}
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "LIBERATO!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 4 || len(row) < 2 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Liberato",
+						Nome:   row[1].(string),
+					}
+
+					if len(row) > 5 {
+						p.Idade = row[5].(string)
+					} else {
+						p.Idade = ""
+					}
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "SINODAL!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 4 || len(row) < 3 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Sinodal",
 						Nome:   row[2].(string),
 					}
 
@@ -829,6 +885,146 @@ func Scrape(isDryRun bool) {
 					} else {
 						p.Idade = ""
 					}
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "PARQUE DO TRABALHADOR!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 4 || len(row) < 3 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Parque do Trabalhador",
+						Nome:   row[2].(string),
+						Idade:  "",
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "FENAC II!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 2 || len(row) < 2 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "FENAC",
+						Nome:   row[1].(string),
+						Idade:  "",
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "GINÁSIO DA BRIGADA!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 2 || len(row) < 3 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Ginásio da Brigada, Novo Hamburgo",
+						Nome:   row[2].(string),
+					}
+
+					if len(row) > 3 {
+						p.Idade = row[3].(string)
+					} else {
+						p.Idade = ""
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "IGREJA NOSSA SENHORA DAS GRAÇAS DA RONDÔNIA!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 2 || len(row) < 3 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Igreja Nossa Senhora das Graças da Rondônia",
+						Nome:   row[2].(string),
+					}
+
+					if len(row) > 3 {
+						p.Idade = row[3].(string)
+					} else {
+						p.Idade = ""
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "COMUNIDADE SANTO ANTONIO!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 2 || len(row) < 3 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Igreja Santo Antônio - Bairro Liberdade",
+						Nome:   row[2].(string),
+					}
+
+					if len(row) > 3 {
+						p.Idade = row[3].(string)
+					} else {
+						p.Idade = ""
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "PIO XII!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 2 || len(row) < 3 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Pio XII",
+						Nome:   row[2].(string),
+					}
+
+					if len(row) > 3 {
+						p.Idade = row[3].(string)
+					} else {
+						p.Idade = ""
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
 				}
 			}
 			if !isDryRun {
@@ -837,6 +1033,7 @@ func Scrape(isDryRun bool) {
 
 			fmt.Fprintf(os.Stdout, "Scraped data from sheetId %s, range %s. %d results. Dry run? %v", cfg.id, sheetRange, len(serializedData), isDryRun)
 			serializedData = serializedData[:0]
+			fmt.Fprintln(os.Stdout, "")
 		}
 	}
 }
