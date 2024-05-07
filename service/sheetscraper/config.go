@@ -105,4 +105,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	},
 	// 	name: "RESGATADOS PONTAL",
 	// },
+	{
+		id:          "1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY",
+		sheetRanges: []string{"Página1!A1:ZZ"},
+		name:        "Lista desabrigados Sesc Protásio",
+	},
 }

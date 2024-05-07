@@ -64,7 +64,11 @@ func Scrape(isDryRun bool) {
 
 	for _, cfg := range Config {
 		for _, sheetRange := range cfg.sheetRanges {
-			content, _ := ss.Read(cfg.id, sheetRange)
+			content, err := ss.Read(cfg.id, sheetRange)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "Error reading sheet %s: %v", cfg.id, err)
+				continue
+			}
 			fmt.Fprintf(os.Stdout, "Scraping data from sheetId %s, range %s", cfg.id, sheetRange)
 			sheetNameAndRange := cfg.id + sheetRange
 			switch sheetNameAndRange {
@@ -757,7 +761,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case cfg.id + "Página1!A1:ZZ":
+			case "1Gf78W5yY0Yiljg-E0rYqbRjxYmBPcG2BtfpGwFk-K5M" + "Página1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 2 || len(row) < 1 {
 						continue
@@ -1072,6 +1076,25 @@ func Scrape(isDryRun bool) {
 					p := objects.Pessoa{
 						Abrigo: "Gasômetro",
 						Nome:   row[1].(string),
+						Idade:  "",
+					}
+
+					fmt.Fprintln(os.Stdout, p)
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+
+			case "1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY" + "Página1!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) < 1 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "SESC Protásio",
+						Nome:   row[0].(string),
 						Idade:  "",
 					}
 
