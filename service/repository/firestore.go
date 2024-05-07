@@ -46,6 +46,7 @@ func FetchFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) {
 	} else {
 		client, err = firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"))
 	}
+	defer client.Close()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
