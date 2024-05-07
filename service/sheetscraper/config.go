@@ -110,9 +110,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"Página1!A1:ZZ"},
 	// 	name:        "Lista desabrigados Sesc Protásio",
 	// },
-	{
-		id:          "1O4NqkxHvFDoziS_zClwIjGIAVAGbYkfHTRrM6ogySTo",
-		sheetRanges: []string{"Página1!A1:ZZ"},
-		name:        "Abrigados - Venâncio Aires",
-	},
+	// {
+	// 	id:          "1O4NqkxHvFDoziS_zClwIjGIAVAGbYkfHTRrM6ogySTo",
+	// 	sheetRanges: []string{"Página1!A1:ZZ"},
+	// 	name:        "Abrigados - Venâncio Aires",
+	// },
 }
