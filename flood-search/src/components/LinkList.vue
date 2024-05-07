@@ -15,14 +15,15 @@ import LinkComponent from './LinkComponent.vue';
           <div class="link-list--col">
 
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1-1q4c8Ns6M9noCEhQqBE6gy3FWUv-VQgeUO9c7szGIM/htmlview" name="ABRIGADOS EM CANOAS 01" tag title="NOVA"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/edit#gid=0" name="SAO LEOPOLDO - LISTA ALOJ..." tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ/htmlview#gid=1619683963" name="Lista Desabrigados" />
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" name="To Salvo Vale dos Sinos" />
 
           </div>
 
           <div class="link-list--col">
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1Gf78W5yY0Yiljg-E0rYqbRjxYmBPcG2BtfpGwFk-K5M/edit#gid=0" name="LISTA GERAL EM ATUALIZ..." tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/u/0/d/1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs/htmlview" name="RESGATADOS - Enchente RS"/>
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/htmlview" name="SAO LEOPOLDO - LISTA ALOJADOS"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" name="To Salvo Vale dos Sinos" />
           </div>
         </div>
       </div>
@@ -30,17 +31,22 @@ import LinkComponent from './LinkComponent.vue';
       <div class="section">
         <ExclamationCircleIcon class="icon-decoration" />
         <div class="text-base-bold">Alguma lista ficou de fora?</div>
-        <!-- <p> Estamos trabalhando para adicionar essas listas ao banco de dados: </p>
+        <p> Estamos trabalhando para adicionar essas listas ao banco de dados: </p>
 
-        <div class="link-list">
-          <div class="link-list--col">
-            <a href="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" target="_blank">To Salvo Vale dos Sinos <ArrowTopRightOnSquareIcon class="icon-size" /> </a>
+          <div class="link-list">
+            <div class="link-list--col">
+              <LinkComponent url="https://docs.google.com/spreadsheets/d/1RGRoIzSFQaaJF1xZsJhQsMJxXnXWzfZfas29T_PefmY/edit#gid=904509716" name="ALOJAMENTOS DA PMNH" tag title="EM PROGRESSO" />
+              <LinkComponent url="https://docs.google.com/spreadsheets/d/1-xhmS1VQ95LFI05XG8o9JO3mPk8KxQtrxAZe4GNYO3I/htmlview?fbclid=PAZXh0bgNhZW0CMTEAAaa8hrVtObdF2fVAKqXLDmpSNIxwrdxrYeR67gCKkLLjjmmYX_uyO3mwB5Q_aem_AYGIoQtWukDR9BFdDp29TRY_mG75KmR5EbnNgeh08Il9XLI1z2UPRwhYD94Gttg1zSkakpKoGViZoK5vtA7pT8Iz" name="Resgatados Pontal" tag title="EM PROGRESSO"/>
+              <LinkComponent url="https://docs.google.com/spreadsheets/d/1IjefUU8g5OaHxMfcvqc0ewyQDn5ZVLBE/edit#gid=747398008" name="ABRIGADOS EM GUAÍBA"/>
+
+            </div>
+
+            <div class="link-list--col">
+              <LinkComponent url="https://docs.google.com/spreadsheets/d/1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY/edit#gid=0" name="DESABRIGADOS SESC PROTÁSIO"/>
+              <LinkComponent url="https://docs.google.com/spreadsheets/d/1pwL_AAO-7H7-cXujB_aFhkMLHbiH7xqH/edit#gid=874938892" name="ABRIGADOS LAR MÃE ESTHER"/>
+            </div>
           </div>
-          <div class="link-list--col">
-            <a href="https://docs.google.com/spreadsheets/u/0/d/1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs/htmlview" target="_blank">RESGATADOS - Enchente RS<ArrowTopRightOnSquareIcon class="icon-size" /></a>
-            <a href="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/htmlview" target="_blank">SAO LEOPOLDO - LISTA ALOJADOS<ArrowTopRightOnSquareIcon class="icon-size" /> </a>
-          </div>
-        </div> -->
+
 
         <p>Envie sua sugestão para <a href="mailto:buscaresgatados@gmail.com">buscaresgatados@gmail.com</a></p>
       </div>
