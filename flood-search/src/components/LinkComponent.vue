@@ -22,6 +22,12 @@ import TagComponent from './microcomponents/TagComponent.vue'
     display: flex;
     gap: 4px;
     align-items: center;
+    padding: 2px 0px;
+  }
+
+  a {
+    display:flex;
+    gap: 4px;
   }
 
 </style>
