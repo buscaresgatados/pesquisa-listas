@@ -61,8 +61,8 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 	seen := make(map[string]bool)
 
 	for _, person := range pessoas {
-		if _, ok := seen[person.Nome+person.SheetId]; !ok {
-			seen[person.Nome+person.SheetId] = true
+		if _, ok := seen[person.Nome+*person.SheetId]; !ok {
+			seen[person.Nome+*person.SheetId] = true
 			unique = append(unique, person)
 		}
 	}

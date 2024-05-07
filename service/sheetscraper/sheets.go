@@ -93,7 +93,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -110,7 +110,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -129,7 +129,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -148,7 +148,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -165,7 +165,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -182,7 +182,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -196,7 +196,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -210,7 +210,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -233,7 +233,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -251,7 +251,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -269,7 +269,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -289,7 +289,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -307,7 +307,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -332,7 +332,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -353,7 +353,7 @@ func Scrape(isDryRun bool) {
 						fmt.Fprintln(os.Stdout, p)
 						serializedData = append(serializedData, &objects.PessoaResult{
 							Pessoa:    &p,
-							SheetId:   cfg.id,
+							SheetId:   &cfg.id,
 							Timestamp: time.Now(),
 						})
 					}
@@ -377,7 +377,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -395,7 +395,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -413,7 +413,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -431,7 +431,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -449,7 +449,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -467,7 +467,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -485,7 +485,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -503,7 +503,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -521,7 +521,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -542,7 +542,7 @@ func Scrape(isDryRun bool) {
 						fmt.Fprintln(os.Stdout, p)
 						serializedData = append(serializedData, &objects.PessoaResult{
 							Pessoa:    &p,
-							SheetId:   cfg.id,
+							SheetId:   &cfg.id,
 							Timestamp: time.Now(),
 						})
 					}
@@ -572,7 +572,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -590,7 +590,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -611,7 +611,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -629,7 +629,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -650,7 +650,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -668,7 +668,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -697,7 +697,7 @@ func Scrape(isDryRun bool) {
 						seen[p.Nome] = true
 						serializedData = append(serializedData, &objects.PessoaResult{
 							Pessoa:    &p,
-							SheetId:   cfg.id,
+							SheetId:   &cfg.id,
 							Timestamp: time.Now(),
 						})
 						fmt.Fprintln(os.Stdout, p)
@@ -717,7 +717,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -739,7 +739,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -757,7 +757,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -774,7 +774,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -791,7 +791,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -818,7 +818,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -846,7 +846,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -869,7 +869,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -892,7 +892,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -911,7 +911,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -930,7 +930,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -954,7 +954,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -978,7 +978,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -1002,7 +1002,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -1026,7 +1026,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -1045,7 +1045,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -1064,7 +1064,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -1082,7 +1082,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -1101,7 +1101,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -1119,7 +1119,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -1137,7 +1137,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -1161,7 +1161,7 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
 						Timestamp: time.Now(),
 					})
 				}
@@ -1185,7 +1185,34 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintln(os.Stdout, p)
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   cfg.id,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "Sheet1!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) < 1 {
+						continue
+					}
+
+					p := objects.Pessoa{
+						Abrigo: row[1].(string),
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					sheetId := row[2].(string)
+					var url string
+					if len(row) > 3 {
+						url = row[3].(string)
+					}
+
+					fmt.Fprintf(os.Stdout, "%+v\n", p)
+
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &sheetId,
+						URL:       &url,
 						Timestamp: time.Now(),
 					})
 				}

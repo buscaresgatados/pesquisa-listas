@@ -10,7 +10,8 @@ type Pessoa struct {
 
 type PessoaResult struct {
 	*Pessoa
-	SheetId   string
+	SheetId   *string
+	URL       *string
 	Timestamp time.Time
 }
 
