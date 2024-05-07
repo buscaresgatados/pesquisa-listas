@@ -75,12 +75,22 @@ func FetchFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) {
 			if err := doc.DataTo(&data); err != nil {
 				fmt.Fprintf(os.Stderr, "Failed to read document: %v", err)
 			}
+			sheetId, ok := data["SheetId"].(string)
+			if !ok {
+				sheetId = ""
+			}
+			url, ok := data["URL"].(string)
+			if !ok {
+				url = ""
+			}
 			results = append(results, &objects.PessoaResult{
-				Pessoa: &objects.Pessoa{Nome: data["Nome"].(string),
+				Pessoa: &objects.Pessoa{
+					Nome:   data["Nome"].(string),
 					Abrigo: data["Abrigo"].(string),
-					Idade:  data["Idade"].(string)},
-				SheetId:   data["SheetId"].(*string),
-				URL:       data["URL"].(*string),
+					Idade:  data["Idade"].(string),
+				},
+				SheetId:   &sheetId,
+				URL:       &url,
 				Timestamp: data["Timestamp"].(time.Time),
 			})
 		} else {
