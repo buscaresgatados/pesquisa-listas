@@ -135,4 +135,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"Sheet1!A1:ZZ"},
 	// 	name:        "Compilado XLSX",
 	// },
+	// {
+	// id:          "1IVtSmKRFynQH9I9Cox93YxZe0uwKfjx_CYFzKE96its",
+	// sheetRanges: []string{"Sheet1!A1:ZZ"},
+	// name:        "ALOJAMENTO COELHÃO",
+	// },
 }
