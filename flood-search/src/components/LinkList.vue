@@ -14,11 +14,11 @@ import LinkComponent from './LinkComponent.vue';
       <div class="link-list">
           <div class="link-list--col">
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1Pd8NVuEtnR7-IlLF7cJ3XY7yVSoJMgY47-eepe2BBXo/edit#gid=156688726" name="RESGATADOS (Cruzeiro do Sul)" tag title="NOVA"/>
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY/edit#gid=0" name="SESC PROTÁSIO" tag title="NOVA"/>
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1hKJVs-RLiSUpx-1Rd9wS1k8RLqxkPWK4hNob-t8v2Ko/edit#gid=0" name="LISTA RESGATADOS ELDORADO" tag title="NOVA"/>
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s/htmlview" name="ULBRA - CANOAS PRÉDIO 11" tag title="NOVA"/>
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1-1q4c8Ns6M9noCEhQqBE6gy3FWUv-VQgeUO9c7szGIM/htmlview" name="ABRIGADOS EM CANOAS 01" tag title="NOVA"/>
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/edit#gid=0" name="SAO LEOPOLDO - LISTA ALOJ..." tag title="NOVA"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY/edit#gid=0" name="SESC PROTÁSIO"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1hKJVs-RLiSUpx-1Rd9wS1k8RLqxkPWK4hNob-t8v2Ko/edit#gid=0" name="LISTA RESGATADOS ELDORADO"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s/htmlview" name="ULBRA - CANOAS PRÉDIO 11"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1-1q4c8Ns6M9noCEhQqBE6gy3FWUv-VQgeUO9c7szGIM/htmlview" name="ABRIGADOS EM CANOAS 01"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/edit#gid=0" name="SAO LEOPOLDO - LISTA ALOJ..."/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ/htmlview#gid=1619683963" name="Lista Desabrigados" />
             <LinkComponent url="https://www.instagram.com/stories/highlights/18055125328538288/" name="Abrigados Estrela" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1pwL_AAO-7H7-cXujB_aFhkMLHbiH7xqH/edit#gid=874938892" name="ABRIGADOS LAR MÃE ESTHER" tag title="NOVA"/>
