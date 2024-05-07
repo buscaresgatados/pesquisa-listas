@@ -145,4 +145,9 @@ var Config []SheetConfig = []SheetConfig{
 	// 	sheetRanges: []string{"Página1!A1:ZZ"},
 	// 	name: "Resgatados viaduto da Dom Pedro",
 	// },
+	// {
+	// 	id: "1wvtgK7ZO9KuJsFDI9syyPWmEyqYoKw2PKssmgfo_jCU",
+	// 	sheetRanges: []string{"Form Responses 1!A1:ZZ"},
+	// 	name: "localizacao desabrigados canoas (Responses)-elaborada por voluntarios da prefeitura de Canoas",
+	// },
 }
