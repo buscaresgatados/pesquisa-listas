@@ -44,6 +44,7 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s/htmlview" name="ULBRA Canoas - Prédio 11" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1Pd8NVuEtnR7-IlLF7cJ3XY7yVSoJMgY47-eepe2BBXo/edit#gid=156688726" name="RESGATADOS DO VALE DO TAQUARI" tag title="NOVA"/>
             <LinkComponent url="https://twitter.com/ora_eu/status/1787849794213278103" name="RESGATES GRAVATAÍ" tag title="NOVA"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1xaEPlk8JonATIOAvQEc0Dev-QVAzx2AwUzLHBhbA3rI/edit#gid=0" name="Resgates no viaduto da Santa Rita -> Eldorado - Guaiba" tag title="NOVA"/>
           </div>
         </div>
       </div>
