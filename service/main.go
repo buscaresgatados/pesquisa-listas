@@ -14,19 +14,31 @@ import (
 )
 
 var (
-	port    string
-	authKey = "hardcoded-key"
+	port     string
+	authKeys = []string{
+		"c2585727-bd1d-4b70-bd97-b0417c8e3c7c", // frontend
+		"687b44bb-c8b0-4298-9bfb-4dc81e585c09", // sosrs
+	}
 )
 
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		key := r.Header.Get("Authorization")
-		if key != authKey {
+		if !isValidKey(key) {
 			http.Error(w, "Forbidden", http.StatusForbidden)
 			return
 		}
 		next.ServeHTTP(w, r)
 	})
+}
+
+func isValidKey(key string) bool {
+	for _, validKey := range authKeys {
+		if key == validKey {
+			return true
+		}
+	}
+	return false
 }
 
 func AuthMeHandler(w http.ResponseWriter, r *http.Request) {
@@ -57,7 +69,7 @@ var webCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		router := mux.NewRouter()
 
-		router.HandleFunc("/pessoa", handlers.GetPessoa).Methods(http.MethodGet, http.MethodOptions).Queries()
+		router.Handle("/pessoa", AuthMiddleware(http.HandlerFunc(handlers.GetPessoa))).Methods(http.MethodGet, http.MethodOptions).Queries()
 		router.Handle("/auth/me", AuthMiddleware(http.HandlerFunc(AuthMeHandler))).Methods(http.MethodGet, http.MethodOptions)
 
 		http.Handle("/", router)
