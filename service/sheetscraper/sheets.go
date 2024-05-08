@@ -90,7 +90,9 @@ func Scrape(isDryRun bool) {
 					} else {
 						p.Idade = ""
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -107,7 +109,9 @@ func Scrape(isDryRun bool) {
 						Nome:   row[1].(string),
 						Idade:  "",
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -126,7 +130,9 @@ func Scrape(isDryRun bool) {
 						Nome:   row[3].(string),
 						Idade:  "",
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -145,7 +151,9 @@ func Scrape(isDryRun bool) {
 						Nome:   row[0].(string),
 						Idade:  "",
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -162,7 +170,9 @@ func Scrape(isDryRun bool) {
 						Nome:   row[0].(string),
 						Idade:  "",
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -179,7 +189,9 @@ func Scrape(isDryRun bool) {
 						Nome:   row[1].(string),
 						Idade:  row[2].(string),
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -193,7 +205,9 @@ func Scrape(isDryRun bool) {
 						Nome:   row[0].(string),
 						Idade:  "",
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -207,7 +221,9 @@ func Scrape(isDryRun bool) {
 						Nome:   row[0].(string),
 						Idade:  "",
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -230,7 +246,9 @@ func Scrape(isDryRun bool) {
 						p.Idade = ""
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -248,7 +266,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -266,7 +286,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -286,7 +308,9 @@ func Scrape(isDryRun bool) {
 					if len(row) > 2 {
 						p.Idade = row[1].(string)
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -304,7 +328,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -329,7 +355,9 @@ func Scrape(isDryRun bool) {
 						}
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -350,7 +378,9 @@ func Scrape(isDryRun bool) {
 							Idade:  "",
 						}
 
-						fmt.Fprintln(os.Stdout, p)
+						if os.Getenv("ENVIRONMENT") == "local" {
+							fmt.Fprintln(os.Stdout, p)
+						}
 						serializedData = append(serializedData, &objects.PessoaResult{
 							Pessoa:    &p,
 							SheetId:   &cfg.id,
@@ -374,7 +404,9 @@ func Scrape(isDryRun bool) {
 						p.Idade = ""
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -392,7 +424,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -410,7 +444,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -428,7 +464,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -446,7 +484,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -464,7 +504,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -482,7 +524,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -500,7 +544,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -518,7 +564,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -539,7 +587,9 @@ func Scrape(isDryRun bool) {
 							Idade:  "",
 						}
 
-						fmt.Fprintln(os.Stdout, p)
+						if os.Getenv("ENVIRONMENT") == "local" {
+							fmt.Fprintln(os.Stdout, p)
+						}
 						serializedData = append(serializedData, &objects.PessoaResult{
 							Pessoa:    &p,
 							SheetId:   &cfg.id,
@@ -569,7 +619,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -587,7 +639,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -608,7 +662,9 @@ func Scrape(isDryRun bool) {
 					} else {
 						p.Idade = ""
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -626,7 +682,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -647,7 +705,9 @@ func Scrape(isDryRun bool) {
 						Idade:  strings.Trim(split[1], ","),
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -665,7 +725,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -700,7 +762,9 @@ func Scrape(isDryRun bool) {
 							SheetId:   &cfg.id,
 							Timestamp: time.Now(),
 						})
-						fmt.Fprintln(os.Stdout, p)
+						if os.Getenv("ENVIRONMENT") == "local" {
+							fmt.Fprintln(os.Stdout, p)
+						}
 					}
 				}
 			case cfg.id + "Unilasalle!A1:ZZ":
@@ -714,7 +778,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -736,7 +802,9 @@ func Scrape(isDryRun bool) {
 						p.Idade = ""
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -754,7 +822,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -771,7 +841,9 @@ func Scrape(isDryRun bool) {
 						Nome:   row[0].(string),
 						Idade:  "",
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -788,7 +860,9 @@ func Scrape(isDryRun bool) {
 						Nome:   row[0].(string),
 						Idade:  row[2].(string),
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -815,7 +889,9 @@ func Scrape(isDryRun bool) {
 						p.Idade = ""
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -843,7 +919,9 @@ func Scrape(isDryRun bool) {
 					} else {
 						p.Idade = ""
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -866,7 +944,9 @@ func Scrape(isDryRun bool) {
 					} else {
 						p.Idade = ""
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -889,7 +969,9 @@ func Scrape(isDryRun bool) {
 					} else {
 						p.Idade = ""
 					}
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -908,7 +990,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -927,7 +1011,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -951,7 +1037,9 @@ func Scrape(isDryRun bool) {
 						p.Idade = ""
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -975,7 +1063,9 @@ func Scrape(isDryRun bool) {
 						p.Idade = ""
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -999,7 +1089,9 @@ func Scrape(isDryRun bool) {
 						p.Idade = ""
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1023,7 +1115,9 @@ func Scrape(isDryRun bool) {
 						p.Idade = ""
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1042,7 +1136,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1061,7 +1157,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1079,7 +1177,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1098,7 +1198,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1116,7 +1218,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1134,7 +1238,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1158,7 +1264,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1182,7 +1290,9 @@ func Scrape(isDryRun bool) {
 						}
 					}
 
-					fmt.Fprintln(os.Stdout, p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintln(os.Stdout, p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1200,8 +1310,8 @@ func Scrape(isDryRun bool) {
 					replacedStr := re.ReplaceAllString(row[0].(string), "")
 					if len(replacedStr) > 0 {
 						p = objects.Pessoa{
-							Nome:   replacedStr,
-							Idade:  "",
+							Nome:  replacedStr,
+							Idade: "",
 						}
 						if row[1].(string) != "" {
 							p.Abrigo = row[1].(string)
@@ -1210,7 +1320,9 @@ func Scrape(isDryRun bool) {
 						}
 					}
 
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1235,8 +1347,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1269,8 +1382,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1303,8 +1417,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1335,8 +1450,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1345,7 +1461,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "1eC6z6RPNNarLMSqVqU-FQOHopCKWCN4CFDn34uTYGcA" + "Página 1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					
+
 					if i < 1 || len(row) < 4 {
 						continue
 					}
@@ -1376,8 +1492,9 @@ func Scrape(isDryRun bool) {
 						Idade:  idade,
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1386,7 +1503,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "1eC6z6RPNNarLMSqVqU-FQOHopCKWCN4CFDn34uTYGcA" + "Página2!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					
+
 					if i < 1 || len(row) < 4 {
 						continue
 					}
@@ -1417,8 +1534,9 @@ func Scrape(isDryRun bool) {
 						Idade:  idade,
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1427,7 +1545,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "1eC6z6RPNNarLMSqVqU-FQOHopCKWCN4CFDn34uTYGcA" + "Página 3!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					
+
 					if i < 1 || len(row) < 4 {
 						continue
 					}
@@ -1458,8 +1576,9 @@ func Scrape(isDryRun bool) {
 						Idade:  idade,
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1468,7 +1587,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "1eC6z6RPNNarLMSqVqU-FQOHopCKWCN4CFDn34uTYGcA" + "Página 4!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					
+
 					if i < 1 || len(row) < 4 {
 						continue
 					}
@@ -1499,8 +1618,9 @@ func Scrape(isDryRun bool) {
 						Idade:  idade,
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1509,7 +1629,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "1eC6z6RPNNarLMSqVqU-FQOHopCKWCN4CFDn34uTYGcA" + "Página 5!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					
+
 					if i < 1 || len(row) < 4 {
 						continue
 					}
@@ -1540,8 +1660,9 @@ func Scrape(isDryRun bool) {
 						Idade:  idade,
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1550,7 +1671,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "1LdM2ZvYBNdtKekLgHPRs6lg9VGpD-7wBSZsE5c5Mptk" + "Página1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					
+
 					if i < 1 || len(row) < 3 {
 						continue
 					}
@@ -1563,7 +1684,7 @@ func Scrape(isDryRun bool) {
 					if err != nil {
 						log.Fatal(err)
 					}
-					nome = reg.ReplaceAllString(nome, "")					
+					nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = row[1].(string)
 					if abrigo == "" {
@@ -1575,8 +1696,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1585,7 +1707,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "1-cA0MB_1aQTOtXVL2pyPWSXjuTMg6U1PsyBAICjdGxo" + "Gravataí!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					
+
 					if i < 1 || len(row) < 5 {
 						continue
 					}
@@ -1617,8 +1739,9 @@ func Scrape(isDryRun bool) {
 						Idade:  idade,
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1627,7 +1750,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "16rN5pniNiIsbJAv25A0AfW5SdccJjPVDov7EDqwDOQM" + "Abrigados!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					
+
 					if i < 1 || len(row) < 3 {
 						continue
 					}
@@ -1640,7 +1763,7 @@ func Scrape(isDryRun bool) {
 					if err != nil {
 						log.Fatal(err)
 					}
-					nome = reg.ReplaceAllString(nome, "")					
+					nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = row[2].(string)
 					if abrigo == "" {
@@ -1652,8 +1775,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1662,7 +1786,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "1gfQ28EPN99LQaZqZzMeB-pdxgK9SST1OYy-jTOl7rdk" + "Página1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					
+
 					if i < 1 || len(row) < 3 {
 						continue
 					}
@@ -1675,7 +1799,7 @@ func Scrape(isDryRun bool) {
 					if err != nil {
 						log.Fatal(err)
 					}
-					nome = reg.ReplaceAllString(nome, "")					
+					nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = row[1].(string)
 					if abrigo == "" {
@@ -1687,8 +1811,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1697,7 +1822,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "1KgPjNIDQOmDA59A8u4HIOzsL41ZGQH97n-2jl99tfuU" + "Sheet1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					
+
 					if i < 1 || len(row) < 3 {
 						continue
 					}
@@ -1710,7 +1835,7 @@ func Scrape(isDryRun bool) {
 					if err != nil {
 						log.Fatal(err)
 					}
-					nome = reg.ReplaceAllString(nome, "")					
+					nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = row[1].(string)
 					if abrigo == "" {
@@ -1722,8 +1847,9 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1737,7 +1863,7 @@ func Scrape(isDryRun bool) {
 					}
 					var p objects.Pessoa
 					var abrigo string
-	
+
 					abrigo = row[4].(string)
 					if abrigo == "" {
 						abrigo = "Desconhecido"
@@ -1747,9 +1873,10 @@ func Scrape(isDryRun bool) {
 						Nome:   row[0].(string),
 						Idade:  "",
 					}
-	
-	
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1762,15 +1889,16 @@ func Scrape(isDryRun bool) {
 						continue
 					}
 					var p objects.Pessoa
-	
+
 					p = objects.Pessoa{
 						Abrigo: "Viaduto Santa Rita - Eldorado",
 						Nome:   row[0].(string),
 						Idade:  "",
 					}
-	
-	
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -1795,7 +1923,9 @@ func Scrape(isDryRun bool) {
 						url = row[3].(string)
 					}
 
-					fmt.Fprintf(os.Stdout, "%+v\n", p)
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,

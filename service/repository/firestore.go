@@ -16,8 +16,14 @@ var err error
 
 func AddToFirestore(pessoas []*objects.PessoaResult) error {
 	ctx := context.Background()
-	serviceAccJSON := utils.GetServiceAccountJSON(os.Getenv("APP_SERVICE_ACCOUNT_JSON"))
-	client, err := firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"), option.WithCredentialsJSON(serviceAccJSON))
+	var client *firestore.Client
+	if os.Getenv("ENVIRONMENT") == "local" {
+		serviceAccJSON := utils.GetServiceAccountJSON(os.Getenv("APP_SERVICE_ACCOUNT_JSON"))
+		client, err = firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"), option.WithCredentialsJSON(serviceAccJSON))
+	} else {
+		client, err = firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"))
+	}
+	defer client.Close()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
 		return err
