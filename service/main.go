@@ -14,19 +14,32 @@ import (
 )
 
 var (
-	port    string
-	authKey = "hardcoded-key"
+	port     string
+	authKeys = []string{
+		"c2585727-bd1d-4b70-bd97-b0417c8e3c7c", // frontend
+		"hardcoded-key2",
+		"hardcoded-key3",
+	}
 )
 
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		key := r.Header.Get("Authorization")
-		if key != authKey {
+		if !isValidKey(key) {
 			http.Error(w, "Forbidden", http.StatusForbidden)
 			return
 		}
 		next.ServeHTTP(w, r)
 	})
+}
+
+func isValidKey(key string) bool {
+	for _, validKey := range authKeys {
+		if key == validKey {
+			return true
+		}
+	}
+	return false
 }
 
 func AuthMeHandler(w http.ResponseWriter, r *http.Request) {
