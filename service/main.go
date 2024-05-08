@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -13,8 +14,26 @@ import (
 )
 
 var (
-	port string
+	port    string
+	authKey = "hardcoded-key"
 )
+
+func AuthMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		key := r.Header.Get("Authorization")
+		if key != authKey {
+			http.Error(w, "Forbidden", http.StatusForbidden)
+			return
+		}
+		next.ServeHTTP(w, r)
+	})
+}
+
+func AuthMeHandler(w http.ResponseWriter, r *http.Request) {
+	response := map[string]string{"status": "success", "message": "Authenticated successfully"}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
+}
 
 func init() {
 	port = os.Getenv("PORT")
@@ -37,7 +56,10 @@ var webCmd = &cobra.Command{
 	Short: "Start the web server",
 	Run: func(cmd *cobra.Command, args []string) {
 		router := mux.NewRouter()
+
 		router.HandleFunc("/pessoa", handlers.GetPessoa).Methods(http.MethodGet, http.MethodOptions).Queries()
+		router.Handle("/auth/me", AuthMiddleware(http.HandlerFunc(AuthMeHandler))).Methods(http.MethodGet, http.MethodOptions)
+
 		http.Handle("/", router)
 
 		fmt.Println("Listening on port ", port)
