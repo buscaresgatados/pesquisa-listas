@@ -226,4 +226,14 @@ var Config []SheetConfig = []SheetConfig{
 		sheetRanges: []string{"Página1!A1:ZZ"},
 		name:        "Abrigados Porto Novo/SESI",
 	},
+	{
+		id:          "1kKfTi8N-XL2bcML8Xtf3cT1FNIzinqh4woHDjHn2Bgs",
+		sheetRanges: []string{
+			"ATUALIZADO 05/05!A1:ZZ",
+			"ATUALIZADO 06/05!A1:ZZ",
+			"ATUALIZADO 07/05!A1:ZZ",
+			"ATUALIZADO 08/05!A1:ZZ",
+		},
+		name: "NOVA de RESGATADOS - RS",
+	},
 }
