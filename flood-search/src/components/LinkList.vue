@@ -13,6 +13,7 @@ import LinkComponent from './LinkComponent.vue';
 
       <div class="link-list">
           <div class="link-list--col">
+            <LinkComponent url="hhttps://drive.google.com/file/d/1ntd68VJ1HKbMfCaUSjMe0gkfwULo_NLJ/view" name="LISTA ABRIGADOS EM GUAÍBA" tag title="NOVO"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1Pd8NVuEtnR7-IlLF7cJ3XY7yVSoJMgY47-eepe2BBXo/edit#gid=156688726" name="RESGATADOS (Cruzeiro do Sul)" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY/edit#gid=0" name="SESC PROTÁSIO"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1hKJVs-RLiSUpx-1Rd9wS1k8RLqxkPWK4hNob-t8v2Ko/edit#gid=0" name="LISTA RESGATADOS ELDORADO"/>
@@ -32,6 +33,8 @@ import LinkComponent from './LinkComponent.vue';
 
 
           <div class="link-list--col">
+            <LinkComponent url="https://www.viamao.rs.gov.br/arquivos/abrigados_geral_-_presentes_(4)_07084011.pdf" name="PREFEITURA VIAMAO" tag title="NOVO"/>
+            <LinkComponent url="https://drive.google.com/file/d/1zp3G9gUNUFQIv27BKOUPMrafDcjrqhRL/view" name="Cadastro Abrigo CETE" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1bNw-t0RUE-AP-2quCU80w5meGYVtD7WjjuESb7tXxTo/edit#gid=0" name="Abrigados Lajeado"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1-xhmS1VQ95LFI05XG8o9JO3mPk8KxQtrxAZe4GNYO3I/htmlview?fbclid=PAZXh0bgNhZW0CMTEAAaa8hrVtObdF2fVAKqXLDmpSNIxwrdxrYeR67gCKkLLjjmmYX_uyO3mwB5Q_aem_AYGIoQtWukDR9BFdDp29TRY_mG75KmR5EbnNgeh08Il9XLI1z2UPRwhYD94Gttg1zSkakpKoGViZoK5vtA7pT8Iz" name="Resgatados Pontal"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1RGRoIzSFQaaJF1xZsJhQsMJxXnXWzfZfas29T_PefmY/edit#gid=904509716" name="ALOJAMENTOS DA PMNH"/>
@@ -40,11 +43,12 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA/edit#gid=0" name="To Salvo Vale dos Sinos" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1IjefUU8g5OaHxMfcvqc0ewyQDn5ZVLBE/edit#gid=747398008" name="ABRIGADOS EM GUAÍBA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/16X-68-x7My4u0WEfscL7t4YYw_Ebeco6gaLhE80Q8Wc/edit#gid=0" name="Viaduto da Dom Pedro" tag title="NOVA"/>
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1fH7OA5bnY5OLfY7Xis6bVQq12VIhS_VIyYYekPBr5NA/edit#gid=1916176314" name="Abrigados Cerro Grande do Sul" tag title="NOVA"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1fH7OA5bnY5OLfY7Xis6bVQq12VIhS_VIyYYekPBr5NA/edit#gid=1916176314" name="Cerro Grande do Sul" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1T_yd-M6BG1qYdQKeMo2U_AffqRCxkExqpB39iQXig5s/htmlview" name="ULBRA Canoas - Prédio 11" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1Pd8NVuEtnR7-IlLF7cJ3XY7yVSoJMgY47-eepe2BBXo/edit#gid=156688726" name="RESGATADOS DO VALE DO TAQUARI" tag title="NOVA"/>
             <LinkComponent url="https://twitter.com/ora_eu/status/1787849794213278103" name="RESGATES GRAVATAÍ" tag title="NOVA"/>
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1xaEPlk8JonATIOAvQEc0Dev-QVAzx2AwUzLHBhbA3rI/edit#gid=0" name="Resgates no viaduto da Santa Rita -> Eldorado - Guaiba" tag title="NOVA"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1xaEPlk8JonATIOAvQEc0Dev-QVAzx2AwUzLHBhbA3rI/edit#gid=0" name="Viaduto da Santa Rita Eldorado Guaiba" tag title="NOVA"/>
+
           </div>
         </div>
       </div>
@@ -56,15 +60,14 @@ import LinkComponent from './LinkComponent.vue';
 
      <div class="link-list">
             <div class="link-list--col">
-              <LinkComponent url="hhttps://drive.google.com/file/d/1ntd68VJ1HKbMfCaUSjMe0gkfwULo_NLJ/view" name="LISTA ABRIGADOS EM GUAÍBA" tag title="EM PROGRESSO"/>
-              
+              <LinkComponent url="https://docs.google.com/spreadsheets/d/1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8/htmlview" name="Abrigos – Cachoeirinha" tag title="EM PROGRESSO"/>
           
             </div>
 
             <div class="link-list--col">
-             
-              
 
+             
+            
             </div>
           </div>
 
