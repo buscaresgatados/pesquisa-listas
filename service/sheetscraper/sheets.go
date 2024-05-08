@@ -2190,9 +2190,12 @@ func Scrape(isDryRun bool) {
 					if os.Getenv("ENVIRONMENT") == "local" {
 						fmt.Fprintf(os.Stdout, "%+v\n", p)
 					}
+
+					sheetId := "1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs"
+
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   &cfg.id,
+						SheetId:   &sheetId,
 						Timestamp: time.Now(),
 					})
 				}
@@ -2228,9 +2231,12 @@ func Scrape(isDryRun bool) {
 					if os.Getenv("ENVIRONMENT") == "local" {
 						fmt.Fprintf(os.Stdout, "%+v\n", p)
 					}
+
+					sheetId := "1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs"
+
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   &cfg.id,
+						SheetId:   &sheetId,
 						Timestamp: time.Now(),
 					})
 				}
@@ -2266,9 +2272,12 @@ func Scrape(isDryRun bool) {
 					if os.Getenv("ENVIRONMENT") == "local" {
 						fmt.Fprintf(os.Stdout, "%+v\n", p)
 					}
+
+					sheetId := "1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs"
+
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   &cfg.id,
+						SheetId:   &sheetId,
 						Timestamp: time.Now(),
 					})
 				}
@@ -2304,9 +2313,10 @@ func Scrape(isDryRun bool) {
 					if os.Getenv("ENVIRONMENT") == "local" {
 						fmt.Fprintf(os.Stdout, "%+v\n", p)
 					}
+					sheetId := "1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs"
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
-						SheetId:   &cfg.id,
+						SheetId:   &sheetId,
 						Timestamp: time.Now(),
 					})
 				}
