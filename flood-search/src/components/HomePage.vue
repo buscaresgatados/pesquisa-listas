@@ -1,6 +1,7 @@
 <script setup>
 import LinkList from './LinkList.vue';
 import Search from './Search.vue';
+import Footer from './Footer.vue';
 
 </script>
 
@@ -13,13 +14,11 @@ import Search from './Search.vue';
       </div>  
       <Search />
       <LinkList />
-      
-      <!-- <ResultPage search="John Doe"/> -->
+      <Footer />
     </div>
     </div>
 </template>
 
 <style scoped>
-
 
 </style>
