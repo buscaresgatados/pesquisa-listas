@@ -23,6 +23,10 @@ var (
 
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodOptions {
+			next.ServeHTTP(w, r)
+			return
+		}
 		key := r.Header.Get("Authorization")
 		if !isValidKey(key) {
 			http.Error(w, "Forbidden", http.StatusForbidden)
