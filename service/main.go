@@ -70,7 +70,7 @@ var webCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		router := mux.NewRouter()
 
-		router.HandleFunc("/pessoa", handlers.GetPessoa).Methods(http.MethodGet, http.MethodOptions).Queries()
+		router.Handle("/pessoa", AuthMiddleware(http.HandlerFunc(handlers.GetPessoa))).Methods(http.MethodGet, http.MethodOptions).Queries()
 		router.Handle("/auth/me", AuthMiddleware(http.HandlerFunc(AuthMeHandler))).Methods(http.MethodGet, http.MethodOptions)
 
 		http.Handle("/", router)
