@@ -8,7 +8,9 @@ import (
 	"refugio/objects"
 	"refugio/repository"
 	"sort"
+	"strings"
 
+	"cloud.google.com/go/compute/metadata"
 	"github.com/algolia/algoliasearch-client-go/v3/algolia/search"
 )
 
@@ -19,9 +21,19 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodOptions {
 		return
 	}
+	projectID, _ := metadata.ProjectID()
+
+	var trace string
+	if projectID != "" {
+		traceHeader := r.Header.Get("X-Cloud-Trace-Context")
+		traceParts := strings.Split(traceHeader, "/")
+		if len(traceParts) > 0 && len(traceParts[0]) > 0 {
+			trace = fmt.Sprintf("projects/%s/traces/%s", projectID, traceParts[0])
+		}
+	}
 
 	log := &objects.AccessLog{
-		Trace:  r.Header.Get("X-Cloud-Trace-Context"),
+		Trace:  trace,
 		UserIP: r.Header.Get("X-Forwarded-For"),
 	}
 	logJson, err := json.Marshal(log)
