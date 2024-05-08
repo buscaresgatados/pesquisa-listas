@@ -2,6 +2,7 @@
 import LinkList from './LinkList.vue';
 import Search from './Search.vue';
 import Footer from './Footer.vue';
+import Partners from './Partners.vue';
 
 </script>
 
@@ -14,6 +15,7 @@ import Footer from './Footer.vue';
       </div>  
       <Search />
       <LinkList />
+      <Partners />
       <Footer />
     </div>
     </div>

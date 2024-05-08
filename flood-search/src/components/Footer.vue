@@ -1,11 +1,21 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+
+
 </script>
 
 <template>
 
   <div class="footer">
-      <div class="algolia">
-        <a href="https://www.algolia.com/">Busca inteligente por <img src="../assets/Algolia-logo-white.svg"/></a>
+      <div class="footer-section">
+        <div class="algolia">
+          <a href="https://www.algolia.com/">Busca inteligente por <img src="../assets/Algolia-logo-white.svg"/></a>
+        </div>
+        <div class="Políticas">
+
+          <RouterLink to=./Privacidade><p>Política de Privacidade</p></RouterLink>
+
+        </div>
       </div>
       <div> 
         <b>Equipe</b>: Gabi Branco, Bibiana Branco, Igor Carrasco, Amanda Medeiros, Douglas Eloy, 
@@ -20,6 +30,13 @@
 
 
 <style scoped>
+
+.footer-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
 
 .footer img {
   margin: 32px 0px;

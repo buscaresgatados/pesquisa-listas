@@ -125,6 +125,20 @@ Button:hover {
   padding-bottom: 32px;
 }
 
+
+.button-voltar {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding-bottom: 16px;
+  color: #CBD5E1;
+}
+
+.button-voltar p {
+  font-weight: bold;
+
+}
+
 @media (max-width: 480px) 
   {
     .wrapper {
