@@ -236,4 +236,13 @@ var Config []SheetConfig = []SheetConfig{
 		},
 		name: "NOVA de RESGATADOS - RS",
 	},
+	{
+		id:          "1K3DRVlSpK3tWQ1B83Q9pxkhSivIsmf38FTb6SVjMzT4",
+		sheetRanges: []string{
+			"Resgatados Prefeitura SL!A1:ZZ",
+			"RESGATADOS/ABRIGADOS!A1:ZZ",
+			"Resgatados - Fernanda!A1:ZZ",
+		},
+		name:        "Respostas Pedido Desaparecidos Enchente",
+	},
 }
