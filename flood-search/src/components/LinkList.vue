@@ -22,12 +22,12 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1-1q4c8Ns6M9noCEhQqBE6gy3FWUv-VQgeUO9c7szGIM/htmlview" name="ABRIGADOS EM CANOAS 01" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1zt_yrzvU2nmihyZG7rR67iqlkwlcDz3LjSb1UBynQ3c/edit#gid=0" name="SAO LEOPOLDO - LISTA ALOJ..." />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ/htmlview#gid=1619683963" name="Lista Desabrigados" />
-            <LinkComponent url="https://www.instagram.com/stories/highlights/18055125328538288/" name="Abrigados Estrela" tag title="NOVA" />
+            <LinkComponent url="https://www.instagram.com/stories/highlights/18055125328538288/" name="Abrigados Estrela" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1pwL_AAO-7H7-cXujB_aFhkMLHbiH7xqH/edit#gid=874938892" name="ABRIGADOS LAR MÃE ESTHER" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1VE_WnX5MuVF_4Mtos7a-S7eYPrudeygv-OWddwuCkYc/edit#gid=0" name="DIGITALIZAÇÃO DE REGISTRO DE RESGATES - RS" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1wvtgK7ZO9KuJsFDI9syyPWmEyqYoKw2PKssmgfo_jCU/edit#gid=446068527" name="LOCALIZAÇÃO DESABRIGADOS CANOAS" />
             <LinkComponent url="https://drive.google.com/file/d/1QYnARgeJxEqv_tWVzw524s1xOxk803iH/view" name="Alojados Sentinela do Sul" />    
-            <LinkComponent url="https://scontent-lga3-1.xx.fbcdn.net/v/t39.30808-6/441486183_10162044871662164_5017697852208722557_n.jpg?stp=dst-jpg_s1080x2048&_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=HY24PqDWaEUQ7kNvgHsDL_L&_nc_ht=scontent-lga3-1.xx&oh=00_AfD4Y8yp8THhtRdTz1H4C2fdWKTRhNQ2d2VwUUyyqE2p9w&oe=663FFEAE" name="PAROQUIA NOSSA SENHORA AP..." tag title="NOVA" />
+            <LinkComponent url="https://scontent-lga3-1.xx.fbcdn.net/v/t39.30808-6/441486183_10162044871662164_5017697852208722557_n.jpg?stp=dst-jpg_s1080x2048&_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=HY24PqDWaEUQ7kNvgHsDL_L&_nc_ht=scontent-lga3-1.xx&oh=00_AfD4Y8yp8THhtRdTz1H4C2fdWKTRhNQ2d2VwUUyyqE2p9w&oe=663FFEAE" name="PAROQUIA NOSSA SENHORA AP..." />
             <LinkComponent url="https://drive.google.com/file/d/13C-Y42jniQ4qdTg6Vsb4GPpjBnU2PvUf/view" name="Abrigo Liberato" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/16rN5pniNiIsbJAv25A0AfW5SdccJjPVDov7EDqwDOQM/edit#gid=0" name="Resgates - Julio de Castilhos" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8/htmlview" name="Abrigos – Cachoeirinha" />
@@ -57,7 +57,6 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1xaEPlk8JonATIOAvQEc0Dev-QVAzx2AwUzLHBhbA3rI/edit#gid=0" name="Viaduto da Santa Rita Eldorado Guaiba" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1TVv1WEjrPBpnKsFIV60jz0kWPK6idovmnJDaGg6KKXw/edit#gid=0" name="Abrigados Porto Novo/SESI" />
             <LinkComponent url="https://docs.google.com/spreadsheets/u/0/d/1GMC0ayry2nWpjvBLyPdti6ZaU15Wt89bqhJbyO97VVs/htmlview" name="Resgatados e Desaparecidos RS" />
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1kKfTi8N-XL2bcML8Xtf3cT1FNIzinqh4woHDjHn2Bgs/edit?pli=1#gid=0" name="Novos RESGATADOS RS" />
             
           </div>
         </div>
