@@ -8,7 +8,10 @@ import LinkList from '../../LinkList.vue';
 <template>
   <div class="searched-wrapper">
     <h4 class="searched-title">Não encontrou quem procurava?</h4>
-    <p class="searched-text">Continuamos atualizando nosso banco de dados à medida que novos nomes são adicionados às listas consultadas. Tente novamente mais tarde.</p>
+    <p class="searched-text">
+      Isso não quer dizer que a pessoa não foi resgatada! Isso pode significar que ela ainda não foi cadastrada e/ou a planilha ainda não foi importada.
+      Estamos trabalhando continuamente para atualizar nossa base de dados.
+    </p>
   </div>
   <LinkList />
 </template>
