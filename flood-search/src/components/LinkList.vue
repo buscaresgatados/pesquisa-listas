@@ -13,7 +13,7 @@ import LinkComponent from './LinkComponent.vue';
 
       <div class="link-list">
           <div class="link-list--col">
-            <LinkComponent url="hhttps://drive.google.com/file/d/1ntd68VJ1HKbMfCaUSjMe0gkfwULo_NLJ/view" name="LISTA ABRIGADOS EM GUAÍBA" tag title="NOVO"/>
+            <LinkComponent url="https://drive.google.com/file/d/1ntd68VJ1HKbMfCaUSjMe0gkfwULo_NLJ/view" name="LISTA ABRIGADOS EM GUAÍBA" tag title="NOVO"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1Pd8NVuEtnR7-IlLF7cJ3XY7yVSoJMgY47-eepe2BBXo/edit#gid=156688726" name="RESGATADOS (Cruzeiro do Sul)" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY/edit#gid=0" name="SESC PROTÁSIO"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1hKJVs-RLiSUpx-1Rd9wS1k8RLqxkPWK4hNob-t8v2Ko/edit#gid=0" name="LISTA RESGATADOS ELDORADO"/>
@@ -30,6 +30,9 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://drive.google.com/file/d/13C-Y42jniQ4qdTg6Vsb4GPpjBnU2PvUf/view" name="Abrigo Liberato" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/16rN5pniNiIsbJAv25A0AfW5SdccJjPVDov7EDqwDOQM/edit#gid=0" name="Resgates - Julio de Castilhos" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8/htmlview" name="Abrigos – Cachoeirinha" tag title="NOVA"/>
+            <LinkComponent url="https://drive.google.com/file/d/1Weqtk8jsUEzJt2EGfgGLDoSzEwSxwQmw/view" name="ALOJADOS ESCOLA MOURA E CUNHA" tag title="NOVA"/>
+            <LinkComponent url="https://drive.google.com/file/d/1oQRkcerLEOgyreg-xt4knf-Ew_ug8hjF/view" name="Resgatados Rua Machadinho Canoas" tag title="NOVA"/>
+            
           </div>
 
 
@@ -50,7 +53,8 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://twitter.com/ora_eu/status/1787849794213278103" name="RESGATES GRAVATAÍ" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1xaEPlk8JonATIOAvQEc0Dev-QVAzx2AwUzLHBhbA3rI/edit#gid=0" name="Viaduto da Santa Rita Eldorado Guaiba" tag title="NOVA"/>
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1TVv1WEjrPBpnKsFIV60jz0kWPK6idovmnJDaGg6KKXw/edit#gid=0" name="Abrigados Porto Novo/SESI" tag title="NOVA"/>
-
+            <LinkComponent url="https://docs.google.com/spreadsheets/u/0/d/1GMC0ayry2nWpjvBLyPdti6ZaU15Wt89bqhJbyO97VVs/htmlview" name="Resgatados e Desaparecidos RS" tag title="NOVA"/>
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1kKfTi8N-XL2bcML8Xtf3cT1FNIzinqh4woHDjHn2Bgs/edit?pli=1#gid=0" name="Novos RESGATADOS RS" tag title="NOVA"/>
           </div>
         </div>
       </div>
