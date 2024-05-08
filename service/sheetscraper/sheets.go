@@ -1905,6 +1905,244 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "AD55!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) <= 2 {
+						continue
+					}
+					var p objects.Pessoa
+					var idade string
+
+					if len(row) > 1 {
+						idade = row[1].(string)
+					} else {
+						idade = ""
+					}
+
+					p = objects.Pessoa{
+						Abrigo: "Assembléia de Deus 55",
+						Nome:   row[0].(string),
+						Idade:  idade,
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "CESE!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) < 1 {
+						continue
+					}
+					var p objects.Pessoa
+					var idade string
+
+					if len(row) > 1 {
+						idade = row[1].(string)
+					} else {
+						idade = ""
+					}
+
+					p = objects.Pessoa{
+						Abrigo: "Comunidade Evangélica Semear Esperança",
+						Nome:   row[0].(string),
+						Idade:  idade,
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "Comunidade Santa Clara!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) < 1 {
+						continue
+					}
+					var p objects.Pessoa
+
+					p = objects.Pessoa{
+						Abrigo: "Comunidade Santa Clara",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "CTG Guapos da Amizade!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) < 3 {
+						continue
+					}
+					var p objects.Pessoa
+					var idade string
+
+					if len(row) > 1 {
+						idade = row[1].(string)
+					} else {
+						idade = ""
+					}
+
+					p = objects.Pessoa{
+						Abrigo: "CTG Guapos da Amizade",
+						Nome:   row[0].(string),
+						Idade:  idade,
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "Gaditas!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 1 {
+						continue
+					}
+					var p objects.Pessoa
+
+					p = objects.Pessoa{
+						Abrigo: "Associação Gaditas",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "Ginásio Placar!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 1 {
+						continue
+					}
+					var p objects.Pessoa
+
+					p = objects.Pessoa{
+						Abrigo: "Ginásio Placar",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "ONG Vida Viva!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 3 || len(row) < 1 {
+						continue
+					}
+					var p objects.Pessoa
+
+					p = objects.Pessoa{
+						Abrigo: "ONG Vida Viva",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "Onze Unidos!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 1 {
+						continue
+					}
+					var p objects.Pessoa
+
+					var data string
+					var name string
+					var idade string
+					var observacao string
+
+					data = row[0].(string)
+
+					name = strings.Split(data, ",")[0]
+					idade = strings.Split(strings.Split(data, ",")[1], " - ")[0]
+					observacao = strings.Split(data, "-")[1]
+
+					p = objects.Pessoa{
+						Abrigo: "Onze Unidos",
+						Nome:   name,
+						Idade:  idade,
+						Observacao: observacao,
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "CTG Carreteiros!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 3 || len(row) < 1 {
+						continue
+					}
+					var p objects.Pessoa
+					var idade string
+
+					if len(row) > 1 {
+						idade = row[1].(string)
+					} else {
+						idade = ""
+					}
+
+					p = objects.Pessoa{
+						Abrigo: "CTG Carreteiros",
+						Nome:   row[0].(string),
+						Idade:  idade,
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
 			case cfg.id + "Sheet1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {

@@ -206,4 +206,19 @@ var Config []SheetConfig = []SheetConfig{
 		sheetRanges: []string{"Página1!A1:ZZ"},
 		name:        "Resgates no viaduto da Santa Rita -> Eldorado - Guaiba",
 	},
+	{
+		id:          "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8",
+		sheetRanges: []string{
+			"AD55!A1:ZZ",
+			"CESE!A1:ZZ",
+			"Comunidade Santa Clara!A1:ZZ",
+			"CTG Guapos da Amizade!A1:ZZ",
+			"Gaditas!A1:ZZ",
+			"Ginásio Placar!A1:ZZ",
+			"ONG Vida Viva!A1:ZZ",
+			"Onze Unidos!A1:ZZ",
+			"CTG Carreteiros!A1:ZZ",
+		},
+		name: "Abrigos - Cachoeirinha/RS",
+	},
 }

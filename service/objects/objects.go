@@ -6,6 +6,7 @@ type Pessoa struct {
 	Abrigo string
 	Nome   string
 	Idade  string
+	Observacao string
 }
 
 type PessoaResult struct {
