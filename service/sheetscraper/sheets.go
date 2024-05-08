@@ -13,10 +13,10 @@ import (
 	"refugio/repository"
 	"refugio/utils"
 
-	"google.golang.org/api/option"
-	"google.golang.org/api/sheets/v4"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
+	"google.golang.org/api/option"
+	"google.golang.org/api/sheets/v4"
 )
 
 const (
@@ -80,7 +80,7 @@ func Scrape(isDryRun bool) {
 			case cfg.id + "Alojados!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
-					if i < 10 || len(row) == 0 {
+					if i < 13 || len(row) < 4 {
 						continue
 					}
 
@@ -2103,9 +2103,9 @@ func Scrape(isDryRun bool) {
 					observacao = strings.Split(data, "-")[1]
 
 					p = objects.Pessoa{
-						Abrigo: "Onze Unidos",
-						Nome:   name,
-						Idade:  idade,
+						Abrigo:     "Onze Unidos",
+						Nome:       name,
+						Idade:      idade,
 						Observacao: observacao,
 					}
 
@@ -2185,9 +2185,9 @@ func Scrape(isDryRun bool) {
 					}
 
 					p = objects.Pessoa{
-						Abrigo: row[2].(string),
-						Nome:   row[0].(string),
-						Idade:  "",
+						Abrigo:     row[2].(string),
+						Nome:       row[0].(string),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2226,9 +2226,9 @@ func Scrape(isDryRun bool) {
 					}
 
 					p = objects.Pessoa{
-						Abrigo: abrigo,
-						Nome:   row[0].(string),
-						Idade:  "",
+						Abrigo:     abrigo,
+						Nome:       row[0].(string),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2267,9 +2267,9 @@ func Scrape(isDryRun bool) {
 					}
 
 					p = objects.Pessoa{
-						Abrigo: abrigo,
-						Nome:   row[0].(string),
-						Idade:  "",
+						Abrigo:     abrigo,
+						Nome:       row[0].(string),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2308,9 +2308,9 @@ func Scrape(isDryRun bool) {
 					}
 
 					p = objects.Pessoa{
-						Abrigo: abrigo,
-						Nome:   caser.String(row[0].(string)),
-						Idade:  "",
+						Abrigo:     abrigo,
+						Nome:       caser.String(row[0].(string)),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2375,11 +2375,11 @@ func Scrape(isDryRun bool) {
 					} else {
 						observacao = ""
 					}
-					
+
 					p = objects.Pessoa{
-						Abrigo: abrigo,
-						Nome:   caser.String(row[0].(string)),
-						Idade:  "",
+						Abrigo:     abrigo,
+						Nome:       caser.String(row[0].(string)),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2400,18 +2400,18 @@ func Scrape(isDryRun bool) {
 					}
 					var p objects.Pessoa
 
-					var observacao string					
+					var observacao string
 
 					if len(row) > 3 {
 						observacao = row[3].(string)
 					} else {
 						observacao = ""
 					}
-					
+
 					p = objects.Pessoa{
-						Abrigo: row[2].(string),
-						Nome:   caser.String(row[0].(string)),
-						Idade:  "",
+						Abrigo:     row[2].(string),
+						Nome:       caser.String(row[0].(string)),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
