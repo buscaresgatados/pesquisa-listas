@@ -221,4 +221,9 @@ var Config []SheetConfig = []SheetConfig{
 		},
 		name: "Abrigos - Cachoeirinha/RS",
 	},
+	{
+		id:          "1TVv1WEjrPBpnKsFIV60jz0kWPK6idovmnJDaGg6KKXw",
+		sheetRanges: []string{"Página1!A1:ZZ"},
+		name:        "Abrigados Porto Novo/SESI",
+	},
 }
