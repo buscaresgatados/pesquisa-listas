@@ -66,20 +66,20 @@ import LinkComponent from './LinkComponent.vue';
       <div class="section">
         <ExclamationCircleIcon class="icon-decoration" />
         <div class="text-base-bold">Alguma lista ficou de fora?</div>
-        <p> Estamos trabalhando para adicionar essas listas ao banco de dados: </p>
+        <!-- <p> Estamos trabalhando para adicionar essas listas ao banco de dados: </p>
 
-     <div class="link-list">
-            <div class="link-list--col">
-              
-          
-            </div>
-
-            <div class="link-list--col">
-
-             
+        <div class="link-list">
+          <div class="link-list--col">
             
-            </div>
+        
           </div>
+
+          <div class="link-list--col">
+
+            
+          
+          </div>
+        </div> -->
 
 
         <p>Envie sua sugestão para <a href="mailto:buscaresgatados@gmail.com">buscaresgatados@gmail.com</a></p>
