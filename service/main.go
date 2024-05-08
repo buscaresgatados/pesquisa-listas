@@ -17,8 +17,7 @@ var (
 	port     string
 	authKeys = []string{
 		"c2585727-bd1d-4b70-bd97-b0417c8e3c7c", // frontend
-		"hardcoded-key2",
-		"hardcoded-key3",
+		"687b44bb-c8b0-4298-9bfb-4dc81e585c09", // sosrs
 	}
 )
 
