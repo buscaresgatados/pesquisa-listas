@@ -23,7 +23,7 @@ func AddToFirestore(pessoas []*objects.PessoaResult) error {
 	} else {
 		client, err = firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"))
 	}
-	defer client.Close()
+
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
 		return err
@@ -36,7 +36,7 @@ func AddToFirestore(pessoas []*objects.PessoaResult) error {
 	fmt.Fprintf(os.Stdout, "Adding %d documents to Firestore collection %v\n", len(pessoas), collection.Path)
 	for _, pessoa := range pessoas {
 		doc := collection.Doc(pessoa.Nome + pessoa.Abrigo)
-		bulkWriter.Set(doc, &pessoa)
+		bulkWriter.Set(doc, &pessoa, firestore.Merge(firestore.FieldPath{"Abrigo"}, firestore.FieldPath{"Nome"}))
 	}
 
 	bulkWriter.End()

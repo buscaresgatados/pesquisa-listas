@@ -13,8 +13,6 @@ import (
 	"refugio/repository"
 	"refugio/utils"
 
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"google.golang.org/api/option"
 	"google.golang.org/api/sheets/v4"
 )
@@ -63,8 +61,6 @@ func (ss *SheetsSource) LogStatus(sheetID string, status string) error {
 func Scrape(isDryRun bool) {
 	ss := SheetsSource{}
 	var serializedData []*objects.PessoaResult
-
-	caser := cases.Title(language.BrazilianPortuguese)
 
 	for _, cfg := range Config {
 		for _, sheetRange := range cfg.sheetRanges {
@@ -748,7 +744,7 @@ func Scrape(isDryRun bool) {
 					var p objects.Pessoa
 					if len(row) > 4 {
 						p = objects.Pessoa{
-							Abrigo: removeExtraSpaces("Ulbra" + " " + removeSubstringInsensitive(row[4].(string), "ulbra")),
+							Abrigo: utils.RemoveExtraSpaces("Ulbra" + " " + utils.RemoveSubstringInsensitive(row[4].(string), "ulbra")),
 							Nome:   row[2].(string),
 							Idade:  "",
 						}
@@ -2309,7 +2305,7 @@ func Scrape(isDryRun bool) {
 
 					p = objects.Pessoa{
 						Abrigo:     abrigo,
-						Nome:       caser.String(row[0].(string)),
+						Nome:       row[0].(string),
 						Idade:      "",
 						Observacao: observacao,
 					}
@@ -2340,7 +2336,7 @@ func Scrape(isDryRun bool) {
 
 					p = objects.Pessoa{
 						Abrigo: row[0].(string),
-						Nome:   caser.String(row[1].(string)),
+						Nome:   row[1].(string),
 						Idade:  idade,
 					}
 
@@ -2378,7 +2374,7 @@ func Scrape(isDryRun bool) {
 
 					p = objects.Pessoa{
 						Abrigo:     abrigo,
-						Nome:       caser.String(row[0].(string)),
+						Nome:       row[0].(string),
 						Idade:      "",
 						Observacao: observacao,
 					}
@@ -2410,7 +2406,7 @@ func Scrape(isDryRun bool) {
 
 					p = objects.Pessoa{
 						Abrigo:     row[2].(string),
-						Nome:       caser.String(row[0].(string)),
+						Nome:       row[0].(string),
 						Idade:      "",
 						Observacao: observacao,
 					}
@@ -2433,9 +2429,9 @@ func Scrape(isDryRun bool) {
 					var p objects.Pessoa
 
 					p = objects.Pessoa{
-						Abrigo:     "Velha Cambona",
-						Nome:       caser.String(row[0].(string)),
-						Idade:      "",
+						Abrigo: "Velha Cambona",
+						Nome:   row[0].(string),
+						Idade:  "",
 					}
 
 					if os.Getenv("ENVIRONMENT") == "local" {
@@ -2456,9 +2452,9 @@ func Scrape(isDryRun bool) {
 					var p objects.Pessoa
 
 					p = objects.Pessoa{
-						Abrigo:     "Nossa Sra. de Fátima",
-						Nome:       caser.String(row[0].(string)),
-						Idade:      "",
+						Abrigo: "Nossa Sra. de Fátima",
+						Nome:   row[0].(string),
+						Idade:  "",
 					}
 
 					if os.Getenv("ENVIRONMENT") == "local" {
@@ -2479,9 +2475,9 @@ func Scrape(isDryRun bool) {
 					var p objects.Pessoa
 
 					p = objects.Pessoa{
-						Abrigo:     "Vila Rica",
-						Nome:       caser.String(row[0].(string)),
-						Idade:      caser.String(row[4].(string)),
+						Abrigo: "Vila Rica",
+						Nome:   row[0].(string),
+						Idade:  row[4].(string),
 					}
 
 					if os.Getenv("ENVIRONMENT") == "local" {
@@ -2526,10 +2522,14 @@ func Scrape(isDryRun bool) {
 			}
 			var cleanedData []*objects.PessoaResult
 			for _, pessoa := range serializedData {
-				if pessoa.Nome == "" || pessoa.Abrigo == "" || len(strings.Split(pessoa.Nome, " ")) == 1 {
+				cleanPessoa := pessoa.Clean()
+				isValid, validPessoa := cleanPessoa.Validate()
+				if !isValid {
+					fmt.Fprintf(os.Stderr, "Invalid PessoaResult data: %+v\n", pessoa)
 					continue
 				}
-				cleanedData = append(cleanedData, pessoa)
+
+				cleanedData = append(cleanedData, validPessoa)
 			}
 
 			if !isDryRun {

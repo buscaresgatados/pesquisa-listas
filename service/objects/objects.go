@@ -3,9 +3,9 @@ package objects
 import "time"
 
 type Pessoa struct {
-	Abrigo string
-	Nome   string
-	Idade  string
+	Abrigo     string
+	Nome       string
+	Idade      string
 	Observacao string
 }
 
@@ -14,10 +14,6 @@ type PessoaResult struct {
 	SheetId   *string
 	URL       *string
 	Timestamp time.Time
-}
-
-type PessoaReturn struct {
-	results []PessoaResult
 }
 
 type PessoaSearchResult struct {
