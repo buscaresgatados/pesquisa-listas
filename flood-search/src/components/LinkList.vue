@@ -33,11 +33,12 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8/htmlview" name="Abrigos – Cachoeirinha" />
             <LinkComponent url="https://drive.google.com/file/d/1Weqtk8jsUEzJt2EGfgGLDoSzEwSxwQmw/view" name="ALOJADOS ESCOLA MOURA E CUNHA" />
             <LinkComponent url="https://drive.google.com/file/d/1oQRkcerLEOgyreg-xt4knf-Ew_ug8hjF/view" name="Resgatados Rua Machadinho Canoas" />
-            
+
           </div>
 
 
           <div class="link-list--col">
+            <LinkComponent url="https://drive.google.com/file/d/1QVg-sOxotLCvFepjLtddV-FqK2sdMpyD/view?usp=sharing" name="Abrigo São Francisco Pallotti" tag title="NOVA" />
             <LinkComponent url="https://drive.google.com/file/d/1Eif7H-GcVr6OhiIMHK9Fa4kvaML1qmCN/view?usp=sharing" name="Mariana Pimentel" tag title="NOVA" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1O4NqkxHvFDoziS_zClwIjGIAVAGbYkfHTRrM6ogySTo/edit#gid=0" name="Abrigados - Venâncio Aires" tag title="NOVA" />
             <LinkComponent url="https://www.viamao.rs.gov.br/arquivos/abrigados_geral_-_presentes_(4)_07084011.pdf" name="PREFEITURA VIAMAO" />
