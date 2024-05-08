@@ -4,6 +4,7 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
     Nome: String,
     Idade: Number,
     Abrigo: String,
+    Observacao: String,
     listId: String,
     Url: String,
   })
