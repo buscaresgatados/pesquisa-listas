@@ -24,3 +24,8 @@ type PessoaSearchResult struct {
 	ObjectID string
 	Nome     string
 }
+
+type AccessLog struct {
+	Trace  string `json:"logging.googleapis.com/trace"`
+	UserIP string `json:"user_ip"`
+}

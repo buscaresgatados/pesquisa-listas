@@ -19,6 +19,18 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodOptions {
 		return
 	}
+
+	log := &objects.AccessLog{
+		Trace:  r.Header.Get("X-Cloud-Trace-Context"),
+		UserIP: r.Header.Get("X-Forwarded-For"),
+	}
+	logJson, err := json.Marshal(log)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+	} else {
+		fmt.Fprintln(os.Stdout, string(logJson))
+	}
+
 	nome := r.URL.Query().Get("nome")
 	if nome == "" {
 		http.Error(w, "nome é obrigatório", http.StatusBadRequest)
