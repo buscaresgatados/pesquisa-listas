@@ -4,6 +4,5 @@ service/appServiceAcc.json
 service/sheetsServiceAcc.json
 .DS_Store
 service/app
-service/scripts/deploy_job.sh
-service/scripts/deploy_push_image.sh
-service/scripts/deploy_service.sh
+service/scripts/
+service/authKeys.json

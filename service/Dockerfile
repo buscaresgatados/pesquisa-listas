@@ -23,6 +23,7 @@ RUN apk add --no-cache ca-certificates tzdata
 # Copy the binary to the production image from the builder stage.
 COPY --from=builder /app/server /server
 COPY --from=builder /app/sheetsServiceAcc.json /sheetsServiceAcc.json
+COPY --from=builder /app/authKeys.json /authKeys.json
 
 # Run the web service on container startup.
 CMD ["/server"]

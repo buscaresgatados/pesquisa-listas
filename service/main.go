@@ -15,14 +15,12 @@ import (
 
 var (
 	port     string
-	authKeys = []string{
-		"c2585727-bd1d-4b70-bd97-b0417c8e3c7c", // frontend
-		"687b44bb-c8b0-4298-9bfb-4dc81e585c09", // sosrs
-	}
+	authKeys []string
 )
 
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Preflight has no Authorization header
 		if r.Method == http.MethodOptions {
 			next.ServeHTTP(w, r)
 			return
@@ -96,5 +94,18 @@ var scraperCmd = &cobra.Command{
 }
 
 func init() {
+	keyFile, err := os.ReadFile(os.Getenv("AUTH_KEYS_FILE"))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error reading auth keys file %v", err)
+	}
+	var keys map[string]string
+
+	err = json.Unmarshal(keyFile, &keys)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error unmarshalling auth keys %v", err)
+	}
+	for _, v := range keys {
+		authKeys = append(authKeys, v)
+	}
 	scraperCmd.Flags().Bool("isDryRun", false, "Enable dry-run mode without making actual changes")
 }
