@@ -12,6 +12,7 @@ import LinkComponent from './LinkComponent.vue';
         <p>Em tempo real, atualizamos nosso banco de dados com os nomes de pessoas resgatadas nas enchentes, com base nas seguintes listas:</p>
 
       <div class="link-list">
+        <div class="link-list--col">
             <LinkComponent url="https://docs.google.com/spreadsheets/d/190jLiMals14EDdVpBvajBwf764GSBS9H/edit#gid=1658182153" name="Nova Santa Rita" tag title="NOVA" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1AaQLs2Dqc6lrYstyF8UGLrihCzRRLsy8rlIRixJQ7VU/" name="Abrigados - Linha Erval" />
             <LinkComponent url="https://drive.google.com/file/d/1ntd68VJ1HKbMfCaUSjMe0gkfwULo_NLJ/view" name="LISTA ABRIGADOS EM GUAÍBA" />
@@ -33,7 +34,7 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8/htmlview" name="Abrigos – Cachoeirinha" />
             <LinkComponent url="https://drive.google.com/file/d/1Weqtk8jsUEzJt2EGfgGLDoSzEwSxwQmw/view" name="ALOJADOS ESCOLA MOURA E CUNHA" />
             <LinkComponent url="https://drive.google.com/file/d/1oQRkcerLEOgyreg-xt4knf-Ew_ug8hjF/view" name="Resgatados Rua Machadinho Canoas" />
-          </div>
+        </div>
 
 
           <div class="link-list--col">
