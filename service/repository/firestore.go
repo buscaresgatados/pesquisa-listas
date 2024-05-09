@@ -13,9 +13,9 @@ import (
 )
 
 var err error
+var client *firestore.Client
 
 func createClient(ctx context.Context) (*firestore.Client, error) {
-	var client *firestore.Client
 	if os.Getenv("ENVIRONMENT") == "local" {
 		serviceAccJSON := utils.GetServiceAccountJSON(os.Getenv("APP_SERVICE_ACCOUNT_JSON"))
 		client, err = firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"), option.WithCredentialsJSON(serviceAccJSON))
@@ -31,7 +31,7 @@ func AddPessoasToFirestore(pessoas []*objects.PessoaResult) error {
 	client, err = createClient(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
+		fmt.Fprintf(os.Stderr, "Error creating client: %v\n", err)
 		client.Close()
 		return err
 	}
@@ -46,7 +46,7 @@ func AddPessoasToFirestore(pessoas []*objects.PessoaResult) error {
 		doc := collection.Doc(pessoa.AggregateKey())
 		job, err := bulkWriter.Set(doc, &pessoa)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Failed to create job: %v", err)
+			fmt.Fprintf(os.Stderr, "Failed to create job: %v\n", err)
 			return err
 		}
 		jobs = append(jobs, job)
@@ -56,7 +56,7 @@ func AddPessoasToFirestore(pessoas []*objects.PessoaResult) error {
 	for _, i := range jobs {
 		_, err := i.Results()
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Failed to get job results: %v)", err)
+			fmt.Fprintf(os.Stderr, "Failed to get job results: %v\n", err)
 		}
 	}
 	return nil
@@ -64,11 +64,10 @@ func AddPessoasToFirestore(pessoas []*objects.PessoaResult) error {
 
 func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) {
 	ctx := context.Background()
-	var client *firestore.Client
 	client, err = createClient(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
+		fmt.Fprintf(os.Stderr, "Error creating client: %v\n", err)
 		client.Close()
 		return nil, err
 	}
@@ -83,7 +82,7 @@ func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) 
 
 	docs, err := client.GetAll(ctx, refs)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to retrieve documents: %v", err)
+		fmt.Fprintf(os.Stderr, "Failed to retrieve documents: %v\n", err)
 	}
 
 	var results []*objects.PessoaResult
@@ -91,7 +90,7 @@ func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) 
 		if doc.Exists() {
 			var data map[string]interface{}
 			if err := doc.DataTo(&data); err != nil {
-				fmt.Fprintf(os.Stderr, "Failed to read document: %v", err)
+				fmt.Fprintf(os.Stderr, "Failed to read document: %v\n", err)
 			}
 			sheetId, ok := data["SheetId"].(string)
 			if !ok {
@@ -121,10 +120,9 @@ func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) 
 
 func AddSourcesToFirestore(sources []*objects.Source) error {
 	ctx := context.Background()
-	var client *firestore.Client
 	client, err = createClient(ctx)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
+		fmt.Fprintf(os.Stderr, "Error creating client: %v\n", err)
 		client.Close()
 		return err
 	}
@@ -140,5 +138,47 @@ func AddSourcesToFirestore(sources []*objects.Source) error {
 	}
 
 	bulkWriter.End()
+	return nil
+}
+
+func FetchFilterFromFirestore(key string) ([]byte, error) {
+	ctx := context.Background()
+	client, err = createClient(ctx)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error creating client: %v\n", err)
+		client.Close()
+		return nil, err
+	}
+	defer client.Close()
+
+	filterCollection := client.Collection(os.Getenv("FIRESTORE_FILTERS_COLLECTION"))
+	doc := filterCollection.Doc(key)
+	docSnap, err := doc.Get(ctx)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to retrieve document: %v\n", err)
+		return nil, err
+	}
+	var data []byte
+	if err := docSnap.DataTo(&data); err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to read document: %v\n", err)
+	}
+	return data, nil
+}
+
+func UpdateFilterOnFirestore(key string, data []byte) error {
+	ctx := context.Background()
+	client, err = createClient(ctx)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error creating client: %v\n", err)
+		client.Close()
+		return err
+	}
+	defer client.Close()
+
+	filterCollection := client.Collection(os.Getenv("FIRESTORE_FILTERS_COLLECTION"))
+	doc := filterCollection.Doc(key)
+	doc.Set(ctx, data)
 	return nil
 }
