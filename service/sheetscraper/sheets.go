@@ -61,8 +61,18 @@ func (ss *SheetsSource) LogStatus(sheetID string, status string) error {
 func Scrape(isDryRun bool) {
 	ss := SheetsSource{}
 	var serializedData []*objects.PessoaResult
+	var serializedSources []*objects.Source
 
 	for _, cfg := range Config {
+
+		if cfg.id != "1ym1_GhBA47LhH97HhggICESiUbKSH-e2Oii1peh6QF0" { // Planilhão
+			serializedSources = append(serializedSources, &objects.Source{
+				Nome:      cfg.name,
+				SheetId:   cfg.id,
+				URL:	   "",
+			})
+		} 
+
 		for _, sheetRange := range cfg.sheetRanges {
 			content, err := ss.Read(cfg.id, sheetRange)
 			if err != nil {
@@ -2574,7 +2584,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case cfg.id + "Sheet1!A1:ZZ":
+			case cfg.id + "Sheet1!A1:ZZ": // Planilhão
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -2590,6 +2600,28 @@ func Scrape(isDryRun bool) {
 					var url string
 					if len(row) > 3 {
 						url = row[3].(string)
+					}
+
+					if (len(row) > 6 && row[6].(string) != "") {
+						// Look for duplicates
+						hasDuplicate := false
+						for _, addedSource := range serializedSources {
+							if addedSource.SheetId == sheetId && addedSource.URL == url {
+								hasDuplicate = true
+								break
+							}
+						}
+
+						if !hasDuplicate {
+							source := objects.Source{
+								SheetId: sheetId,
+								URL:     url,
+								Nome:    row[6].(string),
+							}
+							
+							serializedSources = append(serializedSources, &source)
+						}
+
 					}
 
 					if os.Getenv("ENVIRONMENT") == "local" {
@@ -2633,5 +2665,17 @@ func Scrape(isDryRun bool) {
 			cleanedData = cleanedData[:0]
 			fmt.Fprintln(os.Stdout, "")
 		}
+	}
+
+	if os.Getenv("ENVIRONMENT") == "local" {
+		fmt.Fprintf(os.Stdout, "\nFound %d sources:\n", len(serializedSources))
+
+		for _, s := range serializedSources {
+			fmt.Fprintf(os.Stdout, "%+v\n", s)
+		}
+	}
+
+	if !isDryRun {
+		repository.AddSourcesToFirestore(serializedSources)
 	}
 }

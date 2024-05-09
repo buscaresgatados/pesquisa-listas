@@ -69,6 +69,7 @@ func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) 
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
+		client.Close()
 		return nil, err
 	}
 	defer client.Close()
