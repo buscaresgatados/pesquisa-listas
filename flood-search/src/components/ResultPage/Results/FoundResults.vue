@@ -47,6 +47,7 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
   }
 
   .found-results-wrapper{
+    box-sizing: border-box;
     padding: 16px;
     border-bottom: 0.1px solid rgba(255, 255, 255,0.3);
   }
@@ -55,11 +56,13 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
     align-items: center;
     justify-content: space-between;
   }
+
   .found-results{
     margin: 0;
   }
+
   .found-results-wrapper:hover {
-    background-color: rgba(255, 255, 255,0.3);
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 12px;
   }
 </style>
