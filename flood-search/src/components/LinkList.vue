@@ -12,8 +12,9 @@ import LinkComponent from './LinkComponent.vue';
         <p>Em tempo real, atualizamos nosso banco de dados com os nomes de pessoas resgatadas nas enchentes, com base nas seguintes listas:</p>
 
       <div class="link-list">
-          <div class="link-list--col">
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1AaQLs2Dqc6lrYstyF8UGLrihCzRRLsy8rlIRixJQ7VU/" name="Abrigados - Linha Erval" tag title="NOVA" />
+        <div class="link-list--col">
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/190jLiMals14EDdVpBvajBwf764GSBS9H/edit#gid=1658182153" name="Nova Santa Rita" tag title="NOVA" />
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1AaQLs2Dqc6lrYstyF8UGLrihCzRRLsy8rlIRixJQ7VU/" name="Abrigados - Linha Erval" />
             <LinkComponent url="https://drive.google.com/file/d/1ntd68VJ1HKbMfCaUSjMe0gkfwULo_NLJ/view" name="LISTA ABRIGADOS EM GUAÍBA" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1Pd8NVuEtnR7-IlLF7cJ3XY7yVSoJMgY47-eepe2BBXo/edit#gid=156688726" name="RESGATADOS (Cruzeiro do Sul)" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY/edit#gid=0" name="SESC PROTÁSIO" />
@@ -33,14 +34,13 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8/htmlview" name="Abrigos – Cachoeirinha" />
             <LinkComponent url="https://drive.google.com/file/d/1Weqtk8jsUEzJt2EGfgGLDoSzEwSxwQmw/view" name="ALOJADOS ESCOLA MOURA E CUNHA" />
             <LinkComponent url="https://drive.google.com/file/d/1oQRkcerLEOgyreg-xt4knf-Ew_ug8hjF/view" name="Resgatados Rua Machadinho Canoas" />
-
-          </div>
+        </div>
 
 
           <div class="link-list--col">
             <LinkComponent url="https://drive.google.com/file/d/1QVg-sOxotLCvFepjLtddV-FqK2sdMpyD/view?usp=sharing" name="Abrigo São Francisco Pallotti" tag title="NOVA" />
             <LinkComponent url="https://drive.google.com/file/d/1Eif7H-GcVr6OhiIMHK9Fa4kvaML1qmCN/view?usp=sharing" name="Mariana Pimentel" tag title="NOVA" />
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1O4NqkxHvFDoziS_zClwIjGIAVAGbYkfHTRrM6ogySTo/edit#gid=0" name="Abrigados - Venâncio Aires" tag title="NOVA" />
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1O4NqkxHvFDoziS_zClwIjGIAVAGbYkfHTRrM6ogySTo/edit#gid=0" name="Abrigados - Venâncio Aires" />
             <LinkComponent url="https://www.viamao.rs.gov.br/arquivos/abrigados_geral_-_presentes_(4)_07084011.pdf" name="PREFEITURA VIAMAO" />
             <LinkComponent url="https://drive.google.com/file/d/1zp3G9gUNUFQIv27BKOUPMrafDcjrqhRL/view" name="Cadastro Abrigo CETE" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1bNw-t0RUE-AP-2quCU80w5meGYVtD7WjjuESb7tXxTo/edit#gid=0" name="Abrigados Lajeado" />
