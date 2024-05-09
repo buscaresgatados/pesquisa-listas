@@ -1,7 +1,10 @@
 <script setup>
 import LinkList from '../../LinkList.vue';
 
-
+defineProps({
+    name: String,
+    showName: Boolean
+  })
 
 </script>
 
@@ -13,6 +16,7 @@ import LinkList from '../../LinkList.vue';
       Estamos trabalhando continuamente para atualizar nossa base de dados.
     </p>
   </div>
+  <WhatsappAPI  v-if="showName" :name="name" />
   <LinkList />
 </template>
 

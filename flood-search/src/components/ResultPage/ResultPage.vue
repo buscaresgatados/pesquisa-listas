@@ -37,8 +37,8 @@ onMounted(search);
         </div>
         <Result v-if="!isLoading" :searchResults="searchResults"/>
        <WhatsappAPI v-if="searchResults.length==0" :name="term" />
-        <ResultFooter />
-        <WhatsappAPI  v-if="searchResults.length!=0" :name="term" />
+       <ResultFooter  v-if="searchResults.length!=0" :name="term" showName/>
+       <ResultFooter v-if="searchResults.length==0"/>
     </div>
   </div>
   
