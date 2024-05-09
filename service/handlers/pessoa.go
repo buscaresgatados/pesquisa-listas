@@ -70,7 +70,7 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 	for _, result := range pessoasSearch {
 		docIDs = append(docIDs, result.ObjectID)
 	}
-	pessoas, err := repository.FetchFromFirestore(docIDs)
+	pessoas, err := repository.FetchPessoaFromFirestore(docIDs)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)

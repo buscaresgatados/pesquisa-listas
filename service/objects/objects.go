@@ -25,3 +25,9 @@ type AccessLog struct {
 	Trace  string `json:"logging.googleapis.com/trace"`
 	UserIP string `json:"user_ip"`
 }
+
+type Source struct {
+	Nome    string
+	SheetId string
+	URL     string
+}
