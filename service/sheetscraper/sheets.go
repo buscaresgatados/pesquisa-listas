@@ -75,7 +75,7 @@ func Scrape(isDryRun bool) {
 			// Offsets e customizações pra cada planilha hardcoded por enquanto
 			case "10OnXFy-8TtUr3gw9yvtWroI7Z1psXGjdyBA3KMQKstE" + "Planilha1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					if i < 1 || len(row) < 3 {
+					if i < 1 || len(row) < 2 {
 						continue
 					}
 					p := objects.Pessoa{
