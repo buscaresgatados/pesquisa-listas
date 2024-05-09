@@ -67,11 +67,11 @@ func Scrape(isDryRun bool) {
 
 		if cfg.id != "1ym1_GhBA47LhH97HhggICESiUbKSH-e2Oii1peh6QF0" { // Planilhão
 			serializedSources = append(serializedSources, &objects.Source{
-				Nome:      cfg.name,
-				SheetId:   cfg.id,
-				URL:	   "",
+				Nome:    cfg.name,
+				SheetId: cfg.id,
+				URL:     "",
 			})
-		} 
+		}
 
 		for _, sheetRange := range cfg.sheetRanges {
 			content, err := ss.Read(cfg.id, sheetRange)
@@ -256,7 +256,10 @@ func Scrape(isDryRun bool) {
 					})
 				}
 			case cfg.id + "CACHOEIRINHA!A1:ZZ":
-				for _, row := range content.([][]interface{}) {
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) < 2 {
+						continue
+					}
 					p := objects.Pessoa{
 						Abrigo: row[1].(string),
 						Nome:   row[0].(string),
@@ -2658,7 +2661,7 @@ func Scrape(isDryRun bool) {
 						url = row[3].(string)
 					}
 
-					if (len(row) > 6 && row[6].(string) != "") {
+					if len(row) > 6 && row[6].(string) != "" {
 						// Look for duplicates
 						hasDuplicate := false
 						for _, addedSource := range serializedSources {
@@ -2674,7 +2677,7 @@ func Scrape(isDryRun bool) {
 								URL:     url,
 								Nome:    row[6].(string),
 							}
-							
+
 							serializedSources = append(serializedSources, &source)
 						}
 
