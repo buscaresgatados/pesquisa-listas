@@ -278,4 +278,9 @@ var Config []SheetConfig = []SheetConfig{
 		sheetRanges: []string{"Planilha1!A1:ZZ"},
 		name:        "Abrigados - FAPA",
 	},
+	{
+		id:          "1oMPwqFsfjlHB1snApt_BGGJrwTSmFn_R8_4Bm7ufAoY",
+		sheetRanges: []string{"Página1!A1:ZZ"},
+		name:        "Desabrigados - WhatsApp Bot",
+	},
 }
