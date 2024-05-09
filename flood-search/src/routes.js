@@ -1,10 +1,10 @@
-import { createRouter, createMemoryHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import Homepage from './components/HomePage.vue'
 import ResultPage from './components/ResultPage/ResultPage.vue';
 import Privacidade from './components/Privacidade.vue';
 
 
-const history = createMemoryHistory();
+const history = createWebHistory();
 
 const routes = [
   {
