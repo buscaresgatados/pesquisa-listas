@@ -13,7 +13,10 @@ import LinkComponent from './LinkComponent.vue';
 
       <div class="link-list">
         <div class="link-list--col">
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/190jLiMals14EDdVpBvajBwf764GSBS9H/edit#gid=1658182153" name="Nova Santa Rita" tag title="NOVA" />
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1q3Z2iX_vop9EumvB-4UyZsVQl58ZQ0M1JnwQsc6HAAo/htmlview?fbclid=PAZXh0bgNhZW0CMTEAAaZgkIExx61FCeVXGahYrMsGLrERya0LXjohYMKaO7Zzgt8YeFw-a6xEJs8_aem_AYZ6Yqh64cA8L6rQqitnaTCInvdhrqvFrog3M0G-DmYUFLG2txovRfBnHNEizJsAviGEv3yBQKIHb082BqgXrXQT&urp=gmail_link" name="Bairro Humaitá" tag title="NOVA" />
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/14WIowAKQo5o_FviBw_6hRxnzAclw5xTvHbUiQuU8qDw/edit?usp=sharing" name="Abrigados Elyseu" tag title="NOVA" />
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/17GlFds1C-sdRdpWkZczzisTdItbdWgVAMXwXV60htyA/edit#gid=0" name="Abrigados CESMAR" tag title="NOVA" />
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/190jLiMals14EDdVpBvajBwf764GSBS9H/edit#gid=1658182153" name="Nova Santa Rita" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1AaQLs2Dqc6lrYstyF8UGLrihCzRRLsy8rlIRixJQ7VU/" name="Abrigados - Linha Erval" />
             <LinkComponent url="https://drive.google.com/file/d/1ntd68VJ1HKbMfCaUSjMe0gkfwULo_NLJ/view" name="LISTA ABRIGADOS EM GUAÍBA" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1Pd8NVuEtnR7-IlLF7cJ3XY7yVSoJMgY47-eepe2BBXo/edit#gid=156688726" name="RESGATADOS (Cruzeiro do Sul)" />
@@ -38,8 +41,10 @@ import LinkComponent from './LinkComponent.vue';
 
 
           <div class="link-list--col">
-            <LinkComponent url="https://drive.google.com/file/d/1QVg-sOxotLCvFepjLtddV-FqK2sdMpyD/view?usp=sharing" name="Abrigo São Francisco Pallotti" tag title="NOVA" />
-            <LinkComponent url="https://drive.google.com/file/d/1Eif7H-GcVr6OhiIMHK9Fa4kvaML1qmCN/view?usp=sharing" name="Mariana Pimentel" tag title="NOVA" />
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/14n96iuTzla84WqBmNPyT0r1zKqOWjDkN/edit#gid=2019623033" name="Desabrigados Barra do Ribeiro" tag title="NOVA" />
+            <LinkComponent url="https://drive.google.com/file/d/1v_ttOUWDA_BdwLUgQrg3B3adoQwVw7Fj/view?fbclid=PAZXh0bgNhZW0CMTEAAaZP4XiJ4nHQBbnjvcZlSMW1hUviKTIz2XdjQHknfj5XDIxVVspn_XpxqVg_aem_AdTBXU2MqZSH_F1DDmTUJVhwtPw7STkqoIq5cQax9t9Yw6C8yvDK2EqyhfGO6dyXX1hfUumcpba8gJMAsMgxNIWK&pli=1" name="Pessoas Abrigadas AABB" tag title="NOVA" />
+            <LinkComponent url="https://drive.google.com/file/d/1QVg-sOxotLCvFepjLtddV-FqK2sdMpyD/view?usp=sharing" name="Abrigo São Francisco Pallotti" />
+            <LinkComponent url="https://drive.google.com/file/d/1Eif7H-GcVr6OhiIMHK9Fa4kvaML1qmCN/view?usp=sharing" name="Mariana Pimentel" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1O4NqkxHvFDoziS_zClwIjGIAVAGbYkfHTRrM6ogySTo/edit#gid=0" name="Abrigados - Venâncio Aires" />
             <LinkComponent url="https://www.viamao.rs.gov.br/arquivos/abrigados_geral_-_presentes_(4)_07084011.pdf" name="PREFEITURA VIAMAO" />
             <LinkComponent url="https://drive.google.com/file/d/1zp3G9gUNUFQIv27BKOUPMrafDcjrqhRL/view" name="Cadastro Abrigo CETE" />
@@ -58,8 +63,8 @@ import LinkComponent from './LinkComponent.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1xaEPlk8JonATIOAvQEc0Dev-QVAzx2AwUzLHBhbA3rI/edit#gid=0" name="Viaduto da Santa Rita Eldorado Guaiba" />
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1TVv1WEjrPBpnKsFIV60jz0kWPK6idovmnJDaGg6KKXw/edit#gid=0" name="Abrigados Porto Novo/SESI" />
             <LinkComponent url="https://docs.google.com/spreadsheets/u/0/d/1GMC0ayry2nWpjvBLyPdti6ZaU15Wt89bqhJbyO97VVs/htmlview" name="Resgatados e Desaparecidos RS" />
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1K3DRVlSpK3tWQ1B83Q9pxkhSivIsmf38FTb6SVjMzT4/edit#gid=1703073658" name="Respostas Pedido Desaparecidos Enchente" tag title="NOVA" />
-            <LinkComponent url="https://docs.google.com/spreadsheets/d/1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA/edit#gid=1123798222" name="Abrigos Portão - RS" tag title="NOVA" />
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1K3DRVlSpK3tWQ1B83Q9pxkhSivIsmf38FTb6SVjMzT4/edit#gid=1703073658" name="Respostas Pedido Desaparecidos Enchente" />
+            <LinkComponent url="https://docs.google.com/spreadsheets/d/1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA/edit#gid=1123798222" name="Abrigos Portão - RS" />
           </div>
         </div>
       </div>
