@@ -268,4 +268,9 @@ var Config []SheetConfig = []SheetConfig{
 		},
 		name: "[atualizada 08/05/2024 às 16h25] RESGATADOS - Bairro Humaitá Porto Alegre",
 	},
+	{
+		id:          "17GlFds1C-sdRdpWkZczzisTdItbdWgVAMXwXV60htyA",
+		sheetRanges: []string{"Página1!A1:ZZ"},
+		name:        "Abrigados CESMAR",
+	},
 }
