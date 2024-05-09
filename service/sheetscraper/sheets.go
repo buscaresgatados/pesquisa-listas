@@ -2735,7 +2735,7 @@ func Scrape(isDryRun bool) {
 			}
 
 			if !isDryRun {
-				// repository.AddPessoasToFirestore(cleanedData)
+				repository.AddPessoasToFirestore(cleanedData)
 				repository.UpdateFilterOnFirestore(Pessoa, filter.Encode())
 			}
 
@@ -2756,6 +2756,6 @@ func Scrape(isDryRun bool) {
 	}
 
 	if !isDryRun {
-		// repository.AddSourcesToFirestore(serializedSources)
+		repository.AddSourcesToFirestore(serializedSources)
 	}
 }
