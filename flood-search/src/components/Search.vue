@@ -24,7 +24,11 @@ const handleKeyPress = (event) => {
   <div class="search-wrap">
     <p>Nome</p>
     <div class="cta">
-      <input class="input-style" v-model="searchTerm" @keyup.enter="handleKeyPress" autocomplete="off" placeholder="Buscar por nome" />
+      <div class="input-wrapper">
+        <input class="input-style" v-model="searchTerm" @keyup.enter="handleKeyPress" autocomplete="off" placeholder="Buscar por nome" />
+        <span class="inline-algolia">Powered by <a href="https://www.algolia.com/?utm_medium=AOS-referral"><img class="algolia-logo" src="../assets/Algolia-logo-white.svg"/></a></span>
+      </div>
+    </input>
       <button @click="onSearch">Buscar</button>
     </div>
     <span class="error-message" v-if="showError">Busca inválida</span>
@@ -32,6 +36,34 @@ const handleKeyPress = (event) => {
 </template>
 
 <style scoped>
+  .input-wrapper { 
+    position: relative;
+    width: 97%; 
+  }
+
+  .inline-algolia {
+    font-size: 12px;
+    position: absolute;
+    top: 13px;
+    right: 10px;
+    flex-direction: row;
+    text-decoration: none;
+    opacity: 0.66;
+    a {
+      display: inline
+    }
+    /* I'm going to do this and you can't stop me, CSS. ~ Igor */ 
+    @media (max-width: 480px) {
+      font-size: 0;
+    }
+  }
+
+  .algolia-logo {
+    position:relative;
+    top: 3px;
+    width: 60px;
+    color: #E5E5E5;
+  }
   .error-message{
     display: block;
 }

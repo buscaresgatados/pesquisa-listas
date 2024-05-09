@@ -8,9 +8,6 @@ import { RouterLink } from 'vue-router';
 
   <div class="footer">
       <div class="footer-section">
-        <div class="algolia">
-          <a href="https://www.algolia.com/">Busca inteligente por <img src="../assets/Algolia-logo-white.svg"/></a>
-        </div>
         <div class="Políticas">
 
           <RouterLink to=./Privacidade><p>Política de Privacidade</p></RouterLink>

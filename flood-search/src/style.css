@@ -68,15 +68,15 @@ p {
 /* Input Custom */
 
 .input-style {
-  padding: 12px 8px;
-  background-color: #111827 ;
+  padding: 12px 26% 12px 8px;
+  background-color: transparent ;
   border-radius: 8px;
   border-color: #00DC82;
   border-style: solid;
+  box-sizing:border-box;
   display: flex;
-  width: 97%;
   color: white;
-  
+  width:100%;
 }
 
 .icon-size{
