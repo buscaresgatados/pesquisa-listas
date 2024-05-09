@@ -8,6 +8,11 @@ type SheetConfig struct {
 
 var Config []SheetConfig = []SheetConfig{
 	{
+		id:          "14WIowAKQo5o_FviBw_6hRxnzAclw5xTvHbUiQuU8qDw",
+		sheetRanges: []string{"Cadastro!A1:ZZ"},
+		name:        "Alojados Elyseu",
+	},
+	{
 		id:          "1hxzHYE4UR1YbcH3ZQoPfcQTgPbRm5T6lShkDwGDoeXA",
 		sheetRanges: []string{"Alojados!A1:ZZ"},
 		name:        "Lista de alojados - To Salvo Vale dos Sinos",
