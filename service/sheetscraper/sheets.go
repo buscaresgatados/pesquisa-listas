@@ -76,17 +76,17 @@ func Scrape(isDryRun bool) {
 			case cfg.id + "Alojados!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
-					if i < 13 || len(row) < 4 {
+					if i < 13 || len(row) < 3 {
 						continue
 					}
 
 					p := objects.Pessoa{
-						Abrigo: row[2].(string),
-						Nome:   row[3].(string),
+						Abrigo: row[1].(string),
+						Nome:   row[2].(string),
 					}
 
-					if len(row) > 4 {
-						p.Idade = row[4].(string)
+					if len(row) > 3 {
+						p.Idade = row[3].(string)
 					} else {
 						p.Idade = ""
 					}

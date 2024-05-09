@@ -37,7 +37,7 @@ func AddToFirestore(pessoas []*objects.PessoaResult) error {
 	jobs := make([]*firestore.BulkWriterJob, 0, len(pessoas))
 	for _, pessoa := range pessoas {
 		doc := collection.Doc(pessoa.AggregateKey())
-		job, err := bulkWriter.Set(doc, &pessoa, firestore.Merge(firestore.FieldPath{"Abrigo"}, firestore.FieldPath{"Nome"}))
+		job, err := bulkWriter.Set(doc, &pessoa)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Failed to create job: %v", err)
 			return err
