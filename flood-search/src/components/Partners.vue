@@ -20,7 +20,7 @@ import LinkComponent from './LinkComponent.vue';
 
           <div class="link-list--col">
             <LinkComponent url="https://pessoaperdida.com.br/" name="Pessoa Perdida"/>
-            <LinkComponent url="https://sosrs.jeanpaullopes.pro.br/#/" name="SOS RS"/>
+            <LinkComponent url="https://bit.ly/preciso_resgate" name="SOS RS"/>
  
           </div>
         </div>

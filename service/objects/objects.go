@@ -16,10 +16,6 @@ type PessoaResult struct {
 	Timestamp time.Time
 }
 
-type PessoaReturn struct {
-	results []PessoaResult
-}
-
 type PessoaSearchResult struct {
 	ObjectID string
 	Nome     string

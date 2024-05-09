@@ -29,6 +29,7 @@ func AddPessoasToFirestore(pessoas []*objects.PessoaResult) error {
 	ctx := context.Background()
 	var client *firestore.Client
 	client, err = createClient(ctx)
+
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
 		client.Close()
@@ -40,12 +41,24 @@ func AddPessoasToFirestore(pessoas []*objects.PessoaResult) error {
 
 	collection := client.Collection(os.Getenv("FIRESTORE_COLLECTION"))
 	fmt.Fprintf(os.Stdout, "Adding %d documents to Firestore collection %v\n", len(pessoas), collection.Path)
+	jobs := make([]*firestore.BulkWriterJob, 0, len(pessoas))
 	for _, pessoa := range pessoas {
-		doc := collection.Doc(pessoa.Nome + pessoa.Abrigo)
-		bulkWriter.Set(doc, &pessoa)
+		doc := collection.Doc(pessoa.AggregateKey())
+		job, err := bulkWriter.Set(doc, &pessoa)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Failed to create job: %v", err)
+			return err
+		}
+		jobs = append(jobs, job)
 	}
 
 	bulkWriter.End()
+	for _, i := range jobs {
+		_, err := i.Results()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Failed to get job results: %v)", err)
+		}
+	}
 	return nil
 }
 

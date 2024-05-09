@@ -15,8 +15,6 @@ import (
 
 	"google.golang.org/api/option"
 	"google.golang.org/api/sheets/v4"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 )
 
 const (
@@ -64,8 +62,6 @@ func Scrape(isDryRun bool) {
 	ss := SheetsSource{}
 	var serializedData []*objects.PessoaResult
 
-	caser := cases.Title(language.BrazilianPortuguese)
-
 	for _, cfg := range Config {
 		for _, sheetRange := range cfg.sheetRanges {
 			content, err := ss.Read(cfg.id, sheetRange)
@@ -80,17 +76,17 @@ func Scrape(isDryRun bool) {
 			case cfg.id + "Alojados!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
-					if i < 10 || len(row) == 0 {
+					if i < 13 || len(row) < 3 {
 						continue
 					}
 
 					p := objects.Pessoa{
-						Abrigo: row[2].(string),
-						Nome:   row[3].(string),
+						Abrigo: row[1].(string),
+						Nome:   row[2].(string),
 					}
 
-					if len(row) > 4 {
-						p.Idade = row[4].(string)
+					if len(row) > 3 {
+						p.Idade = row[3].(string)
 					} else {
 						p.Idade = ""
 					}
@@ -748,7 +744,7 @@ func Scrape(isDryRun bool) {
 					var p objects.Pessoa
 					if len(row) > 4 {
 						p = objects.Pessoa{
-							Abrigo: removeExtraSpaces("Ulbra" + " " + removeSubstringInsensitive(row[4].(string), "ulbra")),
+							Abrigo: utils.RemoveExtraSpaces("Ulbra" + " " + utils.RemoveSubstringInsensitive(row[4].(string), "ulbra")),
 							Nome:   row[2].(string),
 							Idade:  "",
 						}
@@ -2103,9 +2099,9 @@ func Scrape(isDryRun bool) {
 					observacao = strings.Split(data, "-")[1]
 
 					p = objects.Pessoa{
-						Abrigo: "Onze Unidos",
-						Nome:   name,
-						Idade:  idade,
+						Abrigo:     "Onze Unidos",
+						Nome:       name,
+						Idade:      idade,
 						Observacao: observacao,
 					}
 
@@ -2185,9 +2181,9 @@ func Scrape(isDryRun bool) {
 					}
 
 					p = objects.Pessoa{
-						Abrigo: row[2].(string),
-						Nome:   row[0].(string),
-						Idade:  "",
+						Abrigo:     row[2].(string),
+						Nome:       row[0].(string),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2226,9 +2222,9 @@ func Scrape(isDryRun bool) {
 					}
 
 					p = objects.Pessoa{
-						Abrigo: abrigo,
-						Nome:   row[0].(string),
-						Idade:  "",
+						Abrigo:     abrigo,
+						Nome:       row[0].(string),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2267,9 +2263,9 @@ func Scrape(isDryRun bool) {
 					}
 
 					p = objects.Pessoa{
-						Abrigo: abrigo,
-						Nome:   row[0].(string),
-						Idade:  "",
+						Abrigo:     abrigo,
+						Nome:       row[0].(string),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2308,9 +2304,9 @@ func Scrape(isDryRun bool) {
 					}
 
 					p = objects.Pessoa{
-						Abrigo: abrigo,
-						Nome:   caser.String(row[0].(string)),
-						Idade:  "",
+						Abrigo:     abrigo,
+						Nome:       row[0].(string),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2340,7 +2336,7 @@ func Scrape(isDryRun bool) {
 
 					p = objects.Pessoa{
 						Abrigo: row[0].(string),
-						Nome:   caser.String(row[1].(string)),
+						Nome:   row[1].(string),
 						Idade:  idade,
 					}
 
@@ -2375,11 +2371,11 @@ func Scrape(isDryRun bool) {
 					} else {
 						observacao = ""
 					}
-					
+
 					p = objects.Pessoa{
-						Abrigo: abrigo,
-						Nome:   caser.String(row[0].(string)),
-						Idade:  "",
+						Abrigo:     abrigo,
+						Nome:       row[0].(string),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2400,18 +2396,18 @@ func Scrape(isDryRun bool) {
 					}
 					var p objects.Pessoa
 
-					var observacao string					
+					var observacao string
 
 					if len(row) > 3 {
 						observacao = row[3].(string)
 					} else {
 						observacao = ""
 					}
-					
+
 					p = objects.Pessoa{
-						Abrigo: row[2].(string),
-						Nome:   caser.String(row[0].(string)),
-						Idade:  "",
+						Abrigo:     row[2].(string),
+						Nome:       row[0].(string),
+						Idade:      "",
 						Observacao: observacao,
 					}
 
@@ -2419,6 +2415,159 @@ func Scrape(isDryRun bool) {
 						fmt.Fprintf(os.Stdout, "%+v\n", p)
 					}
 					sheetId := "1frgtJ9eK05OqsyLwOBiZ2Q6E7e4_pWyrb7fJioqfEMs"
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &sheetId,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA" + "Velha Cambona!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 1 {
+						continue
+					}
+					var p objects.Pessoa
+
+					p = objects.Pessoa{
+						Abrigo: "Velha Cambona",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					sheetId := "1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA"
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &sheetId,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA" + "NSra Fátima!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 1 {
+						continue
+					}
+					var p objects.Pessoa
+
+					p = objects.Pessoa{
+						Abrigo: "Nossa Sra. de Fátima",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					sheetId := "1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA"
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &sheetId,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA" + "Vila Rica!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 5 {
+						continue
+					}
+					var p objects.Pessoa
+
+					p = objects.Pessoa{
+						Abrigo: "Vila Rica",
+						Nome:   row[0].(string),
+						Idade:  row[4].(string),
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					sheetId := "1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA"
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &sheetId,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1q3Z2iX_vop9EumvB-4UyZsVQl58ZQ0M1JnwQsc6HAAo" + "06/05!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 2 || len(row) < 2 {
+						continue
+					}
+					var p objects.Pessoa
+					var abrigo string
+
+					if (len(row) > 4 && row[4] != "-") {
+						abrigo = row[4].(string)
+					} else {
+						abrigo = "Desconhecido"
+					}
+						
+
+					p = objects.Pessoa{
+						Abrigo: abrigo,
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					sheetId := "1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA"
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &sheetId,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1q3Z2iX_vop9EumvB-4UyZsVQl58ZQ0M1JnwQsc6HAAo" + "07/05!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 2 || len(row) < 2 {
+						continue
+					}
+					var p objects.Pessoa
+
+					p = objects.Pessoa{
+						Abrigo: row[1].(string),
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					sheetId := "1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA"
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &sheetId,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1q3Z2iX_vop9EumvB-4UyZsVQl58ZQ0M1JnwQsc6HAAo" + "08/05!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 2 || len(row) < 2 {
+						continue
+					}
+					var p objects.Pessoa
+					var abrigo string
+
+					if (len(row) > 1 && row[1] != "") {
+						abrigo = row[1].(string)
+					} else {
+						abrigo = "Desconhecido"
+					}
+
+					p = objects.Pessoa{
+						Abrigo: abrigo,
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					sheetId := "1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA"
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &sheetId,
@@ -2456,11 +2605,22 @@ func Scrape(isDryRun bool) {
 				}
 			}
 			var cleanedData []*objects.PessoaResult
+			seen := map[string]bool{}
 			for _, pessoa := range serializedData {
-				if pessoa.Nome == "" || pessoa.Abrigo == "" || len(strings.Split(pessoa.Nome, " ")) == 1 {
+				cleanPessoa := pessoa.Clean()
+				isValid, validPessoa := cleanPessoa.Validate()
+				if !isValid {
+					fmt.Fprintf(os.Stderr, "Invalid PessoaResult data. Nome: %+v Abrigo: %+v\n", pessoa.Nome, pessoa.Abrigo)
 					continue
 				}
-				cleanedData = append(cleanedData, pessoa)
+				key := validPessoa.AggregateKey()
+				if _, ok := seen[key]; !ok {
+					seen[key] = true
+				} else {
+					fmt.Fprintf(os.Stderr, "Duplicated data in sheet: key %+v\n", key)
+					continue
+				}
+				cleanedData = append(cleanedData, validPessoa)
 			}
 
 			if !isDryRun {
