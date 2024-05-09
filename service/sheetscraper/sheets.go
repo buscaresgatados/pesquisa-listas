@@ -91,7 +91,7 @@ func Scrape(isDryRun bool) {
 						p.Idade = ""
 					}
 					if os.Getenv("ENVIRONMENT") == "local" {
-						fmt.Fprintln(os.Stdout, p)
+						// fmt.Fprintln(os.Stdout, p)
 					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
@@ -2521,6 +2521,7 @@ func Scrape(isDryRun bool) {
 				}
 			}
 			var cleanedData []*objects.PessoaResult
+			seen := map[string]bool{}
 			for _, pessoa := range serializedData {
 				cleanPessoa := pessoa.Clean()
 				isValid, validPessoa := cleanPessoa.Validate()
@@ -2528,7 +2529,13 @@ func Scrape(isDryRun bool) {
 					fmt.Fprintf(os.Stderr, "Invalid PessoaResult data: %+v\n", pessoa)
 					continue
 				}
-
+				key := validPessoa.AggregateKey()
+				if _, ok := seen[key]; !ok {
+					seen[key] = true
+				} else {
+					fmt.Fprintf(os.Stderr, "Duplicated data in sheet: %+v\n", validPessoa)
+					continue
+				}
 				cleanedData = append(cleanedData, validPessoa)
 			}
 

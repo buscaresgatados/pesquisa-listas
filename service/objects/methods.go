@@ -23,7 +23,12 @@ func (p *PessoaResult) Validate() (bool, *PessoaResult) {
 	if p.Abrigo == "" {
 		return false, p
 	}
-
+	if len(onlyLettersAndNumbers(p.Nome)) == 0 {
+		return false, p
+	}
+	if len(onlyLettersAndNumbers(p.Abrigo)) == 0 {
+		return false, p
+	}
 	return true, p
 }
 
@@ -54,5 +59,17 @@ func cleanCommon(str string) string {
 	regexLineBreaks := regexp.MustCompile(`[\r\n\t]+`)
 	str = regexLineBreaks.ReplaceAllString(str, "")
 
+	str = strings.Replace(str, "/", "", -1)
 	return str
+}
+
+func (p *PessoaResult) AggregateKey() string {
+	return strings.ToLower(onlyLettersAndNumbers(p.Nome + p.Abrigo))
+}
+
+func onlyLettersAndNumbers(str string) string {
+	re := regexp.MustCompile(`[^a-zA-Z0-9]+`)
+
+	result := re.ReplaceAllString(str, "")
+	return result
 }
