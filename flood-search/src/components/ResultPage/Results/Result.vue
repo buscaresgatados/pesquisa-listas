@@ -19,6 +19,7 @@ defineProps({
       <FoundResults
         :Nome="result.Nome"
         :Idade="result.Idade"
+        :Observacao="result.Observacao"
         :listId="result.SheetId"
         :Abrigo="result.Abrigo"
         :Url="result.URL"
