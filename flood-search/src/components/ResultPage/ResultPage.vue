@@ -3,6 +3,7 @@ import ResultHeader from './ResultHeader.vue';
 import ResultFooter from './ResultFooter/ResultFooter.vue'
 import ResultService from '../../service/ResultService';
 import Result from './Results/Result.vue';
+import WhatsappAPI from '../WhatsappAPI.vue';
 import { useRoute } from 'vue-router';
 import { ref, onMounted } from 'vue';
 
@@ -35,7 +36,9 @@ onMounted(search);
           <div v-if="isLoading" class="lds-ring"><div></div><div></div><div></div><div></div></div>
         </div>
         <Result v-if="!isLoading" :searchResults="searchResults"/>
+       <WhatsappAPI v-if="searchResults.length==0" :name="term" />
         <ResultFooter />
+        <WhatsappAPI  v-if="searchResults.length!=0" :name="term" />
     </div>
   </div>
   
