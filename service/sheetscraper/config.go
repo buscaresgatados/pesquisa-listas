@@ -254,4 +254,13 @@ var Config []SheetConfig = []SheetConfig{
 		},
 		name: "Abrigos Portão - RS",
 	},
+	{
+		id: "1q3Z2iX_vop9EumvB-4UyZsVQl58ZQ0M1JnwQsc6HAAo",
+		sheetRanges: []string{
+			"06/05!A1:ZZ",
+			"07/05!A1:ZZ",
+			"08/05!A1:ZZ",
+		},
+		name: "[atualizada 08/05/2024 às 16h25] RESGATADOS - Bairro Humaitá Porto Alegre",
+	},	
 }
