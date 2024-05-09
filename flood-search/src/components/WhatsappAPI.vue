@@ -18,7 +18,7 @@
       Enviaremos uma mensagem no WhatsApp caso o nome procurado seja adicionado em nossas listas.
     </p>
 
-    <a target="_blank" :href="`https://wa.me/5554996016629?text=Cadastrar%20${name}`">
+    <a target="_blank" :href="`https://wa.me/5554996016629?text=${name}%20-%20receber%20alertas`">
     <button>Receber atualizações</button>
     </a>
 
