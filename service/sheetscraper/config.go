@@ -245,4 +245,13 @@ var Config []SheetConfig = []SheetConfig{
 		},
 		name:        "Respostas Pedido Desaparecidos Enchente",
 	},
+	{
+		id:          "1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA",
+		sheetRanges: []string{
+			"Velha Cambona!A1:ZZ",
+			"NSra Fátima!A1:ZZ",
+			"Vila Rica!A1:ZZ",
+		},
+		name:        "Abrigos Portão - RS",
+	},
 }
