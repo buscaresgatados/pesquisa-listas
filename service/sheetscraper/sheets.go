@@ -2120,9 +2120,19 @@ func Scrape(isDryRun bool) {
 
 					data = row[0].(string)
 
-					name = strings.Split(data, ",")[0]
-					idade = strings.Split(strings.Split(data, ",")[1], " - ")[0]
-					observacao = strings.Split(data, "-")[1]
+					splitVirgula := strings.Split(data, ",")
+					name = splitVirgula[0]
+					if len(splitVirgula) > 1 {
+						idade = strings.Split(splitVirgula[1], " - ")[0]
+					} else {
+						idade = ""
+					}
+					splitHifen := strings.Split(data, "-")
+					if len(splitHifen) > 1 {
+						observacao = splitHifen[1]
+					} else {
+						observacao = ""
+					}
 
 					p = objects.Pessoa{
 						Abrigo:     "Onze Unidos",
