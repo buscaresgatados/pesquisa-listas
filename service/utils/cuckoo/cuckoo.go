@@ -8,7 +8,7 @@ import (
 	cuckoo "github.com/panmari/cuckoofilter"
 )
 
-var DEFAULT_CUCKOO_CAPACITY uint = 500000
+var DEFAULT_CUCKOO_CAPACITY uint = 250000
 
 func createCuckooFilter(capacity uint) *cuckoo.Filter {
 	filter := cuckoo.NewFilter(capacity)

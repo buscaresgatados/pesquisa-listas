@@ -159,11 +159,17 @@ func FetchFilterFromFirestore(key string) ([]byte, error) {
 		fmt.Fprintf(os.Stderr, "Failed to retrieve document: %v\n", err)
 		return nil, err
 	}
-	var data []byte
+	var data map[string][]byte
 	if err := docSnap.DataTo(&data); err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to read document: %v\n", err)
 	}
-	return data, nil
+
+	if filter, ok := data["filter"]; !ok {
+		fmt.Fprintf(os.Stderr, "Filter not found in document\n")
+		return nil, fmt.Errorf("filter not found in document")
+	} else {
+		return filter, nil
+	}
 }
 
 func UpdateFilterOnFirestore(key string, data []byte) error {
@@ -179,6 +185,11 @@ func UpdateFilterOnFirestore(key string, data []byte) error {
 
 	filterCollection := client.Collection(os.Getenv("FIRESTORE_FILTERS_COLLECTION"))
 	doc := filterCollection.Doc(key)
-	doc.Set(ctx, data)
+	_, err := doc.Set(ctx, map[string][]byte{"filter": data})
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to update document: %v\n", err)
+		return err
+	}
+	fmt.Fprintf(os.Stdout, "Filter %s updated successfully\n", key)
 	return nil
 }
