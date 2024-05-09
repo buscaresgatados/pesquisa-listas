@@ -2464,7 +2464,7 @@ func Scrape(isDryRun bool) {
 			}
 
 			if !isDryRun {
-				repository.AddToFirestore(cleanedData)
+				repository.AddPessoasToFirestore(cleanedData)
 			}
 
 			fmt.Fprintf(os.Stdout, "Scraped data from sheetId %s, range %s. %d results. %d results after cleanup. Dry run? %v", cfg.id, sheetRange, len(serializedData), len(cleanedData), isDryRun)

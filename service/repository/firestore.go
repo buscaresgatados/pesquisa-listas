@@ -14,8 +14,7 @@ import (
 
 var err error
 
-func AddToFirestore(pessoas []*objects.PessoaResult) error {
-	ctx := context.Background()
+func createClient(ctx context.Context) (*firestore.Client, error) {
 	var client *firestore.Client
 	if os.Getenv("ENVIRONMENT") == "local" {
 		serviceAccJSON := utils.GetServiceAccountJSON(os.Getenv("APP_SERVICE_ACCOUNT_JSON"))
@@ -23,9 +22,16 @@ func AddToFirestore(pessoas []*objects.PessoaResult) error {
 	} else {
 		client, err = firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"))
 	}
-	defer client.Close()
+	return client, err
+}
+
+func AddPessoasToFirestore(pessoas []*objects.PessoaResult) error {
+	ctx := context.Background()
+	var client *firestore.Client
+	client, err = createClient(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
+		client.Close()
 		return err
 	}
 	defer client.Close()
@@ -43,21 +49,16 @@ func AddToFirestore(pessoas []*objects.PessoaResult) error {
 	return nil
 }
 
-func FetchFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) {
+func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) {
 	ctx := context.Background()
 	var client *firestore.Client
-	if os.Getenv("ENVIRONMENT") == "local" {
-		serviceAccJSON := utils.GetServiceAccountJSON(os.Getenv("APP_SERVICE_ACCOUNT_JSON"))
-		client, err = firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"), option.WithCredentialsJSON(serviceAccJSON))
-	} else {
-		client, err = firestore.NewClient(ctx, os.Getenv("FIRESTORE_PROJECT_ID"))
-	}
-	defer client.Close()
+	client, err = createClient(ctx)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
 		return nil, err
 	}
+	defer client.Close()
 
 	pessoas := client.Collection(os.Getenv("FIRESTORE_COLLECTION"))
 	refs := make([]*firestore.DocumentRef, 0, len(docIDs))
@@ -102,4 +103,28 @@ func FetchFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) {
 	}
 
 	return results, nil
+}
+
+func AddSourcesToFirestore(sources []*objects.Source) error {
+	ctx := context.Background()
+	var client *firestore.Client
+	client, err = createClient(ctx)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
+		client.Close()
+		return err
+	}
+	defer client.Close()
+
+	bulkWriter := client.BulkWriter(ctx)
+
+	collection := client.Collection(os.Getenv("FIRESTORE_SOURCES_COLLECTION"))
+	fmt.Fprintf(os.Stdout, "Adding %d documents to Firestore collection %v\n", len(sources), collection.Path)
+	for _, source := range sources {
+		doc := collection.Doc(source.URL + source.SheetId)
+		bulkWriter.Set(doc, &source)
+	}
+
+	bulkWriter.End()
+	return nil
 }
