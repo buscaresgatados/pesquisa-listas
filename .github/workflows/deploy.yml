@@ -38,7 +38,7 @@ jobs:
           dir: "service/"
       - name: 'debug'
         run: |
-          ls -la
+          cat sheetServiceAccount.json && cat authKeys.json
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
         with:
@@ -80,9 +80,9 @@ jobs:
             gcloud run services update-traffic refugio-rs-stg --region=southamerica-east1 --to-revisions=$PREVIOUS_REVISION=100,$NEW_REVISION=0
             exit 1
           fi
-      - name: Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+      # - name: Discord notification
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
