@@ -6,6 +6,30 @@ import LinkComponent from './LinkComponent.vue';
 <template>
   <div class="wrapper-list">
 
+
+      <div class="section">
+        <ExclamationCircleIcon class="icon-decoration" />
+        <div class="text-base-bold">Ajude a melhorar nosso banco de dados!</div>
+        <!-- <p> Estamos trabalhando para adicionar essas listas ao banco de dados: </p>
+
+        <div class="link-list">
+          <div class="link-list--col">
+            
+        
+          </div>
+
+          <div class="link-list--col">
+
+            
+          
+          </div>
+        </div> -->
+
+
+        <p>Conhece listas de resgate que ainda não temos na plataforma? Envie sua sugestão para <a href="mailto:buscaresgatados@gmail.com">buscaresgatados@gmail.com</a></p>
+      </div>
+
+
       <div class="section">
         <DocumentIcon class="icon-decoration"/>
         <div class="text-base-bold">Listas consultadas</div>
@@ -70,28 +94,6 @@ import LinkComponent from './LinkComponent.vue';
         </div>
       </div>
 
-      <div class="section">
-        <ExclamationCircleIcon class="icon-decoration" />
-        <div class="text-base-bold">Alguma lista ficou de fora?</div>
-        <!-- <p> Estamos trabalhando para adicionar essas listas ao banco de dados: </p>
-
-        <div class="link-list">
-          <div class="link-list--col">
-            
-        
-          </div>
-
-          <div class="link-list--col">
-
-            
-          
-          </div>
-        </div> -->
-
-
-        <p>Envie sua sugestão para <a href="mailto:buscaresgatados@gmail.com">buscaresgatados@gmail.com</a></p>
-      </div>
-
   </div>
 </template>
 
@@ -116,7 +118,8 @@ h3 {
 }
 
 p {
-  color: #E5E5E5
+  color: #E5E5E5;
+  line-height: 24px;
 }
 
 .wrapper-list {
@@ -139,5 +142,8 @@ p {
   flex-direction: column;
 }
 
+a {
+  /* color: #38BDF8; */
+}
 
 </style>

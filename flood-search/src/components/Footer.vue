@@ -18,7 +18,7 @@ import { RouterLink } from 'vue-router';
         <b>Equipe</b>: Gabi Branco, Bibiana Branco, Igor Carrasco, Amanda Medeiros, Douglas Eloy, 
         Adriano Viana, Pedro Vanzella, Lucas Trajano, Henrique Barbosa, Andressa Quines, Maicon Machado, 
         Victor Guimarães, Fernando Martinkovics, Luísa Giusti, Helena Martinelli Serra, Elisa Albuquerque, 
-        Carol Goyer.
+        Carol Goyer, Helena Poetini.
       </div>
   </div>
 

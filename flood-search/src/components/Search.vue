@@ -100,7 +100,7 @@ const algoliaLogo = computed(() => isScreenLarge.value ? logoLarge : logoSmall);
   }
 
   .search-wrap {
-    padding: 32px 0px 48px 0px;
+    padding: 48px 0px 80px 0px;
   }
 
   p {
