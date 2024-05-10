@@ -2697,25 +2697,13 @@ func Scrape(isDryRun bool) {
 					}
 
 					if len(row) > 6 && row[6].(string) != "" {
-						// Look for duplicates
-						hasDuplicate := false
-						for _, addedSource := range serializedSources {
-							if addedSource.SheetId == sheetId && addedSource.URL == url {
-								hasDuplicate = true
-								break
-							}
+						source := objects.Source{
+							SheetId: sheetId,
+							URL:     url,
+							Nome:    row[6].(string),
 						}
 
-						if !hasDuplicate {
-							source := objects.Source{
-								SheetId: sheetId,
-								URL:     url,
-								Nome:    row[6].(string),
-							}
-
-							serializedSources = append(serializedSources, &source)
-						}
-
+						serializedSources = append(serializedSources, &source)
 					}
 
 					if os.Getenv("ENVIRONMENT") == "local" {
@@ -2786,15 +2774,26 @@ func Scrape(isDryRun bool) {
 		}
 	}
 
-	if os.Getenv("ENVIRONMENT") == "local" {
-		fmt.Fprintf(os.Stdout, "\nFound %d sources:\n", len(serializedSources))
+	// Remove duplicate sources
+	uniqueSources := []*objects.Source{}
+	seen := map[string]bool{}
+	for _, source := range serializedSources {
+		key := source.URL + source.SheetId
+		if _, ok := seen[key]; !ok {
+			seen[key] = true
+			uniqueSources = append(uniqueSources, source)
+		}
+	}
 
-		for _, s := range serializedSources {
+	if os.Getenv("ENVIRONMENT") == "local" {
+		fmt.Fprintf(os.Stdout, "\nFound %d sources:\n", len(uniqueSources))
+
+		for _, s := range uniqueSources {
 			fmt.Fprintf(os.Stdout, "%+v\n", s)
 		}
 	}
 
 	if !isDryRun {
-		repository.AddSourcesToFirestore(serializedSources)
+		repository.AddSourcesToFirestore(uniqueSources)
 	}
 }
