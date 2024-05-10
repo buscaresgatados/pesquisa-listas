@@ -77,7 +77,7 @@ jobs:
             echo "success=failure" >> $GITHUB_OUTPUT
           fi
       - name: Discord Webhook Action
-        needs: deploy-service
+        needs: [deploy-service]
         if: always() && ${{ needs.deploy-service.success }} == 'success'
         uses: tsickert/discord-webhook@v5.3.0
         env:
@@ -88,7 +88,7 @@ jobs:
           embed-color: 65280
           embed-url: https://github.com/buscaresgatados/pesquisa-listas/actions
       - name: Discord Webhook Action
-        needs: deploy-service
+        needs: [deploy-service]
         if: always() && ${{ needs.deploy-service.success }} == 'failure'
         uses: tsickert/discord-webhook@v5.3.0
         env:
