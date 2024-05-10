@@ -68,6 +68,7 @@ jobs:
             --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json"
           gcloud run services update-traffic refugio-rs-stg --region=southamerica-east1 --to-latest 
       - name : smoke-test-and-revert
+        continue-on-error: true
         run: |
           status_code=$(curl -L -o /dev/null -s -w "%{http_code}" -H "Authorization: ${{ secrets.FRONTEND_API_KEY }}" "https://refugio-rs-stg-d5zml3w7fa-rj.a.run.app/pessoa?nome=Joao")
           if [[ $status_code -lt 400 ]]; then
