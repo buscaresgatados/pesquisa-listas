@@ -2,60 +2,126 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - ci-test
+    paths:
+      - service/**
+defaults:
+  run:
+    working-directory: service
 jobs:
   deploy-prd:
     name: deploy prd
     runs-on: ubuntu-latest
-    working-directory: ./service
+    environment: Production
     steps:
       - name: checkout the repo
         uses: actions/checkout@v4
         with:
           ref: main
-      - name: create-json
-        id: create-json
-        uses: jsdaniell/create-json@1.1.2
+      - name: create-json-sheets-service-account
+        id: 'create-json-sheets-service-account'
+        uses: jsdaniell/create-json@v1.2.3
+        env:
+          SHEETS_SERVICE_ACCOUNT_JSON_STRING: ${{ secrets.SHEETS_SERVICE_ACCOUNT_JSON_STRING }}
         with:
           name: "sheetsServiceAcc.json"
           json: ${{ secrets.SHEETS_SERVICE_ACCOUNT_JSON_STRING }}
           dir: "service/"
       - name: create-json
-        id: create-json
-        uses: jsdaniell/create-json@1.1.2
+        id: 'create-json-sheets-auth-keys'
+        uses: jsdaniell/create-json@v1.2.3
+        env:
+          AUTH_KEYS_JSON_STRING: ${{ secrets.AUTH_KEYS_JSON_STRING }}
         with:
           name: "authKeys.json"
           json: ${{ secrets.AUTH_KEYS_JSON_STRING }}
           dir: "service/"
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-        with: 
-          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
       - name: build
+        env:
+          DOCKER_REGISTRY: ${{ vars.DOCKER_REGISTRY }}
         run: |
-          gcloud auth configure-docker ${{ variables.DOCKER_REGISTRY }}
+          gcloud auth configure-docker $DOCKER_REGISTRY
           docker build -t refugio-rs-server:latest .
-          docker tag refugio-rs-server:latest "${{ variables.DOCKER_REGISTRY }}/${{ variables.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
-          docker push ${{ variables.DOCKER_REGISTRY }}/${{ variables.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
-      - name : smoke test
-        run: |
-          status_code=$(curl -L -o /dev/null -s -w "%{http_code}" -H "Authorization: ${{ secrets.FRONTEND_API_KEY }}" "https://refugio-rs-prd-d5zml3w7fa-rj.a.run.app/pessoa?nome=Joao")
-          if [[ $status_code -gt 399 ]]; then
-            echo "Status code $status_code"
-            exit 1
-          fi
+          docker tag refugio-rs-server:latest "$DOCKER_REGISTRY/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
+          docker push $DOCKER_REGISTRY/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
       - name: deploy-service
+        id: deploy-service
+        env :
+          GCP_PROJECT: ${{ vars.GCP_PROJECT }}
+          DOCKER_REGISTRY: ${{ vars.DOCKER_REGISTRY }}
+          ALGOLIA_CLIENT: ${{ secrets.ALGOLIA_CLIENT }}
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
         run: |
-          gcloud --project=${{ variables.GCP_PROJECT }} \
+          RESULT=$(gcloud --project=${{ vars.GCP_PROJECT }} \
             run deploy refugio-rs-prd \
-            --image ${{ variables.DOCKER_REGISTRY }}/${{ variables.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
+            --format=json \
+            --image ${{ vars.DOCKER_REGISTRY }}/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
             --platform managed \
             --region southamerica-east1 \
             --memory 256Mi \
             --command /server \
             --args web \
-            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",\
-                           ALGOLIA_CLIENT=${{ secrets.ALGOLIA_CLIENT }},\
-                           ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }},\
-                           ALGOLIA_INDEX="PessoasAbrigoINDEX",\
-                           FIRESTORE_PROJECT_ID=${{ variables.GCP_PROJECT }},\
-                           AUTH_KEYS_FILE="authKeys.json"
+            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json");
+          LATEST_CREATED=$(jq -r '.status.latestCreatedRevisionName' <<< ${RESULT});
+          LATEST_READY=$(jq -r '.status.latestReadyRevisionName' <<< ${RESULT});
+          echo $LATEST_CREATED;
+          echo $LATEST_READY;
+          if [[ $LATEST_CREATED == $LATEST_READY ]]; then
+            echo "yey";
+            echo "success=success" >> $GITHUB_OUTPUT
+          else
+            echo "ney";
+            echo "success=failure" >> $GITHUB_OUTPUT
+          fi
+      - name: Discord Webhook Action
+        if: steps.deploy-service.outputs.success == 'success'
+        uses: tsickert/discord-webhook@v6.0.0
+        env:
+            DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          embed-title: "Service deployment for ${{ github.event.repository.full_name }} successful."
+          embed-color: 65280
+          embed-url: "https://github.com/buscaresgatados/pesquisa-listas/actions"
+      - name: Discord Webhook Action
+        if: steps.deploy-service.outputs.success == 'failure'
+        uses: tsickert/discord-webhook@v6.0.0
+        env:
+            DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          embed-title: "Service deployment for ${{ github.event.repository.full_name }} failure."
+          embed-color: 16711680
+          embed-url: https://github.com/buscaresgatados/pesquisa-listas/actions
+      - name: deploy-scraper
+        id: deploy-scraper
+        env :
+          GCP_PROJECT: ${{ vars.GCP_PROJECT }}
+          DOCKER_REGISTRY: ${{ vars.DOCKER_REGISTRY }}
+          ALGOLIA_CLIENT: ${{ secrets.ALGOLIA_CLIENT }}
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+        run: |
+          gcloud --project=${{ vars.GCP_PROJECT }} \
+            run jobs deploy refugio-rs-scrape-prd \
+            --format=json \
+            --image ${{ vars.DOCKER_REGISTRY }}/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
+            --region southamerica-east1 \
+            --memory 512Mi \
+            --command /server \
+            --args "scrape","--isDryRun=false" \
+            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json"
+      - name: Discord Webhook Action
+        uses: tsickert/discord-webhook@v6.0.0
+        env:
+            DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          embed-title: "Scraper deployment for ${{ github.event.repository.full_name }} successful."
+          embed-color: 65280
+          embed-url: "https://github.com/buscaresgatados/pesquisa-listas/actions"
