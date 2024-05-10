@@ -111,7 +111,6 @@ jobs:
             run jobs deploy refugio-rs-scrape-stg \
             --format=json \
             --image ${{ vars.DOCKER_REGISTRY }}/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
-            --platform managed \
             --region southamerica-east1 \
             --memory 512Mi \
             --command /server \
