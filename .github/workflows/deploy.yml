@@ -72,12 +72,15 @@ jobs:
           echo $LATEST_CREATED;
           echo $LATEST_READY;
           if [[ $LATEST_CREATED == $LATEST_READY ]]; then
-            echo ::set-output name=success::success
+            echo "success=success" >> $GITHUB_STATE
           else
-            echo ::set-output name=success::failure
+            echo "success=failure" >> $GITHUB_STATE
           fi
+        outputs:
+          success: ${{ steps.deploy-service.outputs.success }}
       - name: Discord Webhook Action
-        if: steps.deploy-service.success == 'success'
+        needs: deploy-service
+        if: always() && needs.deploy-service.success == 'success'
         uses: tsickert/discord-webhook@v5.3.0
         env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -87,7 +90,7 @@ jobs:
           embed-color: 65280
           embed-url: https://github.com/buscaresgatados/pesquisa-listas/actions
       - name: Discord Webhook Action
-        if: steps.deploy-service.success == 'failure'
+        if: always() && needs.deploy-service.success == 'failure'
         uses: tsickert/discord-webhook@v5.3.0
         env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
