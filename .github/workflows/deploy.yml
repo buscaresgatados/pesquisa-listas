@@ -40,12 +40,12 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v2'
       - name: build
         env:
-          DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+          DOCKER_REGISTRY: ${{ vars.DOCKER_REGISTRY }}
         run: |
           gcloud auth configure-docker $DOCKER_REGISTRY
           docker build -t refugio-rs-server:latest .
-          docker tag refugio-rs-server:latest "$DOCKER_REGISTRY/${{ secrets.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
-          docker push $DOCKER_REGISTRY/${{ secrets.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
+          docker tag refugio-rs-server:latest "$DOCKER_REGISTRY/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
+          docker push $DOCKER_REGISTRY/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
       - name : smoke test
         run: |
           status_code=$(curl -L -o /dev/null -s -w "%{http_code}" -H "Authorization: ${{ secrets.FRONTEND_API_KEY }}" "https://refugio-rs-prd-d5zml3w7fa-rj.a.run.app/pessoa?nome=Joao")
@@ -55,9 +55,9 @@ jobs:
           fi
       - name: deploy-service
         run: |
-          gcloud --project=${{ secrets.GCP_PROJECT }} \
+          gcloud --project=${{ vars.GCP_PROJECT }} \
             run deploy refugio-rs-prd \
-            --image ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
+            --image ${{ vars.DOCKER_REGISTRY }}/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
             --platform managed \
             --region southamerica-east1 \
             --memory 256Mi \
@@ -67,5 +67,5 @@ jobs:
                            ALGOLIA_CLIENT=${{ secrets.ALGOLIA_CLIENT }},\
                            ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }},\
                            ALGOLIA_INDEX="PessoasAbrigoINDEX",\
-                           FIRESTORE_PROJECT_ID=${{ secrets.GCP_PROJECT }},\
+                           FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},\
                            AUTH_KEYS_FILE="authKeys.json"
