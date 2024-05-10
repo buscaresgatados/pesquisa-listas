@@ -57,7 +57,7 @@ jobs:
           ALGOLIA_CLIENT: ${{ secrets.ALGOLIA_CLIENT }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
         run: |
-          gcloud --project=${{ vars.GCP_PROJECT }} \
+          result = $(gcloud --project=${{ vars.GCP_PROJECT }} \
             run deploy refugio-rs-stg \
             --image ${{ vars.DOCKER_REGISTRY }}/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
             --platform managed \
@@ -65,20 +65,9 @@ jobs:
             --memory 256Mi \
             --command /server \
             --args web \
-            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json"
-      # - name : smoke-test-and-revert
-      #   continue-on-error: true
-      #   run: |
-      #     status_code=$(curl -L -o /dev/null -s -w "%{http_code}" -H "Authorization: ${{ secrets.FRONTEND_API_KEY }}" "https://refugio-rs-stg-d5zml3w7fa-rj.a.run.app/pessoa?nome=Joao")
-      #     if [[ $status_code -lt 400 ]]; then
-      #       echo "Status code $status_code. Reverting deployment."
-      #       REVISIONS=$(gcloud run revisions list --service=refugio-rs-stg --region=southamerica-east1 --format=json)
-      #       PREVIOUS_REVISION=$(jq -r '.[1].metadata.name' <<< ${REVISIONS})
-      #       NEW_REVISION=$(jq -r '.[0].metadata.name' <<< ${REVISIONS})
-      #       gcloud run services update-traffic refugio-rs-stg --region=southamerica-east1 --to-revisions=$PREVIOUS_REVISION=100,$NEW_REVISION=0
-      #       gcloud run revisions delete $NEW_REVISION --region=southamerica-east1 --quiet
-      #       exit 1
-      #     fi
+            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json" \
+            --format=json) 
+          echo $result
       - name: Discord Webhook Action
         if: steps.smoke-test-and-revert.conclusion == 'success'
         uses: tsickert/discord-webhook@v5.3.0
