@@ -36,9 +36,6 @@ jobs:
           name: "authKeys.json"
           json: ${{ secrets.AUTH_KEYS_JSON_STRING }}
           dir: "service/"
-      - name: 'debug'
-        run: |
-          cat authKeys.json
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
         with:
@@ -69,6 +66,7 @@ jobs:
             --command /server \
             --args web \
             --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json"
+          gcloud run services update-traffic refugio-rs-stg --region=southamerica-east1 --to-latest 
       - name : smoke test and revert
         run: |
           status_code=$(curl -L -o /dev/null -s -w "%{http_code}" -H "Authorization: ${{ secrets.FRONTEND_API_KEY }}" "https://refugio-rs-stg-d5zml3w7fa-rj.a.run.app/pessoa?nome=Joao")
@@ -78,11 +76,12 @@ jobs:
             PREVIOUS_REVISION=$(jq -r '.[1].metadata.name' <<< ${REVISIONS})
             NEW_REVISION=$(jq -r '.[0].metadata.name' <<< ${REVISIONS})
             gcloud run services update-traffic refugio-rs-stg --region=southamerica-east1 --to-revisions=$PREVIOUS_REVISION=100,$NEW_REVISION=0
+            gcloud run revisions delete $NEW_REVISION --region=southamerica-east1
             exit 1
           fi
-      # - name: Discord notification
-      #   env:
-      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      #   uses: Ilshidur/action-discord@master
-      #   with:
-      #     args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
