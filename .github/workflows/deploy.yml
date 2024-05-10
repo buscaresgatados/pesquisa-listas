@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - ci-test
+    path:
+      - service/
 defaults:
   run:
     working-directory: service
