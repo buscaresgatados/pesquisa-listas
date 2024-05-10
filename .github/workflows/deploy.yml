@@ -76,8 +76,7 @@ jobs:
             PREVIOUS_REVISION=$(jq -r '.[1].metadata.name' <<< ${REVISIONS})
             NEW_REVISION=$(jq -r '.[0].metadata.name' <<< ${REVISIONS})
             gcloud run services update-traffic refugio-rs-stg --region=southamerica-east1 --to-revisions=$PREVIOUS_REVISION=100,$NEW_REVISION=0
-            gcloud run revisions delete $NEW_REVISION --region=southamerica-east1
-            exit 1
+            gcloud run revisions delete $NEW_REVISION --region=southamerica-east1 --quiet
           fi
       - name: Discord notification
         env:
