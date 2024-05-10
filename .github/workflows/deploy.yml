@@ -79,23 +79,22 @@ jobs:
           fi
       - name: Discord Webhook Action
         if: always() && ${{ steps.deploy-service.success }} == 'success'
-        uses: tsickert/discord-webhook@v5.3.0
+        uses: tsickert/discord-webhook@v6.0.0
         env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
-          content: 'Deployment for {{ EVENT_PAYLOAD.repository.full_name }} successful.'
+          embed-title: "Deployment for {{ EVENT_PAYLOAD.repository.full_name }} successful."
           embed-color: 65280
-          embed-url: https://github.com/buscaresgatados/pesquisa-listas/actions
+          embed-url: "https://github.com/buscaresgatados/pesquisa-listas/actions"
       - name: Discord Webhook Action
-  
         if: always() && ${{ steps.deploy-service.success }} == 'failure'
-        uses: tsickert/discord-webhook@v5.3.0
+        uses: tsickert/discord-webhook@v6.0.0
         env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
-          content: 'Deployment for {{ EVENT_PAYLOAD.repository.full_name }} has failed.'
+          embed-title: "Deployment for {{ EVENT_PAYLOAD.repository.full_name }} failure."
           embed-color: 16711680
           embed-url: https://github.com/buscaresgatados/pesquisa-listas/actions
 
