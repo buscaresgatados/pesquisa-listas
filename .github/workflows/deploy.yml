@@ -77,6 +77,9 @@ jobs:
           else
             echo "success=failure" >> $GITHUB_OUTPUT
           fi
+      - name: debug
+        run: |
+          echo ${{ steps.deploy-service.success }}
       - name: Discord Webhook Action
         if: ${{ steps.deploy-service.success }} == 'success'
         uses: tsickert/discord-webhook@v6.0.0
