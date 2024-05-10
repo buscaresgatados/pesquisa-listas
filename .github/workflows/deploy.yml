@@ -51,13 +51,6 @@ jobs:
           docker build -t refugio-rs-server:latest .
           docker tag refugio-rs-server:latest "$DOCKER_REGISTRY/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
           docker push $DOCKER_REGISTRY/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
-      - name : smoke test
-        run: |
-          status_code=$(curl -L -o /dev/null -s -w "%{http_code}" -H "Authorization: ${{ secrets.FRONTEND_API_KEY }}" "https://refugio-rs-prd-d5zml3w7fa-rj.a.run.app/pessoa?nome=Joao")
-          if [[ $status_code -gt 399 ]]; then
-            echo "Status code $status_code"
-            exit 1
-          fi
       - name: deploy-service
         run: |
           gcloud --project=${{ vars.GCP_PROJECT }} \
@@ -74,3 +67,10 @@ jobs:
                            ALGOLIA_INDEX="PessoasAbrigoINDEX",\
                            FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},\
                            AUTH_KEYS_FILE="authKeys.json"
+      - name : smoke test
+        run: |
+          status_code=$(curl -L -o /dev/null -s -w "%{http_code}" -H "Authorization: ${{ secrets.FRONTEND_API_KEY }}" "https://refugio-rs-prd-d5zml3w7fa-rj.a.run.app/pessoa?nome=Joao")
+          if [[ $status_code -gt 399 ]]; then
+            echo "Status code $status_code"
+            exit 1
+          fi
