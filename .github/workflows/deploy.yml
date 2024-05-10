@@ -29,8 +29,8 @@ jobs:
           json: ${{ secrets.AUTH_KEYS_JSON_STRING }}
       - name: build
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
-          with: 
-            service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        with: 
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         run: |
           gcloud auth configure-docker ${{ secrets.DOCKER_REGISTRY }}
           docker build -t refugio-rs-server:latest .
