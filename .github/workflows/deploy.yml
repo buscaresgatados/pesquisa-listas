@@ -83,7 +83,7 @@ jobs:
         run: |
           echo ${{ steps.deploy-service.outputs.success }}
       - name: Discord Webhook Action
-        if: ${{ steps.deploy-service.outputs.success }} == 'success'
+        if: steps.deploy-service.outputs.success == 'success'
         uses: tsickert/discord-webhook@v6.0.0
         env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -93,7 +93,7 @@ jobs:
           embed-color: 65280
           embed-url: "https://github.com/buscaresgatados/pesquisa-listas/actions"
       - name: Discord Webhook Action
-        if: ${{ steps.deploy-service.outputs.success }} == 'failure'
+        if: steps.deploy-service.outputs.success == 'failure'
         uses: tsickert/discord-webhook@v6.0.0
         env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
