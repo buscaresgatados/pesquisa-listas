@@ -27,7 +27,6 @@ func createClient(ctx context.Context) (*firestore.Client, error) {
 
 func AddPessoasToFirestore(pessoas []*objects.PessoaResult) error {
 	ctx := context.Background()
-	var client *firestore.Client
 	client, err = createClient(ctx)
 
 	if err != nil {
@@ -143,7 +142,6 @@ func AddSourcesToFirestore(sources []*objects.Source) error {
 
 func FetchSourcesFromFirestore() ([]*objects.Source, error){
 	ctx := context.Background()
-	var client *firestore.Client
 	client, err = createClient(ctx)
 
 	if err != nil {
@@ -185,7 +183,7 @@ func FetchFilterFromFirestore(key string) ([]byte, error) {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v\n", err)
 	}
-	
+
 	filterCollection := client.Collection(os.Getenv("FIRESTORE_FILTERS_COLLECTION"))
 	doc := filterCollection.Doc(key)
 	docSnap, err := doc.Get(ctx)
