@@ -4,7 +4,7 @@ on:
     branches:
       - ci-test
     path:
-      - service/
+      - service/**
 defaults:
   run:
     working-directory: service
