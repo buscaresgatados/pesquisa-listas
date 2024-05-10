@@ -176,6 +176,7 @@ func FetchSourcesFromFirestore() ([]*objects.Source, error){
 		}
 	}
 	return results, nil
+}
 
 func FetchFilterFromFirestore(key string) ([]byte, error) {
 	ctx := context.Background()
@@ -183,6 +184,8 @@ func FetchFilterFromFirestore(key string) ([]byte, error) {
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v\n", err)
+	}
+	
 	filterCollection := client.Collection(os.Getenv("FIRESTORE_FILTERS_COLLECTION"))
 	doc := filterCollection.Doc(key)
 	docSnap, err := doc.Get(ctx)
