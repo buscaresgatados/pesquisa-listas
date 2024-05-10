@@ -5,7 +5,7 @@ on:
       - ci-test
 defaults:
   run:
-    working-directory: ./service
+    working-directory: service
 jobs:
   deploy-prd:
     name: deploy prd
