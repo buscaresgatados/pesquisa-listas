@@ -84,7 +84,7 @@ jobs:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
-          embed-title: "Deployment for ${{ EVENT_PAYLOAD.repository.full_name }} successful."
+          embed-title: "Deployment for ${{ github.event.repository.full_name }} successful."
           embed-color: 65280
           embed-url: "https://github.com/buscaresgatados/pesquisa-listas/actions"
       - name: Discord Webhook Action
@@ -94,7 +94,7 @@ jobs:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
-          embed-title: "Deployment for ${{ EVENT_PAYLOAD.repository.full_name }} failure."
+          embed-title: "Deployment for ${{ github.event.repository.full_name }} failure."
           embed-color: 16711680
           embed-url: https://github.com/buscaresgatados/pesquisa-listas/actions
 
