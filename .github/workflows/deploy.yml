@@ -57,17 +57,16 @@ jobs:
           ALGOLIA_CLIENT: ${{ secrets.ALGOLIA_CLIENT }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
         run: |
-          result = $(gcloud --project=${{ vars.GCP_PROJECT }} \
+          gcloud --project=${{ vars.GCP_PROJECT }} \
             run deploy refugio-rs-stg \
+            --format=json \
             --image ${{ vars.DOCKER_REGISTRY }}/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
             --platform managed \
             --region southamerica-east1 \
             --memory 256Mi \
             --command /server \
             --args web \
-            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json" \
-            --format=json) 
-          echo $result
+            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json"
       - name: Discord Webhook Action
         if: steps.smoke-test-and-revert.conclusion == 'success'
         uses: tsickert/discord-webhook@v5.3.0
