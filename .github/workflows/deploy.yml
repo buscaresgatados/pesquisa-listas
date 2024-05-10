@@ -87,7 +87,7 @@ jobs:
           embed-color: 65280
           embed-url: https://github.com/buscaresgatados/pesquisa-listas/actions
       - name: Discord Webhook Action
-        if:steps.deploy-service.success == 'failure'
+        if: steps.deploy-service.success == 'failure'
         uses: tsickert/discord-webhook@v5.3.0
         env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
