@@ -1,0 +1,59 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy-prd:
+    name: deploy prd
+    runs-on: ubuntu-latest
+    working-directory: ./service
+    steps:
+      - name: checkout the repo
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: "sheetsServiceAcc.json"
+          json: ${{ secrets.SHEETS_SERVICE_ACCOUNT_JSON_STRING }}
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: "authKeys.json"
+          json: ${{ secrets.AUTH_KEYS_JSON_STRING }}
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with: 
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      - name: build
+        run: |
+          gcloud auth configure-docker ${{ variables.DOCKER_REGISTRY }}
+          docker build -t refugio-rs-server:latest .
+          docker tag refugio-rs-server:latest "${{ variables.DOCKER_REGISTRY }}/${{ variables.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
+          docker push ${{ variables.DOCKER_REGISTRY }}/${{ variables.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
+      - name : smoke test
+        run: |
+          status_code=$(curl -L -o /dev/null -s -w "%{http_code}" -H "Authorization: ${{ secrets.FRONTEND_API_KEY }}" "https://refugio-rs-prd-d5zml3w7fa-rj.a.run.app/pessoa?nome=Joao")
+          if [[ $status_code -gt 399 ]]; then
+            echo "Status code $status_code"
+            exit 1
+          fi
+      - name: deploy-service
+        run: |
+          gcloud --project=${{ variables.GCP_PROJECT }} \
+            run deploy refugio-rs-stg \
+            --image ${{ variables.DOCKER_REGISTRY }}/${{ variables.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
+            --platform managed \
+            --region southamerica-east1 \
+            --memory 256Mi \
+            --command /server \
+            --args web \
+            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",\
+                           ALGOLIA_CLIENT=${{ secrets.ALGOLIA_CLIENT }},\
+                           ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }},\
+                           ALGOLIA_INDEX="PessoasAbrigoINDEX",\
+                           FIRESTORE_PROJECT_ID=${{ variables.GCP_PROJECT }},\
+                           AUTH_KEYS_FILE="authKeys.json"
