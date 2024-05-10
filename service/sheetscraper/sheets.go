@@ -72,6 +72,28 @@ func Scrape(isDryRun bool) {
 			sheetNameAndRange := cfg.id + sheetRange
 			switch sheetNameAndRange {
 			// Offsets e customizações pra cada planilha hardcoded por enquanto
+			case "1--z2fbczdFT4RSoji7jXc2jDDU5HqWgAU93NuROBQ78" + "Queila!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 1 || len(row) < 4 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: row[6].(string),
+						Nome:   row[0].(string),
+						Idade:  row[1].(string),
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+
 			case "10OnXFy-8TtUr3gw9yvtWroI7Z1psXGjdyBA3KMQKstE" + "Planilha1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 2 {
@@ -2647,7 +2669,7 @@ func Scrape(isDryRun bool) {
 
 					if len(row) > 3 && row[4] != "" {
 						abrigo = row[4].(string)
-					} 
+					}
 
 					p = objects.Pessoa{
 						Abrigo: abrigo,
