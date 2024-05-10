@@ -2,12 +2,13 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - ci-test
+defaults:
+  working-directory: ./service
 jobs:
   deploy-prd:
     name: deploy prd
     runs-on: ubuntu-latest
-    working-directory: ./service
     steps:
       - name: checkout the repo
         uses: actions/checkout@v4
@@ -30,10 +31,10 @@ jobs:
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: build
         run: |
-          gcloud auth configure-docker ${{ variables.DOCKER_REGISTRY }}
+          gcloud auth configure-docker ${{ secrets.DOCKER_REGISTRY }}
           docker build -t refugio-rs-server:latest .
-          docker tag refugio-rs-server:latest "${{ variables.DOCKER_REGISTRY }}/${{ variables.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
-          docker push ${{ variables.DOCKER_REGISTRY }}/${{ variables.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
+          docker tag refugio-rs-server:latest "${{ secrets.DOCKER_REGISTRY }}/${{ secrets.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
+          docker push ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
       - name : smoke test
         run: |
           status_code=$(curl -L -o /dev/null -s -w "%{http_code}" -H "Authorization: ${{ secrets.FRONTEND_API_KEY }}" "https://refugio-rs-prd-d5zml3w7fa-rj.a.run.app/pessoa?nome=Joao")
@@ -43,9 +44,9 @@ jobs:
           fi
       - name: deploy-service
         run: |
-          gcloud --project=${{ variables.GCP_PROJECT }} \
+          gcloud --project=${{ secrets.GCP_PROJECT }} \
             run deploy refugio-rs-prd \
-            --image ${{ variables.DOCKER_REGISTRY }}/${{ variables.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
+            --image ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
             --platform managed \
             --region southamerica-east1 \
             --memory 256Mi \
@@ -55,5 +56,5 @@ jobs:
                            ALGOLIA_CLIENT=${{ secrets.ALGOLIA_CLIENT }},\
                            ALGOLIA_API_KEY=${{ secrets.ALGOLIA_API_KEY }},\
                            ALGOLIA_INDEX="PessoasAbrigoINDEX",\
-                           FIRESTORE_PROJECT_ID=${{ variables.GCP_PROJECT }},\
+                           FIRESTORE_PROJECT_ID=${{ secrets.GCP_PROJECT }},\
                            AUTH_KEYS_FILE="authKeys.json"
