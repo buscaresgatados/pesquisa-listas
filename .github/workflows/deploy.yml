@@ -19,12 +19,14 @@ jobs:
         with:
           name: "sheetsServiceAcc.json"
           json: ${{ secrets.SHEETS_SERVICE_ACCOUNT_JSON_STRING }}
+          dir: "service/"
       - name: create-json
         id: create-json
         uses: jsdaniell/create-json@1.1.2
         with:
           name: "authKeys.json"
           json: ${{ secrets.AUTH_KEYS_JSON_STRING }}
+          dir: "service/"
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with: 
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
