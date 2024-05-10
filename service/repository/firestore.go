@@ -110,7 +110,7 @@ func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) 
 				Timestamp: data["Timestamp"].(time.Time),
 			})
 		} else {
-			fmt.Fprintln(os.Stderr, "Document does not exist")
+			fmt.Fprintf(os.Stderr, "Document %+v does not exist\n", doc.Ref.ID)
 		}
 	}
 
