@@ -28,15 +28,14 @@ jobs:
         uses: jsdaniell/create-json@v1.2.3
         env:
           AUTH_KEYS_JSON_STRING: ${{ secrets.AUTH_KEYS_JSON_STRING }}
+          DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
         with:
           name: "authKeys.json"
           json: $AUTH_KEYS_JSON_STRING
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         with:
-          credentials_json: $GOOGLE_APPLICATION_CREDENTIALS
+          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
       - name: build
