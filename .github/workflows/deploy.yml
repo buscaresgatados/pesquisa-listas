@@ -3,14 +3,14 @@ on:
   push:
     branches:
       - ci-test
-    # paths:
-    #   - service/**
+    paths:
+      - service/**
 defaults:
   run:
     working-directory: service
 jobs:
-  deploy-stg:
-    name: deploy stg
+  deploy-prd:
+    name: deploy prd
     runs-on: ubuntu-latest
     environment: Production
     steps:
@@ -59,7 +59,7 @@ jobs:
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
         run: |
           RESULT=$(gcloud --project=${{ vars.GCP_PROJECT }} \
-            run deploy refugio-rs-stg \
+            run deploy refugio-rs-prd \
             --format=json \
             --image ${{ vars.DOCKER_REGISTRY }}/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
             --platform managed \
@@ -107,29 +107,16 @@ jobs:
           ALGOLIA_CLIENT: ${{ secrets.ALGOLIA_CLIENT }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
         run: |
-          RESULT=$(gcloud --project=${{ vars.GCP_PROJECT }} \
-            run jobs deploy refugio-rs-scrape-stg \
+          gcloud --project=${{ vars.GCP_PROJECT }} \
+            run jobs deploy refugio-rs-scrape-prd \
             --format=json \
             --image ${{ vars.DOCKER_REGISTRY }}/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
             --region southamerica-east1 \
             --memory 512Mi \
             --command /server \
             --args "scrape","--isDryRun=false" \
-            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json");
-          echo $RESULT;
-          LATEST_CREATED=$(jq -r '.status.latestCreatedRevisionName' <<< ${RESULT});
-          LATEST_READY=$(jq -r '.status.latestReadyRevisionName' <<< ${RESULT});
-          echo $LATEST_CREATED;
-          echo $LATEST_READY;
-          if [[ $LATEST_CREATED == $LATEST_READY ]]; then
-            echo "yey";
-            echo "success=success" >> $GITHUB_OUTPUT
-          else
-            echo "ney";
-            echo "success=failure" >> $GITHUB_OUTPUT
-          fi
+            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json"
       - name: Discord Webhook Action
-        if: steps.deploy-scraper.outputs.success == 'success'
         uses: tsickert/discord-webhook@v6.0.0
         env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -138,14 +125,3 @@ jobs:
           embed-title: "Scraper deployment for ${{ github.event.repository.full_name }} successful."
           embed-color: 65280
           embed-url: "https://github.com/buscaresgatados/pesquisa-listas/actions"
-      - name: Discord Webhook Action
-        if: steps.deploy-scraper.outputs.success == 'failure'
-        uses: tsickert/discord-webhook@v6.0.0
-        env:
-            DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        with:
-          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
-          embed-title: "Scraper deployment for ${{ github.event.repository.full_name }} failure."
-          embed-color: 16711680
-          embed-url: https://github.com/buscaresgatados/pesquisa-listas/actions
-
