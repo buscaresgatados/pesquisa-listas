@@ -11,14 +11,15 @@ jobs:
     name: deploy prd
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub context
-        env:
-          DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
-        run: echo "$DOCKER_REGISTRY"
+
       - name: checkout the repo
         uses: actions/checkout@v4
         with:
           ref: main
+      - name: Dump GitHub context
+        env:
+          DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+        run: echo "$DOCKER_REGISTRY"
       - name: create-json
         id: create-json-sheets-service-account
         uses: jsdaniell/create-json@v1.2.3
