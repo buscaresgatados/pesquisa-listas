@@ -24,14 +24,17 @@ jobs:
         with:
           name: "sheetsServiceAcc.json"
           json: $SHEETS_SERVICE_ACCOUNT_JSON_STRING
-      - name: create-json-auth-keys
-        id: 'create-json-auth-keys'
+      - name: create-json
+        id: 'create-json-sheets-auth-keys'
         uses: jsdaniell/create-json@v1.2.3
         env:
           AUTH_KEYS_JSON_STRING: ${{ secrets.AUTH_KEYS_JSON_STRING }}
         with:
-          name: "authKeys.json"
+          name: "sheetsServiceAcc.json"
           json: $AUTH_KEYS_JSON_STRING
+      - name: 'debug'
+        run: |
+          ls -la
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
         with:
