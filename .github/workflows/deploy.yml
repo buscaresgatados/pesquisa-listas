@@ -27,7 +27,7 @@ jobs:
         with:
           name: "authKeys.json"
           json: ${{ secrets.AUTH_KEYS_JSON_STRING }}
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
         with: 
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: build
