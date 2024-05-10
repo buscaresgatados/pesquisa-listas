@@ -27,7 +27,6 @@ func createClient(ctx context.Context) (*firestore.Client, error) {
 
 func AddPessoasToFirestore(pessoas []*objects.PessoaResult) error {
 	ctx := context.Background()
-	var client *firestore.Client
 	client, err = createClient(ctx)
 
 	if err != nil {
@@ -111,7 +110,7 @@ func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) 
 				Timestamp: data["Timestamp"].(time.Time),
 			})
 		} else {
-			fmt.Fprintln(os.Stderr, "Document does not exist")
+			fmt.Fprintf(os.Stderr, "Document %+v does not exist\n", doc.Ref.ID)
 		}
 	}
 
@@ -141,16 +140,49 @@ func AddSourcesToFirestore(sources []*objects.Source) error {
 	return nil
 }
 
+func FetchSourcesFromFirestore() ([]*objects.Source, error){
+	ctx := context.Background()
+	client, err = createClient(ctx)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error creating client: %v", err)
+		client.Close()
+		return nil, err
+	}
+	defer client.Close()
+
+	sources := client.Collection(os.Getenv("FIRESTORE_SOURCES_COLLECTION"))
+	docs, err := sources.Documents(ctx).GetAll()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to retrieve documents: %v", err)
+	}
+
+	var results []*objects.Source
+	for _, doc := range docs {
+		if doc.Exists() {
+			var data map[string]interface{}
+			if err := doc.DataTo(&data); err != nil {
+				fmt.Fprintf(os.Stderr, "Failed to read document: %v", err)
+			}
+			results = append(results, &objects.Source{
+				Nome:    data["Nome"].(string),
+				URL:     data["URL"].(string),
+				SheetId: data["SheetId"].(string),
+			})
+		} else {
+			fmt.Fprintln(os.Stderr, "Document does not exist")
+		}
+	}
+	return results, nil
+}
+
 func FetchFilterFromFirestore(key string) ([]byte, error) {
 	ctx := context.Background()
 	client, err = createClient(ctx)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v\n", err)
-		client.Close()
-		return nil, err
 	}
-	defer client.Close()
 
 	filterCollection := client.Collection(os.Getenv("FIRESTORE_FILTERS_COLLECTION"))
 	doc := filterCollection.Doc(key)

@@ -72,7 +72,10 @@ var webCmd = &cobra.Command{
 		router := mux.NewRouter()
 
 		router.Handle("/pessoa", AuthMiddleware(http.HandlerFunc(handlers.GetPessoa))).Methods(http.MethodGet, http.MethodOptions).Queries()
+		router.Handle("/sources", AuthMiddleware(http.HandlerFunc(handlers.GetSources))).Methods(http.MethodGet, http.MethodOptions)
 		router.Handle("/auth/me", AuthMiddleware(http.HandlerFunc(AuthMeHandler))).Methods(http.MethodGet, http.MethodOptions)
+		router.Handle("/health/ready", http.HandlerFunc(handlers.Ready)).Methods(http.MethodGet, http.MethodOptions)
+		router.Handle("/health/live", http.HandlerFunc(handlers.Live)).Methods(http.MethodGet, http.MethodOptions)
 
 		http.Handle("/", router)
 
