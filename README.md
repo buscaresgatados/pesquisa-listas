@@ -33,7 +33,17 @@ Criar um novo objeto ao final do arquivo, com a seguinte estrutura:
 Criar um novo `case` dentro da função `Scrape`, pelo `<ID_DA_PLANILHA> + <NOME_DA_ABA!A1:ZZ>`. Exemplo:
 ```go
 case  "1-cA0MB_1aQTOtXVL2pyPWSXjuTMg6U1PsyBAICjdGxo"  +  "Sheet1!A1:ZZ":
-	for  i, row  :=  range  content.([][]interface{}) {
+	for i, row  :=  range content.([][]interface{}) {
+		/* O primeiro condicional é sobre o index da linha. 
+		   Com i < 1, o script pulará a primeira linha (que
+		   teria index 0). Isso é útil para pular cabeçalhos.
+
+		   O segundo condicional é sobre o comprimento de cada
+		   linha. Nesse caso, o script ignorará linhas que tiverem
+		   menos de 3 ítens. Dessa forma, evitamos erros quando
+		   tentarmos acessar indexes do row acima de 2 (já que o 
+		   index 2 é o terceiro ítem de uma lista)
+		*/
 		if  i  <  1  ||  len(row) <  3 {
 			continue
 		}
@@ -42,8 +52,10 @@ case  "1-cA0MB_1aQTOtXVL2pyPWSXjuTMg6U1PsyBAICjdGxo"  +  "Sheet1!A1:ZZ":
 		Nome: row[1].(string),
 		Idade: "",
 	}
-
-	fmt.Fprintln(os.Stdout, p)
+	
+	if os.Getenv("ENVIRONMENT") == "local" {
+		fmt.Fprintf(os.Stdout, "%+v\n", p)
+	}
 
 	serializedData  =  append(serializedData, &objects.PessoaResult{
 		Pessoa: &p,
