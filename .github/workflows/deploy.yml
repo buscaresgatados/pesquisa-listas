@@ -40,11 +40,13 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
       - name: build
+        env:
+          DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
         run: |
-          gcloud auth configure-docker ${{ secrets.DOCKER_REGISTRY }}
+          gcloud auth configure-docker $DOCKER_REGISTRY
           docker build -t refugio-rs-server:latest .
-          docker tag refugio-rs-server:latest "${{ secrets.DOCKER_REGISTRY }}/${{ secrets.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
-          docker push ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
+          docker tag refugio-rs-server:latest "$DOCKER_REGISTRY/${{ secrets.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
+          docker push $DOCKER_REGISTRY/${{ secrets.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
       - name : smoke test
         run: |
           status_code=$(curl -L -o /dev/null -s -w "%{http_code}" -H "Authorization: ${{ secrets.FRONTEND_API_KEY }}" "https://refugio-rs-prd-d5zml3w7fa-rj.a.run.app/pessoa?nome=Joao")
