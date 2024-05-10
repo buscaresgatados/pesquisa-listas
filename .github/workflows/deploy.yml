@@ -51,6 +51,7 @@ jobs:
           docker tag refugio-rs-server:latest "$DOCKER_REGISTRY/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)"
           docker push $DOCKER_REGISTRY/${{ vars.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD)
       - name: deploy-service
+        id: deploy-service
         env :
           GCP_PROJECT: ${{ vars.GCP_PROJECT }}
           DOCKER_REGISTRY: ${{ vars.DOCKER_REGISTRY }}
@@ -77,8 +78,7 @@ jobs:
             echo "success=failure" >> $GITHUB_OUTPUT
           fi
       - name: Discord Webhook Action
-        needs: [deploy-service]
-        if: always() && ${{ needs.deploy-service.success }} == 'success'
+        if: always() && ${{ steps.deploy-service.success }} == 'success'
         uses: tsickert/discord-webhook@v5.3.0
         env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -88,8 +88,8 @@ jobs:
           embed-color: 65280
           embed-url: https://github.com/buscaresgatados/pesquisa-listas/actions
       - name: Discord Webhook Action
-        needs: [deploy-service]
-        if: always() && ${{ needs.deploy-service.success }} == 'failure'
+  
+        if: always() && ${{ steps.deploy-service.success }} == 'failure'
         uses: tsickert/discord-webhook@v5.3.0
         env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
