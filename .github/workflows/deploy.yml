@@ -44,7 +44,7 @@ jobs:
       - name: deploy-service
         run: |
           gcloud --project=${{ variables.GCP_PROJECT }} \
-            run deploy refugio-rs-stg \
+            run deploy refugio-rs-prd \
             --image ${{ variables.DOCKER_REGISTRY }}/${{ variables.GCP_PROJECT }}/refugio-rs-server/refugio-rs-server:$(git rev-parse --short HEAD) \
             --platform managed \
             --region southamerica-east1 \
