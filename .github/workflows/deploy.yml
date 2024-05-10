@@ -17,20 +17,26 @@ jobs:
           ref: main
       - name: create-json
         id: create-json-sheets-service-account
-        uses: jsdaniell/create-json@1.1.2
+        uses: jsdaniell/create-json@v1.2.3
+        env:
+          SHEETS_SERVICE_ACCOUNT_JSON_STRING: ${{ secrets.SHEETS_SERVICE_ACCOUNT_JSON_STRING }}
         with:
           name: "sheetsServiceAcc.json"
-          json: ${{ secrets.SHEETS_SERVICE_ACCOUNT_JSON_STRING }}
+          json: ${{ SHEETS_SERVICE_ACCOUNT_JSON_STRING }}
       - name: create-json
         id: create-json-auth-keys
-        uses: jsdaniell/create-json@1.1.2
+        uses: jsdaniell/create-json@v1.2.3
+        env:
+          AUTH_KEYS_JSON_STRING: ${{ secrets.AUTH_KEYS_JSON_STRING }}
         with:
           name: "authKeys.json"
-          json: ${{ secrets.AUTH_KEYS_JSON_STRING }}
+          json: ${{ AUTH_KEYS_JSON_STRING }}
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         with:
-          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          credentials_json: ${{ GOOGLE_APPLICATION_CREDENTIALS }}
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
       - name: build
