@@ -10,8 +10,8 @@ jobs:
   deploy-prd:
     name: deploy prd
     runs-on: ubuntu-latest
+    environment: Production
     steps:
-
       - name: checkout the repo
         uses: actions/checkout@v4
         with:
