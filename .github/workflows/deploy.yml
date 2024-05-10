@@ -16,13 +16,13 @@ jobs:
         with:
           ref: main
       - name: create-json
-        id: create-json
+        id: create-json-sheets-service-account
         uses: jsdaniell/create-json@1.1.2
         with:
           name: "sheetsServiceAcc.json"
           json: ${{ secrets.SHEETS_SERVICE_ACCOUNT_JSON_STRING }}
       - name: create-json
-        id: create-json
+        id: create-json-auth-keys
         uses: jsdaniell/create-json@1.1.2
         with:
           name: "authKeys.json"
