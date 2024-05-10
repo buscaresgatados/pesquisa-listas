@@ -31,7 +31,7 @@ jobs:
         env:
           AUTH_KEYS_JSON_STRING: ${{ secrets.AUTH_KEYS_JSON_STRING }}
         with:
-          name: "sheetsServiceAcc.json"
+          name: "authKeys.json"
           json: $AUTH_KEYS_JSON_STRING
           dir: "service/"
       - name: 'debug'
