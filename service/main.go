@@ -7,8 +7,11 @@ import (
 	"net/http"
 	"os"
 	"refugio/handlers"
+	"refugio/objects"
 	"refugio/sheetscraper"
+	"strings"
 
+	"cloud.google.com/go/compute/metadata"
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
 )
@@ -29,6 +32,44 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		if !isValidKey(key) {
 			http.Error(w, "Forbidden", http.StatusForbidden)
 			return
+		}
+		next.ServeHTTP(w, r)
+	})
+}
+
+func BaseRequestMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Basic headers
+		w.Header().Set("Access-Control-Allow-Headers", "*")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Cache-Control", "private")
+		if r.Method == http.MethodOptions {
+			return
+		}
+
+		if os.Getenv("ENVIRONMENT") != "local" {
+			// Trace logging for Cloud Run
+			projectID, _ := metadata.ProjectID()
+
+			var trace string
+			if projectID != "" {
+				traceHeader := r.Header.Get("X-Cloud-Trace-Context")
+				traceParts := strings.Split(traceHeader, "/")
+				if len(traceParts) > 0 && len(traceParts[0]) > 0 {
+					trace = fmt.Sprintf("projects/%s/traces/%s", projectID, traceParts[0])
+				}
+			}
+
+			log := &objects.AccessLog{
+				Trace:  trace,
+				UserIP: r.Header.Get("X-Forwarded-For"),
+			}
+			logJson, err := json.Marshal(log)
+			if err != nil {
+				fmt.Fprintln(os.Stderr, err)
+			} else {
+				fmt.Fprintln(os.Stdout, string(logJson))
+			}
 		}
 		next.ServeHTTP(w, r)
 	})
@@ -70,6 +111,7 @@ var webCmd = &cobra.Command{
 	Short: "Start the web server",
 	Run: func(cmd *cobra.Command, args []string) {
 		router := mux.NewRouter()
+		router.Use(BaseRequestMiddleware)
 
 		router.Handle("/pessoa", AuthMiddleware(http.HandlerFunc(handlers.GetPessoa))).Methods(http.MethodGet, http.MethodOptions).Queries()
 		router.Handle("/pessoa/count", AuthMiddleware(http.HandlerFunc(handlers.GetRecordCount))).Methods(http.MethodGet, http.MethodOptions)

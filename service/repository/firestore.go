@@ -160,8 +160,9 @@ func FetchSourcesFromFirestore() ([]*objects.Source, error) {
 	}
 	defer client.Close()
 
-	sources := client.Collection(os.Getenv("FIRESTORE_SOURCES_COLLECTION"))
+	sources := client.Collection(Sources)
 	docs, err := sources.Documents(ctx).GetAll()
+
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to retrieve documents: %v", err)
 	}
