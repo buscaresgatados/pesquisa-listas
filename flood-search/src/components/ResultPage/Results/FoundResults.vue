@@ -18,7 +18,7 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
       </h3>
       <div class="inner-result-container">
         <p v-if="Idade">Idade: {{ Idade }}</p>
-        <p>Abrigo: {{ Abrigo }}</p>
+        <p>Abrigo: {{ Abrigo }}</p><br>
         <p>Obs: {{ Observacao }}</p>
         <a v-if="listId" class="link" target="_blank" :href="`https://docs.google.com/spreadsheets/u/0/d/${listId}`" > <div class="list-name">Planilha fonte</div> <ArrowTopRightOnSquareIcon class="icon-size" /></a>
         <a v-if="Url" class="link" target="_blank" :href="Url" > <div class="list-name">Planilha fonte</div> <ArrowTopRightOnSquareIcon class="icon-size" /></a>
