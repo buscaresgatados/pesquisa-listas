@@ -1,5 +1,5 @@
 <script setup>
-import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
+import { DocumentMagnifyingGlassIcon } from '@heroicons/vue/24/solid'
     defineProps({
     Nome: String,
     Idade: Number,
