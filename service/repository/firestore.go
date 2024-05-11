@@ -12,8 +12,17 @@ import (
 	"google.golang.org/api/option"
 )
 
-var err error
-var client *firestore.Client
+/* Firestore collections */
+const (
+	PessoasAbrigos = "PessoasAbrigos"
+	Sources        = "Sources"
+	Filters        = "Filters"
+)
+
+var (
+	err    error
+	client *firestore.Client
+)
 
 func createClient(ctx context.Context) (*firestore.Client, error) {
 	if os.Getenv("ENVIRONMENT") == "local" {
@@ -38,7 +47,7 @@ func AddPessoasToFirestore(pessoas []*objects.PessoaResult) error {
 
 	bulkWriter := client.BulkWriter(ctx)
 
-	collection := client.Collection(os.Getenv("FIRESTORE_COLLECTION"))
+	collection := client.Collection(PessoasAbrigos)
 	fmt.Fprintf(os.Stdout, "Adding %d documents to Firestore collection %v\n", len(pessoas), collection.Path)
 	jobs := make([]*firestore.BulkWriterJob, 0, len(pessoas))
 	for _, pessoa := range pessoas {
@@ -72,7 +81,7 @@ func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) 
 	}
 	defer client.Close()
 
-	pessoas := client.Collection(os.Getenv("FIRESTORE_COLLECTION"))
+	pessoas := client.Collection(PessoasAbrigos)
 	refs := make([]*firestore.DocumentRef, 0, len(docIDs))
 
 	for _, id := range docIDs {
@@ -110,7 +119,7 @@ func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) 
 				Timestamp: data["Timestamp"].(time.Time),
 			})
 		} else {
-			fmt.Fprintf(os.Stderr, "Document %+v does not exist\n", doc.Ref.ID)
+			fmt.Fprintln(os.Stderr, "Document does not exist")
 		}
 	}
 
@@ -129,7 +138,7 @@ func AddSourcesToFirestore(sources []*objects.Source) error {
 
 	bulkWriter := client.BulkWriter(ctx)
 
-	collection := client.Collection(os.Getenv("FIRESTORE_SOURCES_COLLECTION"))
+	collection := client.Collection(Sources)
 	fmt.Fprintf(os.Stdout, "Adding %d documents to Firestore collection %v\n", len(sources), collection.Path)
 	for _, source := range sources {
 		doc := collection.Doc(source.URL + source.SheetId)
@@ -140,7 +149,7 @@ func AddSourcesToFirestore(sources []*objects.Source) error {
 	return nil
 }
 
-func FetchSourcesFromFirestore() ([]*objects.Source, error){
+func FetchSourcesFromFirestore() ([]*objects.Source, error) {
 	ctx := context.Background()
 	client, err = createClient(ctx)
 
@@ -182,9 +191,12 @@ func FetchFilterFromFirestore(key string) ([]byte, error) {
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating client: %v\n", err)
+		client.Close()
+		return nil, err
 	}
+	defer client.Close()
 
-	filterCollection := client.Collection(os.Getenv("FIRESTORE_FILTERS_COLLECTION"))
+	filterCollection := client.Collection(Filters)
 	doc := filterCollection.Doc(key)
 	docSnap, err := doc.Get(ctx)
 	if err != nil {
@@ -215,7 +227,7 @@ func UpdateFilterOnFirestore(key string, data []byte) error {
 	}
 	defer client.Close()
 
-	filterCollection := client.Collection(os.Getenv("FIRESTORE_FILTERS_COLLECTION"))
+	filterCollection := client.Collection(Filters)
 	doc := filterCollection.Doc(key)
 	_, err := doc.Set(ctx, map[string][]byte{"filter": data})
 	if err != nil {
@@ -224,4 +236,39 @@ func UpdateFilterOnFirestore(key string, data []byte) error {
 	}
 	fmt.Fprintf(os.Stdout, "Filter %s updated successfully\n", key)
 	return nil
+}
+
+func FetchMostRecent(key string) (*time.Time, error) {
+	ctx := context.Background()
+	client, err = createClient(ctx)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error creating client: %v\n", err)
+		client.Close()
+	}
+	defer client.Close()
+
+	collection := client.Collection(PessoasAbrigos)
+	query := collection.Query.OrderBy("Timestamp", firestore.Desc).Limit(1)
+	docs, err := query.Documents(ctx).GetAll()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to retrieve documents: %v\n", err)
+		return nil, err
+	}
+
+	for _, doc := range docs {
+		if doc.Exists() {
+			var data map[string]interface{}
+			if err := doc.DataTo(&data); err != nil {
+				fmt.Fprintf(os.Stderr, "Failed to read document: %v\n", err)
+			}
+			if timestamp, ok := data["Timestamp"].(time.Time); !ok {
+				fmt.Fprintf(os.Stderr, "Timestamp not found in document\n")
+				return nil, fmt.Errorf("timestamp not found in document")
+			} else {
+				return &timestamp, nil
+			}
+		}
+	}
+	return nil, err
 }

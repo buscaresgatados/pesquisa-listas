@@ -21,7 +21,7 @@ var (
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Preflight has no Authorization header
-		if r.Method == http.MethodOptions {
+		if r.Method == http.MethodOptions || os.Getenv("ENVIRONMENT") == "local" {
 			next.ServeHTTP(w, r)
 			return
 		}
@@ -72,6 +72,7 @@ var webCmd = &cobra.Command{
 		router := mux.NewRouter()
 
 		router.Handle("/pessoa", AuthMiddleware(http.HandlerFunc(handlers.GetPessoa))).Methods(http.MethodGet, http.MethodOptions).Queries()
+		router.Handle("/pessoa/count", AuthMiddleware(http.HandlerFunc(handlers.GetRecordCount))).Methods(http.MethodGet, http.MethodOptions)
 		router.Handle("/sources", AuthMiddleware(http.HandlerFunc(handlers.GetSources))).Methods(http.MethodGet, http.MethodOptions)
 		router.Handle("/auth/me", AuthMiddleware(http.HandlerFunc(AuthMeHandler))).Methods(http.MethodGet, http.MethodOptions)
 		router.Handle("/health/ready", http.HandlerFunc(handlers.Ready)).Methods(http.MethodGet, http.MethodOptions)
