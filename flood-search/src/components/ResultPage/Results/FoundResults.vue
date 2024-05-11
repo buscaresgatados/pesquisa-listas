@@ -25,7 +25,7 @@ import { DocumentMagnifyingGlassIcon } from '@heroicons/vue/24/solid'
             <DocumentMagnifyingGlassIcon style="width: 24px; height: 24px;" />
           </div>
         </a>
-        <a v-if="Url" class="link" target="_blank" :href="Url" >
+        <a v-if="Url" style="padding: 12px;" class="link" target="_blank" :href="Url" >
           <div class="list-name">
             <DocumentMagnifyingGlassIcon style="width: 24px; height: 24px;" />
           </div>
