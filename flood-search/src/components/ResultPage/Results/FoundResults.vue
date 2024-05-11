@@ -61,7 +61,7 @@ import { DocumentMagnifyingGlassIcon } from '@heroicons/vue/24/solid'
   }
   .inner-result-container{
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: space-between;
   }
 
