@@ -11,7 +11,7 @@ import LinkComponent from './LinkComponent.vue';
 
       <div class="link-list">
           <div class="link-list--col">
-            <LinkComponent url="https://estou-salvo-rs.bubbleapps.io/" name="ESTOU SALVO RIO GRANDE DO SUL" />
+            <LinkComponent url="https://estou-salvo-rs.bubbleapps.io/" name="Estou Salvo RS" />
             <LinkComponent url="https://www.tosalvo.ong.br/" name="Tô Salvo ONG" />
             <LinkComponent url="https://petmapa.com.br/" name="PetMapa" />
          
@@ -19,8 +19,9 @@ import LinkComponent from './LinkComponent.vue';
 
 
           <div class="link-list--col">
+            <LinkComponent url="https://salvars.com.br/" name="Salva RS" />
             <LinkComponent url="https://pessoaperdida.com.br/" name="Pessoa Perdida"/>
-            <LinkComponent url="https://bit.ly/preciso_resgate" name="SOS RS"/>
+            <LinkComponent url="https://sosrs.net.br/" name="SOS RS"/>
  
           </div>
         </div>
