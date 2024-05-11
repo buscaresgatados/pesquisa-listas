@@ -113,6 +113,7 @@ func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) 
 					Nome:   data["Nome"].(string),
 					Abrigo: data["Abrigo"].(string),
 					Idade:  data["Idade"].(string),
+					Observacao: data["Observacao"].(string),
 				},
 				SheetId:   &sheetId,
 				URL:       &url,
@@ -178,6 +179,7 @@ func FetchSourcesFromFirestore() ([]*objects.Source, error) {
 				Nome:    data["Nome"].(string),
 				URL:     data["URL"].(string),
 				SheetId: data["SheetId"].(string),
+				Observacao: data["Observacao"].(string),
 			})
 		} else {
 			fmt.Fprintln(os.Stderr, "Document does not exist")
