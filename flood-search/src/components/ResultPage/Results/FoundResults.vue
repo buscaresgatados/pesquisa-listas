@@ -25,7 +25,11 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
             <DocumentMagnifyingGlassIcon class="icon-size" />
           </div>
         </a>
-        <a v-if="Url" class="link" target="_blank" :href="Url" > <div class="list-name">Planilha fonte</div> <ArrowTopRightOnSquareIcon class="icon-size" /></a>
+        <a v-if="Url" class="link" target="_blank" :href="Url" >
+          <div class="list-name">
+            <DocumentMagnifyingGlassIcon class="icon-size" />
+          </div>
+        </a>
       </div>
     </div>
   </div>
