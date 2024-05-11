@@ -7,11 +7,15 @@ import (
 	"os"
 	"refugio/objects"
 	"refugio/repository"
+	"refugio/utils"
 	"refugio/utils/cuckoo"
 	"sort"
+	"strings"
 
 	"github.com/algolia/algoliasearch-client-go/v3/algolia/search"
 )
+
+const MaxResults = 50
 
 func GetPessoa(w http.ResponseWriter, r *http.Request) {
 	nome := r.URL.Query().Get("nome")
@@ -39,8 +43,18 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 
 	docIDs := make([]string, 0, len(pessoasSearch))
 	for _, result := range pessoasSearch {
-		docIDs = append(docIDs, result.ObjectID)
+		if strings.HasPrefix(
+			strings.ToLower(utils.RemoveAccents(result.Nome)),
+			strings.ToLower(utils.RemoveAccents(nome)),
+		) {
+			docIDs = append([]string{result.ObjectID}, docIDs...)
+		} else {
+			docIDs = append(docIDs, result.ObjectID)
+		}
 	}
+
+	docIDs = docIDs[:MaxResults]
+
 	pessoas, err := repository.FetchPessoaFromFirestore(docIDs)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
