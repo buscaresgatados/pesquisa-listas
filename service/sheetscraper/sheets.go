@@ -1220,6 +1220,50 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
+			case cfg.id + "LISTA MULHERES!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 1 || len(row) < 2 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Sem informação",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case cfg.id + "IGREJA NOSSA SENHORA DAS GRAÇAS !A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+
+					if i < 4 || len(row) < 1 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "IGREJA NOSSA SENHORA DAS GRAÇAS - NH",
+						Nome:   row[2].(string),
+						Idade:  "",
+					}
+
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
 			case cfg.id + "NOME/ABRIGO!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
