@@ -24,6 +24,7 @@ func GetRecordCount(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
 	}
+
 	w.Write(jsonBytes)
 }
 
