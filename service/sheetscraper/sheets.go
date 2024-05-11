@@ -2285,6 +2285,90 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "Abrigo Santa Clara!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 1 {
+						continue
+					}
+
+					p := objects.Pessoa{
+						Abrigo: "Abrigo Santa Clara",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "SESI!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 1 {
+						continue
+					}
+
+					p := objects.Pessoa{
+						Abrigo: "SESI Cachoeirinha",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "Paróquia Santa Luzia (bairro Fátima)!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 1 {
+						continue
+					}
+
+					p := objects.Pessoa{
+						Abrigo: "Paróquia Santa Luzia - Cachoeirinha",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "Igreja Betel!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 4 || len(row) < 1 {
+						continue
+					}
+
+					p := objects.Pessoa{
+						Abrigo: "Igreja Betel - Cachoeirinha",
+						Nome:   row[0].(string),
+						Idade:  "",
+					}
+
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
 			case "1TVv1WEjrPBpnKsFIV60jz0kWPK6idovmnJDaGg6KKXw" + "Página1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 2 || len(row) < 4 {
