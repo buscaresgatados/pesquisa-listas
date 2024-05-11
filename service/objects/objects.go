@@ -38,4 +38,5 @@ type Source struct {
 	Nome    string
 	SheetId string
 	URL     string
+	Observacao	string
 }
