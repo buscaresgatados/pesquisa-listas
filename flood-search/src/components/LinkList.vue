@@ -1,6 +1,7 @@
 <script setup>
 import { ArrowTopRightOnSquareIcon, DocumentIcon, ExclamationCircleIcon } from '@heroicons/vue/24/outline';
 import LinkComponent from './LinkComponent.vue';
+import Warning from './Warning.vue';
 </script>
 
 <template>
@@ -34,6 +35,8 @@ import LinkComponent from './LinkComponent.vue';
         <DocumentIcon class="icon-decoration"/>
         <div class="text-base-bold">Listas consultadas</div>
         <p>Em tempo real, atualizamos nosso banco de dados com os nomes de pessoas resgatadas nas enchentes, com base nas seguintes listas:</p>
+
+        <Warning  title="A listagem abaixo pode estar desatualizada" text="A listagem de listas consultadas ainda não está sendo atualizada em tempo real, atualmente consultamos mais de 70 listas"/>
 
       <div class="link-list">
         <div class="link-list--col">
