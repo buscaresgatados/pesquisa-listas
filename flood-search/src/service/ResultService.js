@@ -12,7 +12,6 @@ const ResultService = {
           },
         }
       );
-      console.log({ response });
       return response.data;
     } catch (error) {
       throw new Error(`Erro ao buscar dados: ${error}`);
