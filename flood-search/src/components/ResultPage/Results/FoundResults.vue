@@ -20,7 +20,11 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
         <p v-if="Idade">Idade: {{ Idade }}</p>
         <p>Abrigo: {{ Abrigo }}<br></p>
         <p v-if="Observacao">Obs: {{ Observacao }}</p>
-        <a v-if="listId" class="link" target="_blank" :href="`https://docs.google.com/spreadsheets/u/0/d/${listId}`" > <div class="list-name">Planilha fonte</div> <ArrowTopRightOnSquareIcon class="icon-size" /></a>
+        <a v-if="listId" class="link" target="_blank" :href="`https://docs.google.com/spreadsheets/u/0/d/${listId}`" >
+          <div class="list-name">
+            <DocumentMagnifyingGlassIcon class="icon-size" />
+          </div>
+        </a>
         <a v-if="Url" class="link" target="_blank" :href="Url" > <div class="list-name">Planilha fonte</div> <ArrowTopRightOnSquareIcon class="icon-size" /></a>
       </div>
     </div>
@@ -53,9 +57,8 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
   }
   .inner-result-container{
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: space-between;
-    flex-wrap: wrap;
   }
 
   .found-results{
