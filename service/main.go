@@ -73,6 +73,7 @@ var webCmd = &cobra.Command{
 
 		router.Handle("/pessoa", AuthMiddleware(http.HandlerFunc(handlers.GetPessoa))).Methods(http.MethodGet, http.MethodOptions).Queries()
 		router.Handle("/pessoa/count", AuthMiddleware(http.HandlerFunc(handlers.GetRecordCount))).Methods(http.MethodGet, http.MethodOptions)
+		router.Handle("/pessoa/most_recent", AuthMiddleware(http.HandlerFunc(handlers.GetMostRecent))).Methods(http.MethodGet, http.MethodOptions)
 		router.Handle("/sources", AuthMiddleware(http.HandlerFunc(handlers.GetSources))).Methods(http.MethodGet, http.MethodOptions)
 		router.Handle("/auth/me", AuthMiddleware(http.HandlerFunc(AuthMeHandler))).Methods(http.MethodGet, http.MethodOptions)
 		router.Handle("/health/ready", http.HandlerFunc(handlers.Ready)).Methods(http.MethodGet, http.MethodOptions)

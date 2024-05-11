@@ -7,6 +7,7 @@ import (
 	"os"
 	"refugio/objects"
 	"refugio/repository"
+	"refugio/utils/cuckoo"
 	"sort"
 	"strings"
 
@@ -98,5 +99,41 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
+	w.Write(jsonBytes)
+}
+
+func GetRecordCount(w http.ResponseWriter, r *http.Request) {
+	filter, err := cuckoo.GetCuckooFilter(repository.PessoasAbrigos)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error getting filter: %v\n", err)
+	}
+
+	var result objects.PessoaCountResult
+	result.Total = int(filter.Count())
+	jsonBytes, err := json.Marshal(result)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error marshalling JSON: %v\n", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	w.Write(jsonBytes)
+}
+
+func GetMostRecent(w http.ResponseWriter, r *http.Request) {
+	most_recent, err := repository.FetchMostRecent(repository.PessoasAbrigos)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error fetching most recent: %v\n", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+	var result objects.PessoaMostRecentResult
+	result.Timestamp = most_recent
+	jsonBytes, err := json.Marshal(result)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error marshalling JSON: %v\n", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
 	w.Write(jsonBytes)
 }

@@ -25,6 +25,10 @@ type PessoaCountResult struct {
 	Total int `json:"total_records"`
 }
 
+type PessoaMostRecentResult struct {
+	Timestamp *time.Time `json:"timestamp"`
+}
+
 type AccessLog struct {
 	Trace  string `json:"logging.googleapis.com/trace"`
 	UserIP string `json:"user_ip"`
