@@ -55,6 +55,7 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column;
   }
 
   .found-results{
