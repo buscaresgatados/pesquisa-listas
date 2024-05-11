@@ -15,7 +15,7 @@ import (
 	"github.com/algolia/algoliasearch-client-go/v3/algolia/search"
 )
 
-const MaxResults = 50
+const MaxResults = 100
 
 func GetPessoa(w http.ResponseWriter, r *http.Request) {
 	nome := r.URL.Query().Get("nome")
