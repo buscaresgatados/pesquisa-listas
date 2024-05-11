@@ -20,14 +20,14 @@ import { DocumentMagnifyingGlassIcon } from '@heroicons/vue/24/solid'
         <p v-if="Idade">Idade: {{ Idade }}</p>
         <p>Abrigo: {{ Abrigo }}<br></p>
         <p v-if="Observacao">Obs: {{ Observacao }}</p>
-        <a v-if="listId" class="link" target="_blank" :href="`https://docs.google.com/spreadsheets/u/0/d/${listId}`" >
+        <a v-if="listId" style="padding: 12px;" class="link" target="_blank" :href="`https://docs.google.com/spreadsheets/u/0/d/${listId}`" >
           <div class="list-name">
-            <DocumentMagnifyingGlassIcon class="icon-size" />
+            <DocumentMagnifyingGlassIcon style="width: 24px; height: 24px;" />
           </div>
         </a>
         <a v-if="Url" class="link" target="_blank" :href="Url" >
           <div class="list-name">
-            <DocumentMagnifyingGlassIcon class="icon-size" />
+            <DocumentMagnifyingGlassIcon style="width: 24px; height: 24px;" />
           </div>
         </a>
       </div>
