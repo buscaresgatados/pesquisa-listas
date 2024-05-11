@@ -104,7 +104,7 @@ func FetchPessoaFromFirestore(docIDs []string) ([]*objects.PessoaResult, error) 
 					Nome:   data["Nome"].(string),
 					Abrigo: data["Abrigo"].(string),
 					Idade:  data["Idade"].(string),
-					Ubservacao: data["Observacao"].(string),
+					Observacao: data["Observacao"].(string),
 				},
 				SheetId:   &sheetId,
 				URL:       &url,
