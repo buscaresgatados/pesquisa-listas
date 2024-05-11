@@ -29,7 +29,7 @@ var Config []SheetConfig = []SheetConfig{
 	},
 	{
 		id:          "1f5gofOOv4EFYWhVqwPWbgF2M-7uHrJrCMiP7Ug4y6lQ",
-		sheetRanges: []string{"CADASTRO_EM_TEMPO_REAL!A1:ZZ"},
+		sheetRanges: []string{"CADASTRO_ABRIGADOS!A1:ZZ"},
 		name:        "LISTA DESABRIGADOS",
 	},
 	{
@@ -113,7 +113,6 @@ var Config []SheetConfig = []SheetConfig{
 	{id: "1-xhmS1VQ95LFI05XG8o9JO3mPk8KxQtrxAZe4GNYO3I",
 		sheetRanges: []string{
 			"05/05 PONTAL!A1:ZZ",
-			"06/05 PONTAL!A1:ZZ",
 			"05/05 GASÔMETRO (NÃO MEXER!)!A1:ZZ",
 			"06/05 GASÔMETRO (NÃO MEXER!)!A1:ZZ",
 			"04/05 GASÔMETRO (NÃO MEXER!)!A1:ZZ",

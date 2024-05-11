@@ -9,10 +9,18 @@ import (
 	"golang.org/x/text/language"
 )
 
+/* PessoaResult validation and cleaning */
 func (p *PessoaResult) Clean() *PessoaResult {
 	p.Nome = cleanNome(p.Nome)
 	p.Abrigo = cleanCommon(p.Abrigo)
 
+	return p
+}
+
+func (p *PessoaResult) DeduplicateAbrigo(abrigosMapping map[string]string) *PessoaResult {
+	if abrigoDedup, ok := abrigosMapping[p.Abrigo]; ok {
+		p.Abrigo = abrigoDedup
+	}
 	return p
 }
 
@@ -30,6 +38,10 @@ func (p *PessoaResult) Validate() (bool, *PessoaResult) {
 		return false, p
 	}
 	return true, p
+}
+
+func (p *PessoaResult) AggregateKey() string {
+	return strings.ToLower(onlyLettersAndNumbers(p.Nome + p.Abrigo))
 }
 
 func cleanNome(name string) string {
@@ -61,10 +73,6 @@ func cleanCommon(str string) string {
 
 	str = strings.Replace(str, "/", "", -1)
 	return str
-}
-
-func (p *PessoaResult) AggregateKey() string {
-	return strings.ToLower(onlyLettersAndNumbers(p.Nome + p.Abrigo))
 }
 
 func onlyLettersAndNumbers(str string) string {

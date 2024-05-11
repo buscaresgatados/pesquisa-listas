@@ -52,8 +52,9 @@ func Scrape(isDryRun bool) {
 		fmt.Fprintf(os.Stderr, "Error getting cuckoo filter: %v", err)
 		return
 	}
-	for _, cfg := range Config {
 
+	abrigoMap := getAbrigosMapping()
+	for _, cfg := range Config {
 		if cfg.id != "1ym1_GhBA47LhH97HhggICESiUbKSH-e2Oii1peh6QF0" { // Planilhão
 			serializedSources = append(serializedSources, &objects.Source{
 				Nome:    cfg.name,
@@ -191,14 +192,14 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case cfg.id + "CADASTRO_EM_TEMPO_REAL!A1:ZZ":
+			case cfg.id + "CADASTRO_ABRIGADOS!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 3 {
 						continue
 					}
 					p := objects.Pessoa{
-						Abrigo: row[2].(string),
-						Nome:   row[1].(string),
+						Abrigo: row[1].(string),
+						Nome:   row[2].(string),
 						Idade:  "",
 					}
 					if os.Getenv("ENVIRONMENT") == "local" {
@@ -2221,22 +2222,14 @@ func Scrape(isDryRun bool) {
 				}
 			case "1FRHLIpLOE0xr7IwecZHU6Q6QMkescPuqjtxmjIb2GI8" + "CTG Carreteiros!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					if i < 3 || len(row) < 1 {
+					if i < 4 || len(row) < 1 {
 						continue
 					}
-					var p objects.Pessoa
-					var idade string
 
-					if len(row) > 1 {
-						idade = row[1].(string)
-					} else {
-						idade = ""
-					}
-
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "CTG Carreteiros",
 						Nome:   row[0].(string),
-						Idade:  idade,
+						Idade:  "",
 					}
 
 					if os.Getenv("ENVIRONMENT") == "local" {
@@ -2253,9 +2246,8 @@ func Scrape(isDryRun bool) {
 					if i < 2 || len(row) < 4 {
 						continue
 					}
-					var p objects.Pessoa
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "SESI",
 						Nome:   row[0].(string),
 						Idade:  row[3].(string),
@@ -2386,7 +2378,7 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case "1kKfTi8N-XL2bcML8Xtf3cT1FNIzinqh4woHDjHn2Bgs" + "ATUALIZADO 08/07!A1:ZZ":
+			case "1kKfTi8N-XL2bcML8Xtf3cT1FNIzinqh4woHDjHn2Bgs" + "ATUALIZADO 08/05!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 2 || len(row) < 3 {
 						continue
@@ -2781,7 +2773,8 @@ func Scrape(isDryRun bool) {
 
 			var cleanedData []*objects.PessoaResult
 			for _, pessoa := range serializedData {
-				cleanPessoa := pessoa.Clean()
+				pessoaWithDeduplicatedAbrigo := pessoa.DeduplicateAbrigo(abrigoMap)
+				cleanPessoa := pessoaWithDeduplicatedAbrigo.Clean()
 				isValid, validPessoa := cleanPessoa.Validate()
 				if !isValid {
 					if os.Getenv("ENVIRONMENT") == "local" {
@@ -2802,12 +2795,10 @@ func Scrape(isDryRun bool) {
 
 				cleanedData = append(cleanedData, validPessoa)
 			}
-
 			if !isDryRun {
 				repository.AddPessoasToFirestore(cleanedData)
 				repository.UpdateFilterOnFirestore(Pessoa, filter.Encode())
 			}
-
 			fmt.Fprintf(os.Stdout, "Scraped data from sheetId %s, range %s. %d results. %d results after cleanup. Dry run? %v", cfg.id, sheetRange, len(serializedData), len(cleanedData), isDryRun)
 			// Clearing arrays for next iteration, I don't think this is strictly needed but just in case.
 			serializedData = serializedData[:0]
@@ -2815,7 +2806,6 @@ func Scrape(isDryRun bool) {
 			fmt.Fprintln(os.Stdout, "")
 		}
 	}
-
 	// Remove duplicate sources
 	uniqueSources := []*objects.Source{}
 	seen := map[string]bool{}
