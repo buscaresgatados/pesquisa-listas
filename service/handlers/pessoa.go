@@ -52,8 +52,9 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 			docIDs = append(docIDs, result.ObjectID)
 		}
 	}
-
-	docIDs = docIDs[:MaxResults]
+	if len(docIDs) > MaxResults {
+		docIDs = docIDs[:MaxResults]
+	}
 
 	pessoas, err := repository.FetchPessoaFromFirestore(docIDs)
 	if err != nil {
