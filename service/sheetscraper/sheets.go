@@ -928,7 +928,7 @@ func Scrape(isDryRun bool) {
 				}
 			case "1Gf78W5yY0Yiljg-E0rYqbRjxYmBPcG2BtfpGwFk-K5M" + "Página1!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					if i < 2 || len(row) < 1 {
+					if i < 2 || len(row) < 2 {
 						continue
 					}
 					p := objects.Pessoa{
