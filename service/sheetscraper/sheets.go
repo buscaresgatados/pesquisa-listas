@@ -1232,7 +1232,6 @@ func Scrape(isDryRun bool) {
 						Idade:  "",
 					}
 
-
 					if os.Getenv("ENVIRONMENT") == "local" {
 						fmt.Fprintf(os.Stdout, "%+v\n", p)
 					}
@@ -1245,7 +1244,7 @@ func Scrape(isDryRun bool) {
 			case cfg.id + "IGREJA NOSSA SENHORA DAS GRAÇAS !A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
-					if i < 4 || len(row) < 1 {
+					if i < 4 || len(row) < 3 {
 						continue
 					}
 					p := objects.Pessoa{
@@ -1253,7 +1252,6 @@ func Scrape(isDryRun bool) {
 						Nome:   row[2].(string),
 						Idade:  "",
 					}
-
 
 					if os.Getenv("ENVIRONMENT") == "local" {
 						fmt.Fprintf(os.Stdout, "%+v\n", p)
