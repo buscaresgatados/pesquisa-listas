@@ -106,6 +106,7 @@ jobs:
           DOCKER_REGISTRY: ${{ vars.DOCKER_REGISTRY }}
           ALGOLIA_CLIENT: ${{ secrets.ALGOLIA_CLIENT }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          DISCORD_SOURCES_WEBHOOK: ${{ vars.DISCORD_SOURCES_WEBHOOK }}
         run: |
           gcloud --project=${{ vars.GCP_PROJECT }} \
             run jobs deploy refugio-rs-scrape-prd \
@@ -115,7 +116,7 @@ jobs:
             --memory 512Mi \
             --command /server \
             --args "scrape","--isDryRun=false" \
-            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json"
+            --set-env-vars=SHEETS_SERVICE_ACCOUNT_JSON="sheetsServiceAcc.json",ALGOLIA_CLIENT=$ALGOLIA_CLIENT,ALGOLIA_API_KEY=$ALGOLIA_API_KEY,ALGOLIA_INDEX="PessoasAbrigoINDEX",FIRESTORE_PROJECT_ID=${{ vars.GCP_PROJECT }},AUTH_KEYS_FILE="authKeys.json",DISCORD_SOURCES_WEBHOOK=$DISCORD_SOURCES_WEBHOOK
       - name: Discord Webhook Action
         uses: tsickert/discord-webhook@v6.0.0
         env:
