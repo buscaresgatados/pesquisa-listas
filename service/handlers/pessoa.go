@@ -7,6 +7,7 @@ import (
 	"os"
 	"refugio/objects"
 	"refugio/repository"
+	"refugio/sheetscraper"
 	"refugio/utils"
 	"refugio/utils/cuckoo"
 	"sort"
@@ -34,7 +35,6 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 
 	var pessoasSearch []objects.PessoaSearchResult
 	err = results.UnmarshalHits(&pessoasSearch)
-
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -88,7 +88,7 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetRecordCount(w http.ResponseWriter, r *http.Request) {
-	filter, err := cuckoo.GetCuckooFilter(repository.PessoasAbrigos)
+	filter, err := cuckoo.GetCuckooFilter(sheetscraper.Pessoa)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error getting filter: %v\n", err)
 	}
