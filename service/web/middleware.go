@@ -50,7 +50,12 @@ func BaseRequestMiddleware(next http.Handler) http.Handler {
 
 		next.ServeHTTP(w, r)
 
-		logJson, err := json.Marshal(ctx.Value(ACCESS_LOG_CONTEXT_KEY))
+		accessLog := ctx.Value(ACCESS_LOG_CONTEXT_KEY).(*objects.AccessLog)
+		logJson, err := json.Marshal(accessLog)
+
+		if *accessLog.Trace == "" {
+			return
+		}
 
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
