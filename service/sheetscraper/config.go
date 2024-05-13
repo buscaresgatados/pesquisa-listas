@@ -44,8 +44,7 @@ var Config []SheetConfig = []SheetConfig{
 	},
 	{
 		id: "1-1q4c8Ns6M9noCEhQqBE6gy3FWUv-VQgeUO9c7szGIM",
-		sheetRanges: []string
-		{
+		sheetRanges: []string{
 			"COLÉGIO ADVENTISTA DE CANOAS - CACN!A1:ZZ",
 			"ESCOLA ANDRÉ PUENTE!A1:ZZ",
 			"EMEF WALTER PERACCHI DE BARCELLOS!A1:ZZ",

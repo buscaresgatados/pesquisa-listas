@@ -79,14 +79,16 @@ func Scrape(isDryRun bool) {
 						continue
 					}
 					p := objects.Pessoa{
-						Abrigo:     "Colégio Adventista de Canoas",
-						Nome:       row[2].(string),
-						Observacao: "Sala " + row[0].(string),
+						Abrigo: "Colégio Adventista de Canoas",
+						Nome:   row[2].(string),
 					}
 					if len(row) > 4 {
 						p.Idade = row[3].(string)
 					} else {
 						p.Idade = ""
+					}
+					if len(row) > 8 {
+						p.Observacao = row[8].(string)
 					}
 					if os.Getenv("ENVIRONMENT") == "local" {
 						fmt.Fprintf(os.Stdout, "%+v\n", p)
