@@ -27,11 +27,11 @@ import Warning from './Warning.vue';
         </div> -->
 
 
-        <p>Conhece listas de resgate que ainda não temos na plataforma? Envie sua sugestão para <a href="mailto:buscaresgatados@gmail.com">buscaresgatados@gmail.com</a></p>
+        <p>Gostaria de enviar uma lista para adicionarmos à nossa plataforma? Mande sua sugestão para <a href="mailto:buscaresgatados@gmail.com">buscaresgatados@gmail.com</a></p>
       </div>
 
 
-      <div class="section">
+      <!-- <div class="section">
         <DocumentIcon class="icon-decoration"/>
         <div class="text-base-bold">Listas consultadas</div>
         <p>Em tempo real, atualizamos nosso banco de dados com os nomes de pessoas resgatadas nas enchentes, com base nas seguintes listas:</p>
@@ -95,7 +95,7 @@ import Warning from './Warning.vue';
             <LinkComponent url="https://docs.google.com/spreadsheets/d/1TvBXpT1vZpuAffc2rb8VE2mBMEFnG1_sqIlIL4b1PuA/edit#gid=1123798222" name="Abrigos Portão - RS" />
           </div>
         </div>
-      </div>
+      </div> -->
 
   </div>
 </template>
