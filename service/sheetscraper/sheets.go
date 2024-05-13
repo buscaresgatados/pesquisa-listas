@@ -99,30 +99,30 @@ func Scrape(isDryRun bool) {
 						fmt.Fprintf(os.Stdout, "%+v\n", p)
 					}
 				}
-			// case "1Kw8_Tl4cE4_hrb2APfSlNRli7IxgBbwGXq9d7aNSTzE" + "Cadastro inicial!A1:ZZ":
-			// 	for i, row := range content.([][]interface{}) {
-			// 		if i < 6 || len(row) < 2 {
-			// 			continue
-			// 		}
-			// 		p := objects.Pessoa{
-			// 			Abrigo: "Escola Aurélio Reis",
-			// 			Nome:   row[1].(string),
-			// 		}
-			// 		if row[2].(string) != "" {
-			// 			p.Idade = row[2].(string)
-			// 		} else {
-			// 			p.Idade = ""
-			// 		}
-			// 		if os.Getenv("ENVIRONMENT") == "local" {
-			// 			fmt.Fprintf(os.Stdout, "%+v\n", p)
-			// 		}
+			case "1Kw8_Tl4cE4_hrb2APfSlNRli7IxgBbwGXq9d7aNSTzE" + "Cadastro inicial!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 6 || len(row) < 2 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Escola Aurélio Reis",
+						Nome:   row[1].(string),
+					}
+					if row[2].(string) != "" {
+						p.Idade = row[2].(string)
+					} else {
+						p.Idade = ""
+					}
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 
-			// 		serializedData = append(serializedData, &objects.PessoaResult{
-			// 			Pessoa:    &p,
-			// 			SheetId:   &cfg.id,
-			// 			Timestamp: time.Now(),
-			// 		})
-			// 	}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
 			case "1--z2fbczdFT4RSoji7jXc2jDDU5HqWgAU93NuROBQ78" + "Queila!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 4 {
