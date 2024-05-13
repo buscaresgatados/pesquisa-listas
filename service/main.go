@@ -1,94 +1,21 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
-	"refugio/handlers"
-	"refugio/objects"
 	"refugio/sheetscraper"
-	"strings"
+	"refugio/web"
+	"refugio/web/handlers"
 
-	"cloud.google.com/go/compute/metadata"
 	"github.com/gorilla/mux"
 	"github.com/spf13/cobra"
 )
 
 var (
-	port     string
-	authKeys []string
+	port string
 )
-
-func AuthMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Preflight has no Authorization header
-		if r.Method == http.MethodOptions || os.Getenv("ENVIRONMENT") == "local" {
-			next.ServeHTTP(w, r)
-			return
-		}
-		key := r.Header.Get("Authorization")
-		if !isValidKey(key) {
-			http.Error(w, "Forbidden", http.StatusForbidden)
-			return
-		}
-		next.ServeHTTP(w, r)
-	})
-}
-
-func BaseRequestMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Basic headers
-		w.Header().Set("Access-Control-Allow-Headers", "*")
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Cache-Control", "private")
-		if r.Method == http.MethodOptions {
-			return
-		}
-
-		if os.Getenv("ENVIRONMENT") != "local" {
-			// Trace logging for Cloud Run
-			projectID, _ := metadata.ProjectID()
-
-			var trace string
-			if projectID != "" {
-				traceHeader := r.Header.Get("X-Cloud-Trace-Context")
-				traceParts := strings.Split(traceHeader, "/")
-				if len(traceParts) > 0 && len(traceParts[0]) > 0 {
-					trace = fmt.Sprintf("projects/%s/traces/%s", projectID, traceParts[0])
-				}
-			}
-
-			log := &objects.AccessLog{
-				Trace:  trace,
-				UserIP: r.Header.Get("X-Forwarded-For"),
-			}
-			logJson, err := json.Marshal(log)
-			if err != nil {
-				fmt.Fprintln(os.Stderr, err)
-			} else {
-				fmt.Fprintln(os.Stdout, string(logJson))
-			}
-		}
-		next.ServeHTTP(w, r)
-	})
-}
-
-func isValidKey(key string) bool {
-	for _, validKey := range authKeys {
-		if key == validKey {
-			return true
-		}
-	}
-	return false
-}
-
-func AuthMeHandler(w http.ResponseWriter, r *http.Request) {
-	response := map[string]string{"status": "success", "message": "Authenticated successfully"}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(response)
-}
 
 func init() {
 	port = os.Getenv("PORT")
@@ -111,15 +38,19 @@ var webCmd = &cobra.Command{
 	Short: "Start the web server",
 	Run: func(cmd *cobra.Command, args []string) {
 		router := mux.NewRouter()
-		router.Use(BaseRequestMiddleware)
+		router.Use(web.BaseRequestMiddleware)
+		/* /pessoa routes with caching and Auth */
+		pessoaSubrouter := router.PathPrefix("/pessoa").Subrouter()
+		pessoaSubrouter.Use(web.AuthMiddleware, web.CacheMiddleware)
+		pessoaSubrouter.HandleFunc("", handlers.GetPessoa).Methods(http.MethodGet, http.MethodOptions).Queries("nome", "{nome:[\\p{L}\\s0-9]{3,}}")
+		pessoaSubrouter.HandleFunc("/count", handlers.GetRecordCount).Methods(http.MethodGet, http.MethodOptions)
+		pessoaSubrouter.HandleFunc("/most_recent", handlers.GetMostRecent).Methods(http.MethodGet, http.MethodOptions)
 
-		router.Handle("/pessoa", AuthMiddleware(http.HandlerFunc(handlers.GetPessoa))).Methods(http.MethodGet, http.MethodOptions).Queries()
-		router.Handle("/pessoa/count", AuthMiddleware(http.HandlerFunc(handlers.GetRecordCount))).Methods(http.MethodGet, http.MethodOptions)
-		router.Handle("/pessoa/most_recent", AuthMiddleware(http.HandlerFunc(handlers.GetMostRecent))).Methods(http.MethodGet, http.MethodOptions)
-		router.Handle("/sources", AuthMiddleware(http.HandlerFunc(handlers.GetSources))).Methods(http.MethodGet, http.MethodOptions)
-		router.Handle("/auth/me", AuthMiddleware(http.HandlerFunc(AuthMeHandler))).Methods(http.MethodGet, http.MethodOptions)
-		router.Handle("/health/ready", http.HandlerFunc(handlers.Ready)).Methods(http.MethodGet, http.MethodOptions)
-		router.Handle("/health/live", http.HandlerFunc(handlers.Live)).Methods(http.MethodGet, http.MethodOptions)
+		router.Handle("/sources", web.AuthMiddleware(http.HandlerFunc(handlers.GetSources))).Methods(http.MethodGet, http.MethodOptions)
+		router.Handle("/auth/me", web.AuthMiddleware(http.HandlerFunc(handlers.AuthMe))).Methods(http.MethodGet, http.MethodOptions)
+
+		router.HandleFunc("/health/ready", handlers.Ready).Methods(http.MethodGet, http.MethodOptions)
+		router.HandleFunc("/health/live", handlers.Live).Methods(http.MethodGet, http.MethodOptions)
 
 		http.Handle("/", router)
 
@@ -141,18 +72,5 @@ var scraperCmd = &cobra.Command{
 }
 
 func init() {
-	keyFile, err := os.ReadFile(os.Getenv("AUTH_KEYS_FILE"))
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error reading auth keys file %v", err)
-	}
-	var keys map[string]string
-
-	err = json.Unmarshal(keyFile, &keys)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error unmarshalling auth keys %v", err)
-	}
-	for _, v := range keys {
-		authKeys = append(authKeys, v)
-	}
 	scraperCmd.Flags().Bool("isDryRun", false, "Enable dry-run mode without making actual changes")
 }

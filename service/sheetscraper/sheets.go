@@ -58,6 +58,11 @@ func Scrape(isDryRun bool) {
 		return
 	}
 
+	if os.Getenv("ENVIRONMENT") == "local" && !isDryRun {
+		log.Panicln("Cannot run in local environment without dry run")
+		return
+	}
+
 	abrigoMap := getAbrigosMapping()
 
 	for _, cfg := range Config {
@@ -89,6 +94,27 @@ func Scrape(isDryRun bool) {
 			sheetNameAndRange := cfg.id + sheetRange
 			switch sheetNameAndRange {
 			// Offsets e customizações pra cada planilha hardcoded por enquanto
+			case "1-1q4c8Ns6M9noCEhQqBE6gy3FWUv-VQgeUO9c7szGIM" + "COLÉGIO ADVENTISTA DE CANOAS - CACN!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 2 || len(row) < 3 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: "Colégio Adventista de Canoas",
+						Nome:   row[2].(string),
+					}
+					if len(row) > 4 {
+						p.Idade = row[3].(string)
+					} else {
+						p.Idade = ""
+					}
+					if len(row) > 8 {
+						p.Observacao = row[8].(string)
+					}
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+				}
 			case "1Kw8_Tl4cE4_hrb2APfSlNRli7IxgBbwGXq9d7aNSTzE" + "Cadastro inicial!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 6 || len(row) < 2 {
@@ -456,15 +482,10 @@ func Scrape(isDryRun bool) {
 					}
 
 					var p objects.Pessoa
-					pattern := `^(.*?)(\d+)`
-					re := regexp.MustCompile(pattern)
-					matches := re.FindStringSubmatch(row[0].(string))
-					if len(matches) > 0 {
-						p = objects.Pessoa{
-							Abrigo: "Colégio Espirito Santo",
-							Nome:   matches[1],
-							Idade:  matches[2],
-						}
+					p = objects.Pessoa{
+						Abrigo: "Colégio Espirito Santo",
+						Nome:   row[0].(string),
+						Idade:  row[1].(string),
 					}
 
 					if os.Getenv("ENVIRONMENT") == "local" {
@@ -983,10 +1004,10 @@ func Scrape(isDryRun bool) {
 				}
 			case cfg.id + "CIEP!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
-					if i < 4 || len(row) < 3 {
+					if i < 4 || len(row) < 2 {
 						continue
 					}
-					nome := row[2].(string)
+					nome := row[1].(string)
 					if strings.Contains(nome, "MENOR DE 1") {
 						break
 					}
@@ -1093,13 +1114,17 @@ func Scrape(isDryRun bool) {
 			case cfg.id + "PARQUE DO TRABALHADOR!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 
-					if i < 4 || len(row) < 3 {
+					if i < 4 || len(row) < 2 {
 						continue
 					}
 					p := objects.Pessoa{
 						Abrigo: "Parque do Trabalhador",
-						Nome:   row[2].(string),
-						Idade:  "",
+						Nome:   row[1].(string),
+					}
+					if len(row) > 5 {
+						p.Idade = row[5].(string)
+					} else {
+						p.Idade = ""
 					}
 
 					if os.Getenv("ENVIRONMENT") == "local" {
@@ -1341,7 +1366,7 @@ func Scrape(isDryRun bool) {
 					})
 				}
 
-			case "1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY" + "Página1!A1:ZZ":
+			case "1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY" + "Lista Abrigados!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 1 {
 						continue
@@ -1520,11 +1545,11 @@ func Scrape(isDryRun bool) {
 					var nome string
 
 					nome = row[1].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = row[3].(string)
 					if abrigo == "" {
@@ -1555,11 +1580,11 @@ func Scrape(isDryRun bool) {
 					var nome string
 
 					nome = row[1].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = row[4].(string)
 					if abrigo == "" {
@@ -1590,11 +1615,11 @@ func Scrape(isDryRun bool) {
 					var nome string
 
 					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = fmt.Sprintf("Ulbra Canoas - Prédio %s - Sala %s", row[3].(string), row[4].(string))
 
@@ -1625,11 +1650,11 @@ func Scrape(isDryRun bool) {
 					var idade string
 
 					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 					if len(row) > 4 {
 						idade = row[4].(string)
 					} else {
@@ -1667,11 +1692,11 @@ func Scrape(isDryRun bool) {
 					var idade string
 
 					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 					if len(row) > 4 {
 						idade = row[4].(string)
 					} else {
@@ -1709,11 +1734,11 @@ func Scrape(isDryRun bool) {
 					var idade string
 
 					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 					if len(row) > 4 {
 						idade = row[4].(string)
 					} else {
@@ -1751,11 +1776,11 @@ func Scrape(isDryRun bool) {
 					var idade string
 
 					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 					if len(row) > 4 {
 						idade = row[4].(string)
 					} else {
@@ -1793,11 +1818,11 @@ func Scrape(isDryRun bool) {
 					var idade string
 
 					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 					if len(row) > 4 {
 						idade = row[4].(string)
 					} else {
@@ -1831,14 +1856,6 @@ func Scrape(isDryRun bool) {
 					}
 					var p objects.Pessoa
 					var abrigo string
-					var nome string
-
-					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = row[1].(string)
 					if abrigo == "" {
@@ -1846,7 +1863,7 @@ func Scrape(isDryRun bool) {
 					}
 					p = objects.Pessoa{
 						Abrigo: abrigo,
-						Nome:   nome,
+						Nome:   row[0].(string),
 						Idade:  "",
 					}
 
@@ -1871,11 +1888,6 @@ func Scrape(isDryRun bool) {
 					var idade string
 
 					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
 
 					if len(row) > 4 {
 						idade = row[4].(string)
@@ -1913,11 +1925,11 @@ func Scrape(isDryRun bool) {
 					var nome string
 
 					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = row[2].(string)
 					if abrigo == "" {
@@ -1949,11 +1961,11 @@ func Scrape(isDryRun bool) {
 					var nome string
 
 					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = row[1].(string)
 					if abrigo == "" {
@@ -1985,11 +1997,11 @@ func Scrape(isDryRun bool) {
 					var nome string
 
 					nome = row[0].(string)
-					reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					if err != nil {
-						log.Fatal(err)
-					}
-					nome = reg.ReplaceAllString(nome, "")
+					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
+					// if err != nil {
+					// 	log.Fatal(err)
+					// }
+					// nome = reg.ReplaceAllString(nome, "")
 
 					abrigo = row[1].(string)
 					if abrigo == "" {
@@ -2486,7 +2498,6 @@ func Scrape(isDryRun bool) {
 					}
 					var p objects.Pessoa
 
-					var observacao string
 					var abrigo string
 
 					if len(row) > 2 {
@@ -2495,17 +2506,10 @@ func Scrape(isDryRun bool) {
 						abrigo = ""
 					}
 
-					if len(row) > 3 {
-						observacao = row[3].(string)
-					} else {
-						observacao = ""
-					}
-
 					p = objects.Pessoa{
-						Abrigo:     abrigo,
-						Nome:       row[0].(string),
-						Idade:      "",
-						Observacao: observacao,
+						Abrigo: abrigo,
+						Nome:   row[0].(string),
+						Idade:  "",
 					}
 
 					if os.Getenv("ENVIRONMENT") == "local" {
