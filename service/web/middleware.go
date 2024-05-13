@@ -39,10 +39,11 @@ func BaseRequestMiddleware(next http.Handler) http.Handler {
 		log := &objects.AccessLog{}
 
 		ctx := context.WithValue(r.Context(), ACCESS_LOG_CONTEXT_KEY, log)
-
+		r = r.WithContext(ctx)
 		if os.Getenv("ENVIRONMENT") != "local" {
 			trace := getTrace(r)
 			userIp := r.Header.Get("X-Forwarded-For")
+
 			log.Trace = &trace
 			log.UserIP = &userIp
 		}
@@ -73,9 +74,11 @@ func AuthMiddleware(next http.Handler) http.Handler {
 			return
 		} else {
 			ctx := r.Context()
-			if accessLog := ctx.Value(ACCESS_LOG_CONTEXT_KEY); accessLog != nil {
+			accessLog := ctx.Value(ACCESS_LOG_CONTEXT_KEY)
+			if accessLog != nil {
 				accessLog.(*objects.AccessLog).KeyUser = user
 			}
+			r = r.WithContext(ctx)
 		}
 		next.ServeHTTP(w, r)
 	})
