@@ -96,10 +96,8 @@ func CacheMiddleware(next http.Handler) http.Handler {
 		if cacheKey == "" {
 			cacheKey = r.URL.Path
 		}
-		fmt.Println(cacheKey)
 
 		if result, ok := cache.Get(cacheKey); ok {
-			fmt.Println("Cache hit")
 			jsonBytes, err := json.Marshal(result)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
