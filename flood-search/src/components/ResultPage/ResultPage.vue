@@ -36,9 +36,9 @@ onMounted(search);
           <div v-if="isLoading" class="lds-ring"><div></div><div></div><div></div><div></div></div>
         </div>
         <Result v-if="!isLoading" :searchResults="searchResults"/>
-       <WhatsappAPI v-if="searchResults.length==0" :name="term" />
-       <ResultFooter  v-if="searchResults.length!=0" :name="term" showName/>
-       <ResultFooter v-if="searchResults.length==0"/>
+       <WhatsappAPI v-if="!searchResults" :name="term" />
+       <ResultFooter  v-if="searchResults && searchResults.length!=0" :name="term" showName/>
+       <ResultFooter v-if="!searchResults"/>
     </div>
   </div>
   

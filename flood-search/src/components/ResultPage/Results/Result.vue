@@ -10,7 +10,8 @@ defineProps({
 <template>
   <div class="results-wrapper">
     <div class="results-wrapper-top">
-      <p class="found-results">{{ searchResults.length }} resultados encontrados</p>
+      <p v-if="searchResults" class="found-results">{{ searchResults.length }} resultados encontrados</p>
+      <p v-if="!searchResults" class="found-results">0 resultados encontrados</p>
       <!-- We'll add it once we have the endpoint -->
       <!-- <p class="last-update">Atualizado às {xx:xx} do dia {xx de Maio}</p> -->
     </div>
