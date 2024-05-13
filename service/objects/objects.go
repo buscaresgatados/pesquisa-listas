@@ -30,13 +30,14 @@ type PessoaMostRecentResult struct {
 }
 
 type AccessLog struct {
-	Trace  string `json:"logging.googleapis.com/trace"`
-	UserIP string `json:"user_ip"`
+	Trace   *string `json:"logging.googleapis.com/trace"`
+	UserIP  *string `json:"user_ip"`
+	KeyUser *string `json:"key_user"`
 }
 
 type Source struct {
-	Nome    string
-	SheetId string
-	URL     string
-	Observacao	string
+	Nome       string
+	SheetId    string
+	URL        string
+	Observacao string
 }

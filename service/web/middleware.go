@@ -2,6 +2,7 @@ package web
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -16,8 +17,14 @@ import (
 )
 
 var (
-	authKeys []string
+	authKeys map[string]string
 	cache    *expirable.LRU[string, interface{}]
+)
+
+type contextKey string
+
+const (
+	ACCESS_LOG_CONTEXT_KEY contextKey = "access_log"
 )
 
 func BaseRequestMiddleware(next http.Handler) http.Handler {
@@ -29,32 +36,26 @@ func BaseRequestMiddleware(next http.Handler) http.Handler {
 		if r.Method == http.MethodOptions {
 			return
 		}
+		log := &objects.AccessLog{}
+
+		ctx := context.WithValue(r.Context(), ACCESS_LOG_CONTEXT_KEY, log)
 
 		if os.Getenv("ENVIRONMENT") != "local" {
-			// Trace logging for Cloud Run
-			projectID, _ := metadata.ProjectID()
-
-			var trace string
-			if projectID != "" {
-				traceHeader := r.Header.Get("X-Cloud-Trace-Context")
-				traceParts := strings.Split(traceHeader, "/")
-				if len(traceParts) > 0 && len(traceParts[0]) > 0 {
-					trace = fmt.Sprintf("projects/%s/traces/%s", projectID, traceParts[0])
-				}
-			}
-
-			log := &objects.AccessLog{
-				Trace:  trace,
-				UserIP: r.Header.Get("X-Forwarded-For"),
-			}
-			logJson, err := json.Marshal(log)
-			if err != nil {
-				fmt.Fprintln(os.Stderr, err)
-			} else {
-				fmt.Fprintln(os.Stdout, string(logJson))
-			}
+			trace := getTrace(r)
+			userIp := r.Header.Get("X-Forwarded-For")
+			log.Trace = &trace
+			log.UserIP = &userIp
 		}
+
 		next.ServeHTTP(w, r)
+
+		logJson, err := json.Marshal(ctx.Value(ACCESS_LOG_CONTEXT_KEY))
+
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+		} else {
+			fmt.Fprintln(os.Stdout, string(logJson))
+		}
 	})
 }
 
@@ -66,9 +67,15 @@ func AuthMiddleware(next http.Handler) http.Handler {
 			return
 		}
 		key := r.Header.Get("Authorization")
-		if !isValidKey(key) {
+		// If key is valid, add user to AccessLog context
+		if user, authorized := isValidKey(key); !authorized {
 			http.Error(w, "Forbidden", http.StatusForbidden)
 			return
+		} else {
+			ctx := r.Context()
+			if accessLog := ctx.Value(ACCESS_LOG_CONTEXT_KEY); accessLog != nil {
+				accessLog.(*objects.AccessLog).KeyUser = user
+			}
 		}
 		next.ServeHTTP(w, r)
 	})
@@ -120,13 +127,13 @@ func CacheMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-func isValidKey(key string) bool {
-	for _, validKey := range authKeys {
+func isValidKey(key string) (*string, bool) {
+	for validUser, validKey := range authKeys {
 		if key == validKey {
-			return true
+			return &validUser, true
 		}
 	}
-	return false
+	return nil, false
 }
 
 func init() {
@@ -134,15 +141,26 @@ func init() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading auth keys file %v", err)
 	}
-	var keys map[string]string
 
-	err = json.Unmarshal(keyFile, &keys)
+	err = json.Unmarshal(keyFile, &authKeys)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error unmarshalling auth keys %v", err)
 	}
-	for _, v := range keys {
-		authKeys = append(authKeys, v)
-	}
 
 	cache = expirable.NewLRU[string, interface{}](5000, nil, time.Minute*60)
+}
+
+func getTrace(r *http.Request) string {
+	// Trace logging for Cloud Run
+	projectID, _ := metadata.ProjectID()
+
+	var trace string
+	if projectID != "" {
+		traceHeader := r.Header.Get("X-Cloud-Trace-Context")
+		traceParts := strings.Split(traceHeader, "/")
+		if len(traceParts) > 0 && len(traceParts[0]) > 0 {
+			trace = fmt.Sprintf("projects/%s/traces/%s", projectID, traceParts[0])
+		}
+	}
+	return trace
 }
