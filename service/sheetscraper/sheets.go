@@ -73,6 +73,25 @@ func Scrape(isDryRun bool) {
 			sheetNameAndRange := cfg.id + sheetRange
 			switch sheetNameAndRange {
 			// Offsets e customizações pra cada planilha hardcoded por enquanto
+			case "1-1q4c8Ns6M9noCEhQqBE6gy3FWUv-VQgeUO9c7szGIM" + "COLÉGIO ADVENTISTA DE CANOAS - CACN!A1:ZZ":
+				for i, row := range content.([][]interface{}) {
+					if i < 2 || len(row) < 3 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo:     "Colégio Adventista de Canoas",
+						Nome:       row[2].(string),
+						Observacao: "Sala " + row[0].(string),
+					}
+					if len(row) > 4 {
+						p.Idade = row[3].(string)
+					} else {
+						p.Idade = ""
+					}
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+				}
 			case "1Kw8_Tl4cE4_hrb2APfSlNRli7IxgBbwGXq9d7aNSTzE" + "Cadastro inicial!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 6 || len(row) < 2 {
