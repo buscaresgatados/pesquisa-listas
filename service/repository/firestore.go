@@ -175,26 +175,11 @@ func FetchSourcesFromFirestore() ([]*objects.Source, error) {
 			if err := doc.DataTo(&data); err != nil {
 				fmt.Fprintf(os.Stderr, "Failed to read document: %v", err)
 			}
-
-			
-			sheetsInterface, _ := data["Sheets"].([]interface{})
-			
-			sheets := make([]string, len(sheetsInterface))
-			for i, v := range sheetsInterface {
-				sheets[i], _ = v.(string)
-			}
-
-			observacao, ok := data["Observacao"].(string)
-			if !ok {
-				observacao = ""
-			}
-
 			results = append(results, &objects.Source{
-				Nome:       data["Nome"].(string),
-				URL:        data["URL"].(string),
-				SheetId:    data["SheetId"].(string),
-				Observacao: observacao,
-				Sheets:     sheets,
+				Nome:    data["Nome"].(string),
+				URL:     data["URL"].(string),
+				SheetId: data["SheetId"].(string),
+				Observacao: data["Observacao"].(string),
 			})
 		} else {
 			fmt.Fprintln(os.Stderr, "Document does not exist")

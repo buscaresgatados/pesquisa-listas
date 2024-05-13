@@ -1,9 +1,6 @@
 package objects
 
-import (
-	"fmt"
-	"time"
-)
+import "time"
 
 type Pessoa struct {
 	Abrigo     string
@@ -39,13 +36,8 @@ type AccessLog struct {
 }
 
 type Source struct {
-	Nome    string
-	SheetId string
-	URL     string
-	Observacao	string
-	Sheets  []string
-}
-
-func (s *Source) String() string {
-    return fmt.Sprintf("URL: %s, SheetId: %s, Sheets: %v", s.URL, s.SheetId, s.Sheets)
+	Nome       string
+	SheetId    string
+	URL        string
+	Observacao string
 }
