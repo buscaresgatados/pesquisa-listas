@@ -164,8 +164,7 @@ func getTrace(r *http.Request) string {
 
 	var trace string
 	if projectID != "" {
-		traceHeader := r.Header.Get("traceparent")
-		fmt.Println(traceHeader)
+		traceHeader := r.Header.Get("X-Cloud-Trace-Context")
 		traceParts := strings.Split(traceHeader, "/")
 		if len(traceParts) > 0 && len(traceParts[0]) > 0 {
 			trace = fmt.Sprintf("projects/%s/traces/%s", projectID, traceParts[0])
