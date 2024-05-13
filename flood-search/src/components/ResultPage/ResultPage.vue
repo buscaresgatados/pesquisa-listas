@@ -38,10 +38,10 @@ onMounted(search);
         <Result v-if="!isLoading" :searchResults="searchResults"/>
        <WhatsappAPI v-if="!searchResults" :name="term" />
        <ResultFooter  v-if="searchResults && searchResults.length!=0" :name="term" showName/>
-       <ResultFooter v-if="!searchResults"/>
+       <ResultFooter v-if="!searchResults || searchResults.length == 0"/>
     </div>
   </div>
-  
+
 </template>
 
 <style scoped>
