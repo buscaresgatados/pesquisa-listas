@@ -106,7 +106,7 @@ jobs:
           DOCKER_REGISTRY: ${{ vars.DOCKER_REGISTRY }}
           ALGOLIA_CLIENT: ${{ secrets.ALGOLIA_CLIENT }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-          DISCORD_SOURCES_WEBHOOK: ${{ vars.DISCORD_SOURCES_WEBHOOK }}
+          DISCORD_SOURCES_WEBHOOK: ${{ secrets.DISCORD_SOURCES_WEBHOOK }}
         run: |
           gcloud --project=${{ vars.GCP_PROJECT }} \
             run jobs deploy refugio-rs-scrape-prd \
