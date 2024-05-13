@@ -53,6 +53,11 @@ func Scrape(isDryRun bool) {
 		return
 	}
 
+	if os.Getenv("ENVIRONMENT") == "local" && !isDryRun {
+		log.Panicln("Cannot run in local environment without dry run")
+		return
+	}
+
 	abrigoMap := getAbrigosMapping()
 	for _, cfg := range Config {
 		if cfg.id != "1ym1_GhBA47LhH97HhggICESiUbKSH-e2Oii1peh6QF0" { // Planilhão
