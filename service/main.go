@@ -42,7 +42,7 @@ var webCmd = &cobra.Command{
 		/* /pessoa routes with caching and Auth */
 		pessoaSubrouter := router.PathPrefix("/pessoa").Subrouter()
 		pessoaSubrouter.Use(web.AuthMiddleware, web.CacheMiddleware)
-		pessoaSubrouter.HandleFunc("", handlers.GetPessoa).Methods(http.MethodGet, http.MethodOptions).Queries("nome", "{nome:[a-zA-Z0-9]{3,}}")
+		pessoaSubrouter.HandleFunc("", handlers.GetPessoa).Methods(http.MethodGet, http.MethodOptions).Queries("nome", "{nome:[\\p{L}\\s0-9]{3,}}")
 		pessoaSubrouter.HandleFunc("/count", handlers.GetRecordCount).Methods(http.MethodGet, http.MethodOptions)
 		pessoaSubrouter.HandleFunc("/most_recent", handlers.GetMostRecent).Methods(http.MethodGet, http.MethodOptions)
 
