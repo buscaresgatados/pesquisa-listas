@@ -2915,9 +2915,9 @@ func Scrape(isDryRun bool) {
 				key := validPessoa.AggregateKey()
 
 				if filter.Lookup([]byte(key)) {
-					// if os.Getenv("ENVIRONMENT") == "local" {
-					// 	fmt.Fprintf(os.Stderr, "Pessoa: key %+v found in cuckoo filter, skipping\n", key)
-					// }
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stderr, "Pessoa: key %+v found in cuckoo filter, skipping\n", key)
+					}
 					continue
 				} else {
 					filter.Insert([]byte(key))
