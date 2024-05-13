@@ -155,7 +155,7 @@ func init() {
 		fmt.Fprintf(os.Stderr, "Error unmarshalling auth keys %v", err)
 	}
 
-	cache = expirable.NewLRU[string, interface{}](5000, nil, time.Minute*60)
+	cache = expirable.NewLRU[string, interface{}](50000, nil, time.Minute*60)
 }
 
 func getTrace(r *http.Request) string {
