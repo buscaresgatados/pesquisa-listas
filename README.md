@@ -76,8 +76,7 @@ O output será printado no console. Ele deverá conter a seguinte estrutura:
 {Abrigo:Associacao Nome:Nara Regina Pedroso Idade:}
 ```
 
-Após validar que a estrutura está correta, o script deve ser rodado sem _dryRun_:<br>
-`export $(cat .env | xargs ) && go build -o app && ./app scrape --isDryRun=false`
+Após validar que a estrutura está correta, o script deve ser rodado com _--dryRun=false_:<br>
 
 Isso vai fazer com que os dados sejam salvos no Banco de Dados.<br>
 Após rodar o script, commitar no repositório as mudanças.<br><br>
