@@ -7,11 +7,12 @@ type SheetConfig struct {
 }
 
 var Config []SheetConfig = []SheetConfig{
-	{
-		id:          "1Kw8_Tl4cE4_hrb2APfSlNRli7IxgBbwGXq9d7aNSTzE",
-		sheetRanges: []string{"Cadastro inicial!A1:ZZ"},
-		name:        "Cadastro de Abrigados Escola Aurélio Reis",
-	},
+	// SEM ACESSO -- ENTRAR EM CONTATO COM O PROPRIETÁRIO
+	// {
+	// 	id:          "1Kw8_Tl4cE4_hrb2APfSlNRli7IxgBbwGXq9d7aNSTzE",
+	// 	sheetRanges: []string{"Cadastro inicial!A1:ZZ"},
+	// 	name:        "Cadastro de Abrigados Escola Aurélio Reis",
+	// },
 	{
 		id:          "1--z2fbczdFT4RSoji7jXc2jDDU5HqWgAU93NuROBQ78",
 		sheetRanges: []string{"Queila!A1:ZZ"},
@@ -124,7 +125,7 @@ var Config []SheetConfig = []SheetConfig{
 	},
 	{
 		id:          "1yuzazWMydzJKUoBnElV1YTxSKLJsT4fSVHfyJBjLlAY",
-		sheetRanges: []string{"Página1!A1:ZZ"},
+		sheetRanges: []string{"Lista Abrigados!A1:ZZ"},
 		name:        "Lista desabrigados Sesc Protásio",
 	},
 	{
