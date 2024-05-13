@@ -30,6 +30,7 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 
 	results, err := index.Search(nome)
 	if err != nil {
+		http.Error(w, fmt.Sprintf("failed request to algolia API %v\n", err), http.StatusInternalServerError)
 		panic(err)
 	}
 
@@ -60,24 +61,14 @@ func GetPessoa(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 
 	sort.SliceStable(pessoas, func(i, j int) bool {
 		return pessoas[i].Timestamp.After(pessoas[j].Timestamp)
 	})
 
-	// Deduplicate by Pessoa.Nome + Pessoa.SheetId
-	unique := make([]*objects.PessoaResult, 0)
-	seen := make(map[string]bool)
-
-	for _, person := range pessoas {
-		if _, ok := seen[person.Nome+*person.SheetId]; !ok {
-			seen[person.Nome+*person.SheetId] = true
-			unique = append(unique, person)
-		}
-	}
-
-	jsonBytes, err := json.Marshal(unique)
+	jsonBytes, err := json.Marshal(pessoas)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -91,13 +82,15 @@ func GetRecordCount(w http.ResponseWriter, r *http.Request) {
 	filter, err := cuckoo.GetCuckooFilter(sheetscraper.Pessoa)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error getting filter: %v\n", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
 	}
 
 	var result objects.PessoaCountResult
 	result.Total = int(filter.Count())
 	jsonBytes, err := json.Marshal(result)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error marshalling JSON: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error marshalling filter count result JSON: %v\n", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
 	}

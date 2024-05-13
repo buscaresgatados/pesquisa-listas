@@ -1,7 +1,5 @@
 package sheetscraper
 
-import "fmt"
-
 const (
 	AbrigoDeduplicationSheetId = "1d15WX-dSXnnwVHNMpO6PxqQtf1CrHZq_T6ymrwSsp8c"
 	AbrigoDeduplicationRange   = "Sheet3"
@@ -21,6 +19,5 @@ func getAbrigosMapping() map[string]string {
 		}
 		abrigoDeduplicationMap[row[0].(string)] = row[1].(string)
 	}
-	fmt.Println(abrigoDeduplicationMap)
 	return abrigoDeduplicationMap
 }

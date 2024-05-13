@@ -7,6 +7,7 @@ require (
 	cloud.google.com/go/firestore v1.15.0
 	github.com/algolia/algoliasearch-client-go/v3 v3.31.1
 	github.com/gorilla/mux v1.8.1
+	github.com/hashicorp/golang-lru/v2 v2.0.7
 	github.com/panmari/cuckoofilter v1.0.6
 	github.com/spf13/cobra v1.8.0
 	golang.org/x/text v0.14.0

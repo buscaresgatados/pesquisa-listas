@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"encoding/json"
 	"net/http"
 	"refugio/repository"
 )
@@ -16,4 +17,10 @@ func Live(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Write([]byte("OK"))
+}
+
+func AuthMe(w http.ResponseWriter, r *http.Request) {
+	response := map[string]string{"status": "success", "message": "Authenticated successfully"}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
 }
