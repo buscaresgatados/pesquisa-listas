@@ -1,11 +1,14 @@
 package sheetscraper
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"regexp"
+	"slices"
 	"strings"
 	"time"
 
@@ -28,19 +31,21 @@ type SourceData struct {
 	Error error       `json:"error,omitempty"`
 }
 
-func (ss *SheetsSource) Read(sheetID string, sheetRange string) (interface{}, error) {
+func (ss *SheetsSource) Read(sheetID string, sheetRange string) (interface{}, []*sheets.Sheet, error) {
 	serviceAccJSON := utils.GetServiceAccountJSON(os.Getenv("SHEETS_SERVICE_ACCOUNT_JSON"))
 	srv, err := sheets.NewService(context.Background(), option.WithCredentialsJSON(serviceAccJSON))
 	if err != nil {
 		log.Fatalf("Unable to retrieve Sheets client: %v", err)
 	}
 
+	spreadsheet, _ := srv.Spreadsheets.Get(sheetID).Do()
+
 	resp, err := srv.Spreadsheets.Values.Get(sheetID, sheetRange).Do()
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return resp.Values, nil
+	return resp.Values, spreadsheet.Sheets, nil
 }
 
 func Scrape(isDryRun bool) {
@@ -59,6 +64,7 @@ func Scrape(isDryRun bool) {
 	}
 
 	abrigoMap := getAbrigosMapping()
+
 	for _, cfg := range Config {
 		if cfg.id != "1ym1_GhBA47LhH97HhggICESiUbKSH-e2Oii1peh6QF0" { // Planilhão
 			serializedSources = append(serializedSources, &objects.Source{
@@ -69,7 +75,17 @@ func Scrape(isDryRun bool) {
 		}
 
 		for _, sheetRange := range cfg.sheetRanges {
-			content, err := ss.Read(cfg.id, sheetRange)
+			content, tabs, err := ss.Read(cfg.id, sheetRange)
+			
+			seenSheets := make(map[string]bool)
+
+			for _, tab := range tabs {
+				if _, ok := seenSheets[tab.Properties.Title]; !ok {
+					seenSheets[tab.Properties.Title] = true
+					serializedSources[len(serializedSources)-1].Sheets = append(serializedSources[len(serializedSources)-1].Sheets, tab.Properties.Title)
+				}
+			}
+
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Error reading sheet %s: %v\n", cfg.id, err)
 				continue
@@ -2859,7 +2875,7 @@ func Scrape(isDryRun bool) {
 							URL:     url,
 							Nome:    row[6].(string),
 						}
-
+						
 						serializedSources = append(serializedSources, &source)
 					}
 
@@ -2938,9 +2954,37 @@ func Scrape(isDryRun bool) {
 	}
 	// Remove duplicate sources
 	uniqueSources := []*objects.Source{}
+
+	existingSources, _ := repository.FetchSourcesFromFirestore()
+	
 	seen := map[string]bool{}
 	for _, source := range serializedSources {
 		key := source.URL + source.SheetId
+
+		filteredSources := make([]*objects.Source, 0)
+		for _, dbSource := range existingSources {
+			if dbSource.SheetId == source.SheetId {
+				filteredSources = append(filteredSources, dbSource)
+			}
+		}
+
+		var lenFilteredSources int
+
+		if len(filteredSources) > 0 {
+			lenFilteredSources = len(filteredSources)
+		} else {
+			lenFilteredSources = 0
+		}
+
+		if len(source.Sheets) > lenFilteredSources {
+			fmt.Println("A new sheet was added to the source")
+			notifyNewTab(source.SheetId)
+		}
+		
+		allSheets := source.Sheets
+
+		source.Sheets = slices.Compact(allSheets)
+
 		if _, ok := seen[key]; !ok {
 			seen[key] = true
 			uniqueSources = append(uniqueSources, source)
@@ -2958,4 +3002,15 @@ func Scrape(isDryRun bool) {
 	if !isDryRun {
 		repository.AddSourcesToFirestore(uniqueSources)
 	}
+}
+
+func notifyNewTab(sheetId string) {
+	url := os.Getenv("DISCORD_SOURCES_WEBHOOK")
+    content := fmt.Sprintf("A new tab was added to the sheet https://docs.google.com/spreadsheets/d/%s.", sheetId)
+	data := []byte(fmt.Sprintf(`{"content":"%s"}`, content))
+    resp, err := http.Post(url, "application/json", bytes.NewBuffer(data))
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error sending notification to Discord: %v\n", err)
+    }
+    defer resp.Body.Close()
 }

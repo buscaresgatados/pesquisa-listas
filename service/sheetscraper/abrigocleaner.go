@@ -7,7 +7,7 @@ const (
 
 func getAbrigosMapping() map[string]string {
 	ss := SheetsSource{}
-	content, err := ss.Read(AbrigoDeduplicationSheetId, AbrigoDeduplicationRange)
+	content, _, err := ss.Read(AbrigoDeduplicationSheetId, AbrigoDeduplicationRange)
 	if err != nil {
 		panic(err)
 	}
