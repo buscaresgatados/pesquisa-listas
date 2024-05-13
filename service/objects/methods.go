@@ -18,7 +18,7 @@ func (p *PessoaResult) Clean() *PessoaResult {
 }
 
 func (p *PessoaResult) DeduplicateAbrigo(abrigosMapping map[string]string) *PessoaResult {
-	if abrigoDedup, ok := abrigosMapping[p.Abrigo]; ok {
+	if abrigoDedup, ok := abrigosMapping[strings.ToLower(p.Abrigo)]; ok {
 		p.Abrigo = abrigoDedup
 	}
 	return p
@@ -41,7 +41,8 @@ func (p *PessoaResult) Validate() (bool, *PessoaResult) {
 }
 
 func (p *PessoaResult) AggregateKey() string {
-	return strings.ToLower(onlyLettersAndNumbers(p.Nome + p.Abrigo))
+	caser := cases.Lower(language.BrazilianPortuguese)
+	return utils.RemoveAccents(caser.String(onlyLettersAndNumbers(p.Nome + p.Abrigo)))
 }
 
 func cleanNome(name string) string {
@@ -68,7 +69,7 @@ func cleanCommon(str string) string {
 	str = utils.RemoveExtraSpaces(str)
 
 	// Remove linebreaks, etc
-	regexLineBreaks := regexp.MustCompile(`[\r\n\t]+`)
+	regexLineBreaks := regexp.MustCompile(`[\r\n\t]|^M+`)
 	str = regexLineBreaks.ReplaceAllString(str, "")
 
 	str = strings.Replace(str, "/", "", -1)
@@ -76,7 +77,7 @@ func cleanCommon(str string) string {
 }
 
 func onlyLettersAndNumbers(str string) string {
-	re := regexp.MustCompile(`[^a-zA-Z0-9]+`)
+	re := regexp.MustCompile(`[^\p{L}\p{N}]`)
 
 	result := re.ReplaceAllString(str, "")
 	return result

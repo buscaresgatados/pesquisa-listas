@@ -76,7 +76,7 @@ func Scrape(isDryRun bool) {
 
 		for _, sheetRange := range cfg.sheetRanges {
 			content, tabs, err := ss.Read(cfg.id, sheetRange)
-			
+
 			seenSheets := make(map[string]bool)
 
 			for _, tab := range tabs {
@@ -1545,11 +1545,12 @@ func Scrape(isDryRun bool) {
 					var nome string
 
 					nome = row[1].(string)
-					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					// if err != nil {
-					// 	log.Fatal(err)
-					// }
-					// nome = reg.ReplaceAllString(nome, "")
+					if strings.Contains(nome, ".") {
+						nomeSplit := strings.Split(nome, ".")
+						if len(nomeSplit) > 1 {
+							nome = nomeSplit[1]
+						}
+					}
 
 					abrigo = row[3].(string)
 					if abrigo == "" {
@@ -1577,14 +1578,8 @@ func Scrape(isDryRun bool) {
 					}
 					var p objects.Pessoa
 					var abrigo string
-					var nome string
 
-					nome = row[1].(string)
-					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					// if err != nil {
-					// 	log.Fatal(err)
-					// }
-					// nome = reg.ReplaceAllString(nome, "")
+					nome := row[1].(string)
 
 					abrigo = row[4].(string)
 					if abrigo == "" {
@@ -1612,14 +1607,8 @@ func Scrape(isDryRun bool) {
 					}
 					var p objects.Pessoa
 					var abrigo string
-					var nome string
 
-					nome = row[0].(string)
-					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					// if err != nil {
-					// 	log.Fatal(err)
-					// }
-					// nome = reg.ReplaceAllString(nome, "")
+					nome := row[0].(string)
 
 					abrigo = fmt.Sprintf("Ulbra Canoas - Prédio %s - Sala %s", row[3].(string), row[4].(string))
 
@@ -1922,14 +1911,8 @@ func Scrape(isDryRun bool) {
 					}
 					var p objects.Pessoa
 					var abrigo string
-					var nome string
 
-					nome = row[0].(string)
-					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
-					// if err != nil {
-					// 	log.Fatal(err)
-					// }
-					// nome = reg.ReplaceAllString(nome, "")
+					nome := row[0].(string)
 
 					abrigo = row[2].(string)
 					if abrigo == "" {
@@ -1958,9 +1941,8 @@ func Scrape(isDryRun bool) {
 					}
 					var p objects.Pessoa
 					var abrigo string
-					var nome string
 
-					nome = row[0].(string)
+					nome := row[0].(string)
 					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
 					// if err != nil {
 					// 	log.Fatal(err)
@@ -1994,9 +1976,8 @@ func Scrape(isDryRun bool) {
 					}
 					var p objects.Pessoa
 					var abrigo string
-					var nome string
 
-					nome = row[0].(string)
+					nome := row[0].(string)
 					// reg, err := regexp.Compile("[^a-zA-Z\\s]+")
 					// if err != nil {
 					// 	log.Fatal(err)
@@ -2054,9 +2035,8 @@ func Scrape(isDryRun bool) {
 					if i < 1 || len(row) < 2 {
 						continue
 					}
-					var p objects.Pessoa
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "Viaduto Santa Rita - Eldorado",
 						Nome:   row[0].(string),
 						Idade:  "",
@@ -2134,9 +2114,8 @@ func Scrape(isDryRun bool) {
 					if i < 1 || len(row) < 1 {
 						continue
 					}
-					var p objects.Pessoa
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "Comunidade Santa Clara",
 						Nome:   row[0].(string),
 						Idade:  "",
@@ -2156,7 +2135,6 @@ func Scrape(isDryRun bool) {
 					if i < 1 || len(row) < 3 {
 						continue
 					}
-					var p objects.Pessoa
 					var idade string
 
 					if len(row) > 1 {
@@ -2165,7 +2143,7 @@ func Scrape(isDryRun bool) {
 						idade = ""
 					}
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "CTG Guapos da Amizade",
 						Nome:   row[0].(string),
 						Idade:  idade,
@@ -2185,9 +2163,8 @@ func Scrape(isDryRun bool) {
 					if i < 4 || len(row) < 1 {
 						continue
 					}
-					var p objects.Pessoa
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "Associação Gaditas",
 						Nome:   row[0].(string),
 						Idade:  "",
@@ -2207,9 +2184,8 @@ func Scrape(isDryRun bool) {
 					if i < 4 || len(row) < 1 {
 						continue
 					}
-					var p objects.Pessoa
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "Ginásio Placar",
 						Nome:   row[0].(string),
 						Idade:  "",
@@ -2229,9 +2205,8 @@ func Scrape(isDryRun bool) {
 					if i < 3 || len(row) < 1 {
 						continue
 					}
-					var p objects.Pessoa
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "ONG Vida Viva",
 						Nome:   row[0].(string),
 						Idade:  "",
@@ -2669,9 +2644,8 @@ func Scrape(isDryRun bool) {
 					if i < 4 || len(row) < 1 {
 						continue
 					}
-					var p objects.Pessoa
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "Velha Cambona",
 						Nome:   row[0].(string),
 						Idade:  "",
@@ -2692,9 +2666,8 @@ func Scrape(isDryRun bool) {
 					if i < 4 || len(row) < 1 {
 						continue
 					}
-					var p objects.Pessoa
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "Nossa Sra. de Fátima",
 						Nome:   row[0].(string),
 						Idade:  "",
@@ -2715,9 +2688,8 @@ func Scrape(isDryRun bool) {
 					if i < 4 || len(row) < 5 {
 						continue
 					}
-					var p objects.Pessoa
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: "Vila Rica",
 						Nome:   row[0].(string),
 						Idade:  row[4].(string),
@@ -2738,7 +2710,6 @@ func Scrape(isDryRun bool) {
 					if i < 2 || len(row) < 2 {
 						continue
 					}
-					var p objects.Pessoa
 					var abrigo string
 
 					if len(row) > 4 && row[4] != "-" {
@@ -2747,7 +2718,7 @@ func Scrape(isDryRun bool) {
 						abrigo = "Desconhecido"
 					}
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: abrigo,
 						Nome:   row[0].(string),
 						Idade:  "",
@@ -2768,9 +2739,8 @@ func Scrape(isDryRun bool) {
 					if i < 2 || len(row) < 2 {
 						continue
 					}
-					var p objects.Pessoa
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: row[1].(string),
 						Nome:   row[0].(string),
 						Idade:  "",
@@ -2791,7 +2761,6 @@ func Scrape(isDryRun bool) {
 					if i < 2 || len(row) < 2 {
 						continue
 					}
-					var p objects.Pessoa
 					var abrigo string
 
 					if len(row) > 1 && row[1] != "" {
@@ -2800,7 +2769,7 @@ func Scrape(isDryRun bool) {
 						abrigo = "Desconhecido"
 					}
 
-					p = objects.Pessoa{
+					p := objects.Pessoa{
 						Abrigo: abrigo,
 						Nome:   row[0].(string),
 						Idade:  "",
@@ -2875,7 +2844,7 @@ func Scrape(isDryRun bool) {
 							URL:     url,
 							Nome:    row[6].(string),
 						}
-						
+
 						serializedSources = append(serializedSources, &source)
 					}
 
@@ -2919,9 +2888,9 @@ func Scrape(isDryRun bool) {
 
 			var cleanedData []*objects.PessoaResult
 			for _, pessoa := range serializedData {
-				pessoaWithDeduplicatedAbrigo := pessoa.DeduplicateAbrigo(abrigoMap)
-				cleanPessoa := pessoaWithDeduplicatedAbrigo.Clean()
-				isValid, validPessoa := cleanPessoa.Validate()
+				cleanPessoa := pessoa.Clean()
+				pessoaWithDeduplicatedAbrigo := cleanPessoa.DeduplicateAbrigo(abrigoMap)
+				isValid, validPessoa := pessoaWithDeduplicatedAbrigo.Validate()
 				if !isValid {
 					if os.Getenv("ENVIRONMENT") == "local" {
 						fmt.Fprintf(os.Stderr, "Invalid PessoaResult data. Nome: %+v Abrigo: %+v\n", pessoa.Nome, pessoa.Abrigo)
@@ -2956,7 +2925,7 @@ func Scrape(isDryRun bool) {
 	uniqueSources := []*objects.Source{}
 
 	existingSources, _ := repository.FetchSourcesFromFirestore()
-	
+
 	seen := map[string]bool{}
 	for _, source := range serializedSources {
 		key := source.URL + source.SheetId
@@ -2980,7 +2949,7 @@ func Scrape(isDryRun bool) {
 			fmt.Println("A new sheet was added to the source")
 			notifyNewTab(source.SheetId)
 		}
-		
+
 		allSheets := source.Sheets
 
 		source.Sheets = slices.Compact(allSheets)
@@ -3006,11 +2975,11 @@ func Scrape(isDryRun bool) {
 
 func notifyNewTab(sheetId string) {
 	url := os.Getenv("DISCORD_SOURCES_WEBHOOK")
-    content := fmt.Sprintf("A new tab was added to the sheet https://docs.google.com/spreadsheets/d/%s.", sheetId)
+	content := fmt.Sprintf("A new tab was added to the sheet https://docs.google.com/spreadsheets/d/%s.", sheetId)
 	data := []byte(fmt.Sprintf(`{"content":"%s"}`, content))
-    resp, err := http.Post(url, "application/json", bytes.NewBuffer(data))
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error sending notification to Discord: %v\n", err)
-    }
-    defer resp.Body.Close()
+	resp, err := http.Post(url, "application/json", bytes.NewBuffer(data))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error sending notification to Discord: %v\n", err)
+	}
+	defer resp.Body.Close()
 }
