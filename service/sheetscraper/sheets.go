@@ -2959,7 +2959,7 @@ func Scrape(isDryRun bool) {
 		var lenFilteredSources int
 
 		if len(filteredSources) > 0 {
-			lenFilteredSources = len(filteredSources)
+			lenFilteredSources = len(filteredSources[0].Sheets)
 		} else {
 			lenFilteredSources = 0
 		}
