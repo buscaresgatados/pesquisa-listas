@@ -76,7 +76,7 @@ func Scrape(isDryRun bool) {
 
 		for _, sheetRange := range cfg.sheetRanges {
 			content, tabs, err := ss.Read(cfg.id, sheetRange)
-			
+
 			seenSheets := make(map[string]bool)
 
 			for _, tab := range tabs {
@@ -133,6 +133,25 @@ func Scrape(isDryRun bool) {
 						fmt.Fprintf(os.Stdout, "%+v\n", p)
 					}
 
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
+			case "1--z2fbczdFT4RSoji7jXc2jDDU5HqWgAU93NuROBQ78" + "Lista dos Acolhidos em Gravataí ":
+				for i, row := range content.([][]interface{}) {
+					if i < 3 || len(row) < 8 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: row[7].(string),
+						Nome:   row[0].(string),
+						Idade:  row[1].(string),
+					}
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
 					serializedData = append(serializedData, &objects.PessoaResult{
 						Pessoa:    &p,
 						SheetId:   &cfg.id,
@@ -2875,7 +2894,7 @@ func Scrape(isDryRun bool) {
 							URL:     url,
 							Nome:    row[6].(string),
 						}
-						
+
 						serializedSources = append(serializedSources, &source)
 					}
 
@@ -2956,7 +2975,7 @@ func Scrape(isDryRun bool) {
 	uniqueSources := []*objects.Source{}
 
 	existingSources, _ := repository.FetchSourcesFromFirestore()
-	
+
 	seen := map[string]bool{}
 	for _, source := range serializedSources {
 		key := source.URL + source.SheetId
@@ -2980,7 +2999,7 @@ func Scrape(isDryRun bool) {
 			fmt.Println("A new sheet was added to the source")
 			notifyNewTab(source.SheetId)
 		}
-		
+
 		allSheets := source.Sheets
 
 		source.Sheets = slices.Compact(allSheets)
@@ -3006,11 +3025,11 @@ func Scrape(isDryRun bool) {
 
 func notifyNewTab(sheetId string) {
 	url := os.Getenv("DISCORD_SOURCES_WEBHOOK")
-    content := fmt.Sprintf("A new tab was added to the sheet https://docs.google.com/spreadsheets/d/%s.", sheetId)
+	content := fmt.Sprintf("A new tab was added to the sheet https://docs.google.com/spreadsheets/d/%s.", sheetId)
 	data := []byte(fmt.Sprintf(`{"content":"%s"}`, content))
-    resp, err := http.Post(url, "application/json", bytes.NewBuffer(data))
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error sending notification to Discord: %v\n", err)
-    }
-    defer resp.Body.Close()
+	resp, err := http.Post(url, "application/json", bytes.NewBuffer(data))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error sending notification to Discord: %v\n", err)
+	}
+	defer resp.Body.Close()
 }
