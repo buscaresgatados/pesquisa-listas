@@ -22,7 +22,9 @@ import (
 )
 
 const (
-	Pessoa = "Pessoa"
+	Pessoa     = "Pessoa"
+	Completo   = "COMPLETO"
+	Incompleto = "INCOMPLETO"
 )
 
 type SheetsSource struct{}
@@ -2839,12 +2841,12 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
-			case cfg.id + "Sheet1!A1:ZZ": // Planilhão
+			case "1ym1_GhBA47LhH97HhggICESiUbKSH-e2Oii1peh6QF0" + "Sheet1!A1:ZZ": // Planilhão
 				for i, row := range content.([][]interface{}) {
-					if i < 1 || len(row) < 1 {
+					// Sem validações de comprimento de linha pq nós controlamos o conteúdo
+					if i < 1 {
 						continue
 					}
-
 					p := objects.Pessoa{
 						Abrigo: row[1].(string),
 						Nome:   row[0].(string),
@@ -2852,9 +2854,10 @@ func Scrape(isDryRun bool) {
 					}
 
 					sheetId := row[2].(string)
-					var url string
-					if len(row) > 3 {
-						url = row[3].(string)
+					url := row[3].(string)
+
+					if row[5].(string) == Incompleto {
+						continue
 					}
 
 					if len(row) > 6 && row[6].(string) != "" {

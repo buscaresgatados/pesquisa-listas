@@ -69,7 +69,7 @@ func cleanCommon(str string) string {
 	str = utils.RemoveExtraSpaces(str)
 
 	// Remove linebreaks, etc
-	regexLineBreaks := regexp.MustCompile(`[\r\n\t]|^M+`)
+	regexLineBreaks := regexp.MustCompile(`[\r\n\t]`)
 	str = regexLineBreaks.ReplaceAllString(str, "")
 
 	str = strings.Replace(str, "/", "", -1)
