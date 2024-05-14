@@ -11,7 +11,7 @@ func Ready(w http.ResponseWriter, r *http.Request) {
 }
 
 func Live(w http.ResponseWriter, r *http.Request) {
-	results, _ := repository.FetchPessoaFromFirestore([]string{"yusbelydayarithfloresmaicanginsiopoliesportivolasalle"})
+	results, _ := repository.FetchPessoaFromFirestore([]string{"aarencristianoduarteunisinos"})
 	if len(results) == 0 {
 		http.Error(w, "Error fetching people from Firestore", http.StatusInternalServerError)
 		return
