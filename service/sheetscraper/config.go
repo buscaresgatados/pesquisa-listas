@@ -14,9 +14,11 @@ var Config []SheetConfig = []SheetConfig{
 	// 	name:        "Cadastro de Abrigados Escola Aurélio Reis",
 	// },
 	{
-		id:          "1--z2fbczdFT4RSoji7jXc2jDDU5HqWgAU93NuROBQ78",
-		sheetRanges: []string{"Queila!A1:ZZ"},
-		name:        "GRAVATAÍ - Lista de acolhidos por abrigo",
+		id: "1--z2fbczdFT4RSoji7jXc2jDDU5HqWgAU93NuROBQ78",
+		sheetRanges: []string{
+			"Queila!A1:ZZ",
+			"Lista dos Acolhidos em Gravataí "},
+		name: "GRAVATAÍ - Lista de acolhidos por abrigo",
 	},
 	{
 		id:          "14WIowAKQo5o_FviBw_6hRxnzAclw5xTvHbUiQuU8qDw",

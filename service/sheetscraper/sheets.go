@@ -139,6 +139,25 @@ func Scrape(isDryRun bool) {
 						Timestamp: time.Now(),
 					})
 				}
+			case "1--z2fbczdFT4RSoji7jXc2jDDU5HqWgAU93NuROBQ78" + "Lista dos Acolhidos em Gravataí ":
+				for i, row := range content.([][]interface{}) {
+					if i < 3 || len(row) < 8 {
+						continue
+					}
+					p := objects.Pessoa{
+						Abrigo: row[7].(string),
+						Nome:   row[0].(string),
+						Idade:  row[1].(string),
+					}
+					if os.Getenv("ENVIRONMENT") == "local" {
+						fmt.Fprintf(os.Stdout, "%+v\n", p)
+					}
+					serializedData = append(serializedData, &objects.PessoaResult{
+						Pessoa:    &p,
+						SheetId:   &cfg.id,
+						Timestamp: time.Now(),
+					})
+				}
 			case "1--z2fbczdFT4RSoji7jXc2jDDU5HqWgAU93NuROBQ78" + "Queila!A1:ZZ":
 				for i, row := range content.([][]interface{}) {
 					if i < 1 || len(row) < 4 {
