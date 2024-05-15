@@ -2066,7 +2066,7 @@ func Scrape(isDryRun bool) {
 					}
 
 					p := objects.Pessoa{
-						Abrigo: row[5].(string),
+						Abrigo: row[4].(string),
 						Idade:  "",
 						Nome:   row[1].(string),
 					}
